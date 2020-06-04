@@ -1,0 +1,2452 @@
+[2019-Jul-22 11:36:12] 127.0.0.1 POST http /api/get_gender? 200 OK
+[2019-Jul-22 11:38:18] 127.0.0.1 POST http /api/get_gender? 200 OK
+[2019-Jul-22 11:38:29] 127.0.0.1 POST http /api/get_gender? 200 OK
+[2019-Jul-22 11:42:45] 127.0.0.1 POST http /api/get_gender? 200 OK
+[2019-Jul-22 11:47:53] 127.0.0.1 POST http /api/get_gender? 200 OK
+[2019-Jul-22 11:48:01] 127.0.0.1 POST http /api/get_gender? 200 OK
+[2019-Jul-22 11:55:48] 127.0.0.1 POST http /api/get_gender? 200 OK
+[2019-Jul-22 12:10:09] 127.0.0.1 POST http /api/get_gender? 200 OK
+[2019-Jul-22 12:10:42] 127.0.0.1 POST http /api/get_gender? 200 OK
+[2019-Jul-22 12:18:06] ::1 POST http /api/get_gender? 200 OK
+[2019-Jul-22 12:18:13] ::1 POST http /api/get_gender? 200 OK
+[2019-Jul-22 12:18:20] ::1 POST http /api/get_gender? 200 OK
+[2019-Jul-22 12:20:49] ::1 POST http /api/get_gender? 200 OK
+[2019-Jul-22 12:20:53] ::1 POST http /api/get_gender? 200 OK
+[2019-Jul-22 12:20:55] ::1 POST http /api/get_gender? 200 OK
+[2019-Jul-22 12:20:59] ::1 POST http /api/get_gender? 200 OK
+[2019-Jul-22 13:46:07] ::1 POST http /api/get_gender? 200 OK
+[2019-Jul-22 13:46:14] ::1 POST http /api/get_gender? 200 OK
+[2019-Jul-22 13:46:19] ::1 POST http /api/get_gender? 200 OK
+[2019-Jul-22 13:46:21] ::1 POST http /api/get_gender? 200 OK
+[2019-Jul-22 13:48:58] ::1 POST http /api/get_gender? 200 OK
+[2019-Jul-22 13:49:07] ::1 POST http /api/get_gender? 200 OK
+[2019-Jul-23 15:19:49] ::1 POST http /api/get_gender? 200 OK
+[2019-Jul-23 15:20:43] ::1 POST http /api/get_gender? 200 OK
+[2019-Jul-23 15:21:53] ::1 POST http /api/get_gender? 200 OK
+[2019-Jul-23 15:23:42] ::1 POST http /api/get_gender? 200 OK
+[2019-Jul-23 15:25:01] ::1 POST http /api/get_gender? 200 OK
+[2019-Jul-23 15:26:31] ::1 POST http /api/get_gender? 200 OK
+[2019-Jul-23 15:28:07] ::1 POST http /api/get_gender? 200 OK
+[2019-Jul-23 15:28:57] ::1 POST http /api/get_gender? 200 OK
+[2019-Jul-23 15:31:08] ::1 POST http /api/get_gender? 200 OK
+[2019-Jul-23 15:31:11] ::1 POST http /api/get_gender? 200 OK
+[2019-Jul-23 15:35:00] ::1 POST http /api/get_gender? 200 OK
+[2019-Jul-23 15:36:07] ::1 POST http /api/get_gender? 200 OK
+[2019-Jul-23 15:36:12] ::1 POST http /api/get_gender? 200 OK
+[2019-Jul-23 15:36:15] ::1 POST http /api/get_gender? 200 OK
+[2019-Jul-23 15:40:06] ::1 POST http /api/get_gender? 200 OK
+[2019-Jul-23 15:40:10] ::1 POST http /api/get_gender? 200 OK
+[2019-Jul-23 15:40:13] ::1 POST http /api/get_gender? 200 OK
+[2019-Sep-22 19:35:43] 127.0.0.1 POST http /get_gender? 5xx INTERNAL SERVER ERROR
+Traceback (most recent call last):
+  File "/Users/ntkhanh/.virtualenvs/cv/lib/python3.7/site-packages/flask/app.py", line 1832, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/ntkhanh/.virtualenvs/cv/lib/python3.7/site-packages/flask/app.py", line 1810, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/Users/ntkhanh/.virtualenvs/cv/lib/python3.7/site-packages/flask/app.py", line 1793, in raise_routing_exception
+    raise request.routing_exception
+  File "/Users/ntkhanh/.virtualenvs/cv/lib/python3.7/site-packages/flask/ctx.py", line 336, in match_request
+    self.url_adapter.match(return_rule=True)
+  File "/Users/ntkhanh/.virtualenvs/cv/lib/python3.7/site-packages/werkzeug/routing.py", line 1786, in match
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+[2019-Sep-22 19:35:43] 127.0.0.1 POST http /get_gender? 5xx INTERNAL SERVER ERROR
+Traceback (most recent call last):
+  File "/Users/ntkhanh/.virtualenvs/cv/lib/python3.7/site-packages/flask/app.py", line 1832, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/ntkhanh/.virtualenvs/cv/lib/python3.7/site-packages/flask/app.py", line 1810, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/Users/ntkhanh/.virtualenvs/cv/lib/python3.7/site-packages/flask/app.py", line 1793, in raise_routing_exception
+    raise request.routing_exception
+  File "/Users/ntkhanh/.virtualenvs/cv/lib/python3.7/site-packages/flask/ctx.py", line 336, in match_request
+    self.url_adapter.match(return_rule=True)
+  File "/Users/ntkhanh/.virtualenvs/cv/lib/python3.7/site-packages/werkzeug/routing.py", line 1786, in match
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/ntkhanh/.virtualenvs/cv/lib/python3.7/site-packages/flask/app.py", line 1993, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "/Users/ntkhanh/.virtualenvs/cv/lib/python3.7/site-packages/werkzeug/wrappers/base_response.py", line 269, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "/Users/ntkhanh/.virtualenvs/cv/lib/python3.7/site-packages/werkzeug/wrappers/base_response.py", line 26, in _run_wsgi_app
+    return _run_wsgi_app(*args)
+  File "/Users/ntkhanh/.virtualenvs/cv/lib/python3.7/site-packages/werkzeug/test.py", line 1119, in run_wsgi_app
+    app_rv = app(environ, start_response)
+TypeError: 'int' object is not callable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/ntkhanh/.virtualenvs/cv/lib/python3.7/site-packages/flask/app.py", line 2311, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/ntkhanh/.virtualenvs/cv/lib/python3.7/site-packages/flask/app.py", line 1834, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/ntkhanh/.virtualenvs/cv/lib/python3.7/site-packages/flask_cors/extension.py", line 161, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/Users/ntkhanh/.virtualenvs/cv/lib/python3.7/site-packages/flask/app.py", line 2001, in make_response
+    reraise(TypeError, new_error, sys.exc_info()[2])
+  File "/Users/ntkhanh/.virtualenvs/cv/lib/python3.7/site-packages/flask/_compat.py", line 35, in reraise
+    raise value.with_traceback(tb)
+  File "/Users/ntkhanh/.virtualenvs/cv/lib/python3.7/site-packages/flask/app.py", line 1993, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "/Users/ntkhanh/.virtualenvs/cv/lib/python3.7/site-packages/werkzeug/wrappers/base_response.py", line 269, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "/Users/ntkhanh/.virtualenvs/cv/lib/python3.7/site-packages/werkzeug/wrappers/base_response.py", line 26, in _run_wsgi_app
+    return _run_wsgi_app(*args)
+  File "/Users/ntkhanh/.virtualenvs/cv/lib/python3.7/site-packages/werkzeug/test.py", line 1119, in run_wsgi_app
+    app_rv = app(environ, start_response)
+TypeError: 'int' object is not callable
+The view function did not return a valid response. The return type must be a string, tuple, Response instance, or WSGI callable, but it was a int.
+
+[2019-Sep-22 19:36:26] 127.0.0.1 POST http /get_gender? 5xx INTERNAL SERVER ERROR
+Traceback (most recent call last):
+  File "/Users/ntkhanh/.virtualenvs/cv/lib/python3.7/site-packages/flask/app.py", line 1832, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/ntkhanh/.virtualenvs/cv/lib/python3.7/site-packages/flask/app.py", line 1810, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/Users/ntkhanh/.virtualenvs/cv/lib/python3.7/site-packages/flask/app.py", line 1793, in raise_routing_exception
+    raise request.routing_exception
+  File "/Users/ntkhanh/.virtualenvs/cv/lib/python3.7/site-packages/flask/ctx.py", line 336, in match_request
+    self.url_adapter.match(return_rule=True)
+  File "/Users/ntkhanh/.virtualenvs/cv/lib/python3.7/site-packages/werkzeug/routing.py", line 1786, in match
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+[2019-Sep-22 19:36:26] 127.0.0.1 POST http /get_gender? 5xx INTERNAL SERVER ERROR
+Traceback (most recent call last):
+  File "/Users/ntkhanh/.virtualenvs/cv/lib/python3.7/site-packages/flask/app.py", line 1832, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/ntkhanh/.virtualenvs/cv/lib/python3.7/site-packages/flask/app.py", line 1810, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/Users/ntkhanh/.virtualenvs/cv/lib/python3.7/site-packages/flask/app.py", line 1793, in raise_routing_exception
+    raise request.routing_exception
+  File "/Users/ntkhanh/.virtualenvs/cv/lib/python3.7/site-packages/flask/ctx.py", line 336, in match_request
+    self.url_adapter.match(return_rule=True)
+  File "/Users/ntkhanh/.virtualenvs/cv/lib/python3.7/site-packages/werkzeug/routing.py", line 1786, in match
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/ntkhanh/.virtualenvs/cv/lib/python3.7/site-packages/flask/app.py", line 1993, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "/Users/ntkhanh/.virtualenvs/cv/lib/python3.7/site-packages/werkzeug/wrappers/base_response.py", line 269, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "/Users/ntkhanh/.virtualenvs/cv/lib/python3.7/site-packages/werkzeug/wrappers/base_response.py", line 26, in _run_wsgi_app
+    return _run_wsgi_app(*args)
+  File "/Users/ntkhanh/.virtualenvs/cv/lib/python3.7/site-packages/werkzeug/test.py", line 1119, in run_wsgi_app
+    app_rv = app(environ, start_response)
+TypeError: 'int' object is not callable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/ntkhanh/.virtualenvs/cv/lib/python3.7/site-packages/flask/app.py", line 2311, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/ntkhanh/.virtualenvs/cv/lib/python3.7/site-packages/flask/app.py", line 1834, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/ntkhanh/.virtualenvs/cv/lib/python3.7/site-packages/flask_cors/extension.py", line 161, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/Users/ntkhanh/.virtualenvs/cv/lib/python3.7/site-packages/flask/app.py", line 2001, in make_response
+    reraise(TypeError, new_error, sys.exc_info()[2])
+  File "/Users/ntkhanh/.virtualenvs/cv/lib/python3.7/site-packages/flask/_compat.py", line 35, in reraise
+    raise value.with_traceback(tb)
+  File "/Users/ntkhanh/.virtualenvs/cv/lib/python3.7/site-packages/flask/app.py", line 1993, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "/Users/ntkhanh/.virtualenvs/cv/lib/python3.7/site-packages/werkzeug/wrappers/base_response.py", line 269, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "/Users/ntkhanh/.virtualenvs/cv/lib/python3.7/site-packages/werkzeug/wrappers/base_response.py", line 26, in _run_wsgi_app
+    return _run_wsgi_app(*args)
+  File "/Users/ntkhanh/.virtualenvs/cv/lib/python3.7/site-packages/werkzeug/test.py", line 1119, in run_wsgi_app
+    app_rv = app(environ, start_response)
+TypeError: 'int' object is not callable
+The view function did not return a valid response. The return type must be a string, tuple, Response instance, or WSGI callable, but it was a int.
+
+[2019-Sep-22 19:37:05] 127.0.0.1 POST http /api/get_gender? 200 OK
+[2019-Sep-22 19:37:44] 127.0.0.1 POST http /get_age? 5xx INTERNAL SERVER ERROR
+Traceback (most recent call last):
+  File "/Users/ntkhanh/.virtualenvs/cv/lib/python3.7/site-packages/flask/app.py", line 1832, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/ntkhanh/.virtualenvs/cv/lib/python3.7/site-packages/flask/app.py", line 1810, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/Users/ntkhanh/.virtualenvs/cv/lib/python3.7/site-packages/flask/app.py", line 1793, in raise_routing_exception
+    raise request.routing_exception
+  File "/Users/ntkhanh/.virtualenvs/cv/lib/python3.7/site-packages/flask/ctx.py", line 336, in match_request
+    self.url_adapter.match(return_rule=True)
+  File "/Users/ntkhanh/.virtualenvs/cv/lib/python3.7/site-packages/werkzeug/routing.py", line 1786, in match
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+[2019-Sep-22 19:37:44] 127.0.0.1 POST http /get_age? 5xx INTERNAL SERVER ERROR
+Traceback (most recent call last):
+  File "/Users/ntkhanh/.virtualenvs/cv/lib/python3.7/site-packages/flask/app.py", line 1832, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/Users/ntkhanh/.virtualenvs/cv/lib/python3.7/site-packages/flask/app.py", line 1810, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/Users/ntkhanh/.virtualenvs/cv/lib/python3.7/site-packages/flask/app.py", line 1793, in raise_routing_exception
+    raise request.routing_exception
+  File "/Users/ntkhanh/.virtualenvs/cv/lib/python3.7/site-packages/flask/ctx.py", line 336, in match_request
+    self.url_adapter.match(return_rule=True)
+  File "/Users/ntkhanh/.virtualenvs/cv/lib/python3.7/site-packages/werkzeug/routing.py", line 1786, in match
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/ntkhanh/.virtualenvs/cv/lib/python3.7/site-packages/flask/app.py", line 1993, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "/Users/ntkhanh/.virtualenvs/cv/lib/python3.7/site-packages/werkzeug/wrappers/base_response.py", line 269, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "/Users/ntkhanh/.virtualenvs/cv/lib/python3.7/site-packages/werkzeug/test.py", line 1119, in run_wsgi_app
+    app_rv = app(environ, start_response)
+TypeError: 'int' object is not callable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/ntkhanh/.virtualenvs/cv/lib/python3.7/site-packages/flask/app.py", line 2311, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/Users/ntkhanh/.virtualenvs/cv/lib/python3.7/site-packages/flask/app.py", line 1834, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/Users/ntkhanh/.virtualenvs/cv/lib/python3.7/site-packages/flask_cors/extension.py", line 161, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/Users/ntkhanh/.virtualenvs/cv/lib/python3.7/site-packages/flask/app.py", line 2001, in make_response
+    reraise(TypeError, new_error, sys.exc_info()[2])
+  File "/Users/ntkhanh/.virtualenvs/cv/lib/python3.7/site-packages/flask/_compat.py", line 35, in reraise
+    raise value.with_traceback(tb)
+  File "/Users/ntkhanh/.virtualenvs/cv/lib/python3.7/site-packages/flask/app.py", line 1993, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "/Users/ntkhanh/.virtualenvs/cv/lib/python3.7/site-packages/werkzeug/wrappers/base_response.py", line 269, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "/Users/ntkhanh/.virtualenvs/cv/lib/python3.7/site-packages/werkzeug/test.py", line 1119, in run_wsgi_app
+    app_rv = app(environ, start_response)
+TypeError: 'int' object is not callable
+The view function did not return a valid response. The return type must be a string, tuple, Response instance, or WSGI callable, but it was a int.
+
+[2019-Sep-22 19:38:26] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-22 19:44:09] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-22 19:44:43] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-22 19:59:48] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-22 20:01:34] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-22 20:03:11] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-22 20:03:47] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-22 20:15:03] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-22 20:34:11] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-22 20:36:36] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-22 20:37:43] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-22 20:38:34] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-22 20:39:43] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-22 20:40:43] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-22 20:56:43] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-22 20:57:13] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-22 20:58:00] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-22 20:58:47] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-22 21:00:45] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-23 09:07:19] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-23 09:38:48] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-23 09:38:54] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-23 09:38:59] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-23 09:39:02] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-23 09:39:53] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-23 09:39:56] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-23 09:39:59] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-23 09:40:52] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-23 09:41:22] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-23 09:41:28] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-23 09:42:50] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-23 09:42:55] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-23 09:43:22] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-23 09:44:54] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-23 09:45:00] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-23 09:45:04] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-23 09:47:24] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-23 09:47:32] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-23 09:48:52] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-23 09:53:56] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-23 09:56:33] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-23 09:58:50] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-23 09:59:03] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-23 09:59:05] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-23 10:06:18] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-23 10:07:10] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-23 10:07:49] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-23 10:08:44] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-23 10:09:30] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-23 10:13:12] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-23 10:13:47] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-23 10:14:31] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-23 10:15:11] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-23 10:15:59] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-23 10:16:41] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-23 10:17:06] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-23 10:19:23] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-23 10:20:19] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-23 10:29:00] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-23 10:31:58] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-23 10:33:51] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-23 10:34:58] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-23 10:35:41] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-23 10:36:41] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-23 10:38:02] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-23 10:48:29] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-23 10:50:04] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-23 10:51:37] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-23 10:53:53] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-23 10:55:38] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-23 10:57:52] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-23 10:58:48] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-23 10:59:29] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-23 10:59:34] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-23 10:59:37] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-23 11:01:49] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-23 11:02:29] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-23 11:03:04] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-23 11:54:22] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-23 11:54:26] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-23 11:54:27] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-23 11:54:28] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-23 11:54:29] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-23 11:54:30] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-23 11:54:31] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-23 11:54:32] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-23 12:05:07] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-23 12:05:14] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-23 12:05:15] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-23 12:05:16] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-23 12:05:17] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-23 12:05:19] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-23 12:05:20] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-23 12:05:21] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-23 12:05:41] 127.0.0.1 POST http /api/get_gender? 200 OK
+[2019-Sep-23 12:05:56] 127.0.0.1 POST http /api/get_information? 200 OK
+[2019-Sep-23 12:06:25] 127.0.0.1 POST http /api/get_information? 200 OK
+[2019-Sep-23 12:07:04] 127.0.0.1 POST http /api/get_information? 200 OK
+[2019-Sep-23 12:07:07] 127.0.0.1 POST http /api/get_information? 200 OK
+[2019-Sep-23 12:07:53] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-24 08:12:23] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-24 08:14:09] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-24 08:15:14] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-24 08:16:25] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-24 08:16:40] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-24 08:16:47] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-24 08:16:52] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-24 08:17:56] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-24 10:28:11] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-24 10:30:09] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-24 10:31:24] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-24 10:33:26] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-24 10:34:43] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-24 10:37:02] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-24 10:37:28] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-24 10:40:26] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-24 10:43:11] 127.0.0.1 POST http /api/get_age? 200 OK
+[2019-Sep-24 16:51:49] 127.0.0.1 POST http /api/get_gender? 200 OK
+[2019-Sep-24 16:52:52] 127.0.0.1 POST http /api/get_gender? 200 OK
+[2019-Sep-24 16:53:33] 127.0.0.1 POST http /api/get_gender? 200 OK
+[2019-Sep-24 16:58:38] 127.0.0.1 POST http /api/get_gender? 200 OK
+[2019-Sep-24 17:01:24] 127.0.0.1 POST http /api/get_gender? 200 OK
+[2019-Sep-24 17:03:55] 127.0.0.1 POST http /api/get_gender? 200 OK
+[2019-Sep-24 17:03:56] 127.0.0.1 POST http /api/get_gender? 200 OK
+[2019-Sep-24 17:05:11] 127.0.0.1 POST http /api/get_gender? 200 OK
+[2019-Sep-24 17:09:55] 127.0.0.1 POST http /api/get_gender? 200 OK
+[2019-Sep-24 17:12:11] 127.0.0.1 POST http /api/get_gender? 200 OK
+[2019-Sep-24 17:15:30] 127.0.0.1 POST http /api/get_gender? 200 OK
+[2019-Sep-24 17:23:05] 127.0.0.1 POST http /api/get_gender? 200 OK
+[2019-Sep-24 17:23:52] 127.0.0.1 POST http /api/get_gender? 200 OK
+[2019-Sep-24 17:24:08] 127.0.0.1 POST http /api/get_gender? 200 OK
+[2019-Oct-10 09:30:03] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2019-Nov-14 16:41:49] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2019-Nov-14 16:44:24] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2019-Nov-14 16:45:52] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2019-Nov-14 16:48:05] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2019-Nov-14 16:50:23] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2019-Nov-14 16:50:27] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2019-Nov-14 16:52:15] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2019-Nov-14 16:52:34] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2019-Nov-14 16:54:00] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-25 13:59:09] 127.0.0.1 GET http /? 200 OK
+[2020-Thg 5-25 13:59:09] 127.0.0.1 GET http /favicon.ico? 5xx INTERNAL SERVER ERROR
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1832, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1810, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1793, in raise_routing_exception
+    raise request.routing_exception
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/ctx.py", line 336, in match_request
+    self.url_adapter.match(return_rule=True)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/routing.py", line 1945, in match
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+[2020-Thg 5-25 13:59:09] 127.0.0.1 GET http /favicon.ico? 5xx INTERNAL SERVER ERROR
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1832, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1810, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1793, in raise_routing_exception
+    raise request.routing_exception
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/ctx.py", line 336, in match_request
+    self.url_adapter.match(return_rule=True)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/routing.py", line 1945, in match
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1993, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 269, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 26, in _run_wsgi_app
+    return _run_wsgi_app(*args)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/test.py", line 1096, in run_wsgi_app
+    app_rv = app(environ, start_response)
+TypeError: 'int' object is not callable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 2311, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1834, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask_cors/extension.py", line 161, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 2001, in make_response
+    reraise(TypeError, new_error, sys.exc_info()[2])
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/_compat.py", line 35, in reraise
+    raise value.with_traceback(tb)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1993, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 269, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 26, in _run_wsgi_app
+    return _run_wsgi_app(*args)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/test.py", line 1096, in run_wsgi_app
+    app_rv = app(environ, start_response)
+TypeError: 'int' object is not callable
+The view function did not return a valid response. The return type must be a string, tuple, Response instance, or WSGI callable, but it was a int.
+
+[2020-Thg 5-25 14:00:53] 127.0.0.1 GET http /? 200 OK
+[2020-Thg 5-25 14:00:53] 127.0.0.1 GET http /favicon.ico? 5xx INTERNAL SERVER ERROR
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1832, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1810, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1793, in raise_routing_exception
+    raise request.routing_exception
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/ctx.py", line 336, in match_request
+    self.url_adapter.match(return_rule=True)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/routing.py", line 1945, in match
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+[2020-Thg 5-25 14:00:53] 127.0.0.1 GET http /favicon.ico? 5xx INTERNAL SERVER ERROR
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1832, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1810, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1793, in raise_routing_exception
+    raise request.routing_exception
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/ctx.py", line 336, in match_request
+    self.url_adapter.match(return_rule=True)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/routing.py", line 1945, in match
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1993, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 269, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 26, in _run_wsgi_app
+    return _run_wsgi_app(*args)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/test.py", line 1096, in run_wsgi_app
+    app_rv = app(environ, start_response)
+TypeError: 'int' object is not callable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 2311, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1834, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask_cors/extension.py", line 161, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 2001, in make_response
+    reraise(TypeError, new_error, sys.exc_info()[2])
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/_compat.py", line 35, in reraise
+    raise value.with_traceback(tb)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1993, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 269, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 26, in _run_wsgi_app
+    return _run_wsgi_app(*args)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/test.py", line 1096, in run_wsgi_app
+    app_rv = app(environ, start_response)
+TypeError: 'int' object is not callable
+The view function did not return a valid response. The return type must be a string, tuple, Response instance, or WSGI callable, but it was a int.
+
+[2020-Thg 5-25 14:03:00] 127.0.0.1 GET http /? 200 OK
+[2020-Thg 5-25 14:03:01] 127.0.0.1 GET http /favicon.ico? 5xx INTERNAL SERVER ERROR
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1832, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1810, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1793, in raise_routing_exception
+    raise request.routing_exception
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/ctx.py", line 336, in match_request
+    self.url_adapter.match(return_rule=True)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/routing.py", line 1945, in match
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+[2020-Thg 5-25 14:03:01] 127.0.0.1 GET http /favicon.ico? 5xx INTERNAL SERVER ERROR
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1832, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1810, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1793, in raise_routing_exception
+    raise request.routing_exception
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/ctx.py", line 336, in match_request
+    self.url_adapter.match(return_rule=True)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/routing.py", line 1945, in match
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1993, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 269, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/test.py", line 1096, in run_wsgi_app
+    app_rv = app(environ, start_response)
+TypeError: 'int' object is not callable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 2311, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1834, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask_cors/extension.py", line 161, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 2001, in make_response
+    reraise(TypeError, new_error, sys.exc_info()[2])
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/_compat.py", line 35, in reraise
+    raise value.with_traceback(tb)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1993, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 269, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/test.py", line 1096, in run_wsgi_app
+    app_rv = app(environ, start_response)
+TypeError: 'int' object is not callable
+The view function did not return a valid response. The return type must be a string, tuple, Response instance, or WSGI callable, but it was a int.
+
+[2020-Thg 5-25 14:03:01] 127.0.0.1 GET http /? 200 OK
+[2020-Thg 5-25 14:03:01] 127.0.0.1 GET http /favicon.ico? 5xx INTERNAL SERVER ERROR
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1832, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1810, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1793, in raise_routing_exception
+    raise request.routing_exception
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/ctx.py", line 336, in match_request
+    self.url_adapter.match(return_rule=True)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/routing.py", line 1945, in match
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+[2020-Thg 5-25 14:03:01] 127.0.0.1 GET http /favicon.ico? 5xx INTERNAL SERVER ERROR
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1832, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1810, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1793, in raise_routing_exception
+    raise request.routing_exception
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/ctx.py", line 336, in match_request
+    self.url_adapter.match(return_rule=True)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/routing.py", line 1945, in match
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1993, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 269, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/test.py", line 1096, in run_wsgi_app
+    app_rv = app(environ, start_response)
+TypeError: 'int' object is not callable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 2311, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1834, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask_cors/extension.py", line 161, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 2001, in make_response
+    reraise(TypeError, new_error, sys.exc_info()[2])
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/_compat.py", line 35, in reraise
+    raise value.with_traceback(tb)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1993, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 269, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/test.py", line 1096, in run_wsgi_app
+    app_rv = app(environ, start_response)
+TypeError: 'int' object is not callable
+The view function did not return a valid response. The return type must be a string, tuple, Response instance, or WSGI callable, but it was a int.
+
+[2020-Thg 5-25 14:03:02] 127.0.0.1 GET http /? 200 OK
+[2020-Thg 5-25 14:03:02] 127.0.0.1 GET http /favicon.ico? 5xx INTERNAL SERVER ERROR
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1832, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1810, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1793, in raise_routing_exception
+    raise request.routing_exception
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/ctx.py", line 336, in match_request
+    self.url_adapter.match(return_rule=True)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/routing.py", line 1945, in match
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+[2020-Thg 5-25 14:03:02] 127.0.0.1 GET http /favicon.ico? 5xx INTERNAL SERVER ERROR
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1832, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1810, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1793, in raise_routing_exception
+    raise request.routing_exception
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/ctx.py", line 336, in match_request
+    self.url_adapter.match(return_rule=True)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/routing.py", line 1945, in match
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1993, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 269, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/test.py", line 1096, in run_wsgi_app
+    app_rv = app(environ, start_response)
+TypeError: 'int' object is not callable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 2311, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1834, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask_cors/extension.py", line 161, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 2001, in make_response
+    reraise(TypeError, new_error, sys.exc_info()[2])
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/_compat.py", line 35, in reraise
+    raise value.with_traceback(tb)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1993, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 269, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/test.py", line 1096, in run_wsgi_app
+    app_rv = app(environ, start_response)
+TypeError: 'int' object is not callable
+The view function did not return a valid response. The return type must be a string, tuple, Response instance, or WSGI callable, but it was a int.
+
+[2020-Thg 5-25 14:03:28] 127.0.0.1 GET http /? 200 OK
+[2020-Thg 5-25 14:03:29] 127.0.0.1 GET http /favicon.ico? 5xx INTERNAL SERVER ERROR
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1832, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1810, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1793, in raise_routing_exception
+    raise request.routing_exception
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/ctx.py", line 336, in match_request
+    self.url_adapter.match(return_rule=True)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/routing.py", line 1945, in match
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+[2020-Thg 5-25 14:03:29] 127.0.0.1 GET http /favicon.ico? 5xx INTERNAL SERVER ERROR
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1832, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1810, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1793, in raise_routing_exception
+    raise request.routing_exception
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/ctx.py", line 336, in match_request
+    self.url_adapter.match(return_rule=True)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/routing.py", line 1945, in match
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1993, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 269, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/test.py", line 1096, in run_wsgi_app
+    app_rv = app(environ, start_response)
+TypeError: 'int' object is not callable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 2311, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1834, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask_cors/extension.py", line 161, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 2001, in make_response
+    reraise(TypeError, new_error, sys.exc_info()[2])
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/_compat.py", line 35, in reraise
+    raise value.with_traceback(tb)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1993, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 269, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/test.py", line 1096, in run_wsgi_app
+    app_rv = app(environ, start_response)
+TypeError: 'int' object is not callable
+The view function did not return a valid response. The return type must be a string, tuple, Response instance, or WSGI callable, but it was a int.
+
+[2020-Thg 5-25 14:04:42] 127.0.0.1 GET http /? 200 OK
+[2020-Thg 5-25 14:04:42] 127.0.0.1 GET http /favicon.ico? 5xx INTERNAL SERVER ERROR
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1832, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1810, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1793, in raise_routing_exception
+    raise request.routing_exception
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/ctx.py", line 336, in match_request
+    self.url_adapter.match(return_rule=True)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/routing.py", line 1945, in match
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+[2020-Thg 5-25 14:04:42] 127.0.0.1 GET http /favicon.ico? 5xx INTERNAL SERVER ERROR
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1832, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1810, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1793, in raise_routing_exception
+    raise request.routing_exception
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/ctx.py", line 336, in match_request
+    self.url_adapter.match(return_rule=True)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/routing.py", line 1945, in match
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1993, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 269, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/test.py", line 1096, in run_wsgi_app
+    app_rv = app(environ, start_response)
+TypeError: 'int' object is not callable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 2311, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1834, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask_cors/extension.py", line 161, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 2001, in make_response
+    reraise(TypeError, new_error, sys.exc_info()[2])
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/_compat.py", line 35, in reraise
+    raise value.with_traceback(tb)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1993, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 269, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/test.py", line 1096, in run_wsgi_app
+    app_rv = app(environ, start_response)
+TypeError: 'int' object is not callable
+The view function did not return a valid response. The return type must be a string, tuple, Response instance, or WSGI callable, but it was a int.
+
+[2020-Thg 5-25 14:08:09] 127.0.0.1 GET http /api/get_emotion? 5xx INTERNAL SERVER ERROR
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1832, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1810, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1793, in raise_routing_exception
+    raise request.routing_exception
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/ctx.py", line 336, in match_request
+    self.url_adapter.match(return_rule=True)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/routing.py", line 1940, in match
+    raise MethodNotAllowed(valid_methods=list(have_match_for))
+werkzeug.exceptions.MethodNotAllowed: 405 Method Not Allowed: The method is not allowed for the requested URL.
+
+[2020-Thg 5-25 14:08:09] 127.0.0.1 GET http /api/get_emotion? 5xx INTERNAL SERVER ERROR
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1832, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1810, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1793, in raise_routing_exception
+    raise request.routing_exception
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/ctx.py", line 336, in match_request
+    self.url_adapter.match(return_rule=True)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/routing.py", line 1940, in match
+    raise MethodNotAllowed(valid_methods=list(have_match_for))
+werkzeug.exceptions.MethodNotAllowed: 405 Method Not Allowed: The method is not allowed for the requested URL.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1993, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 269, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/test.py", line 1096, in run_wsgi_app
+    app_rv = app(environ, start_response)
+TypeError: 'int' object is not callable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 2311, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1834, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask_cors/extension.py", line 161, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 2001, in make_response
+    reraise(TypeError, new_error, sys.exc_info()[2])
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/_compat.py", line 35, in reraise
+    raise value.with_traceback(tb)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1993, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 269, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/test.py", line 1096, in run_wsgi_app
+    app_rv = app(environ, start_response)
+TypeError: 'int' object is not callable
+The view function did not return a valid response. The return type must be a string, tuple, Response instance, or WSGI callable, but it was a int.
+
+[2020-Thg 5-25 14:08:09] 127.0.0.1 GET http /favicon.ico? 5xx INTERNAL SERVER ERROR
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1832, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1810, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1793, in raise_routing_exception
+    raise request.routing_exception
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/ctx.py", line 336, in match_request
+    self.url_adapter.match(return_rule=True)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/routing.py", line 1945, in match
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+[2020-Thg 5-25 14:08:09] 127.0.0.1 GET http /favicon.ico? 5xx INTERNAL SERVER ERROR
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1832, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1810, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1793, in raise_routing_exception
+    raise request.routing_exception
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/ctx.py", line 336, in match_request
+    self.url_adapter.match(return_rule=True)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/routing.py", line 1945, in match
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1993, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 269, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/test.py", line 1096, in run_wsgi_app
+    app_rv = app(environ, start_response)
+TypeError: 'int' object is not callable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 2311, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1834, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask_cors/extension.py", line 161, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 2001, in make_response
+    reraise(TypeError, new_error, sys.exc_info()[2])
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/_compat.py", line 35, in reraise
+    raise value.with_traceback(tb)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1993, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 269, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/test.py", line 1096, in run_wsgi_app
+    app_rv = app(environ, start_response)
+TypeError: 'int' object is not callable
+The view function did not return a valid response. The return type must be a string, tuple, Response instance, or WSGI callable, but it was a int.
+
+[2020-Thg 5-25 14:10:37] 127.0.0.1 GET http /? 200 OK
+[2020-Thg 5-25 14:10:37] 127.0.0.1 GET http /favicon.ico? 5xx INTERNAL SERVER ERROR
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1832, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1810, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1793, in raise_routing_exception
+    raise request.routing_exception
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/ctx.py", line 336, in match_request
+    self.url_adapter.match(return_rule=True)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/routing.py", line 1945, in match
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+[2020-Thg 5-25 14:10:37] 127.0.0.1 GET http /favicon.ico? 5xx INTERNAL SERVER ERROR
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1832, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1810, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1793, in raise_routing_exception
+    raise request.routing_exception
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/ctx.py", line 336, in match_request
+    self.url_adapter.match(return_rule=True)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/routing.py", line 1945, in match
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1993, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 269, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/test.py", line 1096, in run_wsgi_app
+    app_rv = app(environ, start_response)
+TypeError: 'int' object is not callable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 2311, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1834, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask_cors/extension.py", line 161, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 2001, in make_response
+    reraise(TypeError, new_error, sys.exc_info()[2])
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/_compat.py", line 35, in reraise
+    raise value.with_traceback(tb)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1993, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 269, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/test.py", line 1096, in run_wsgi_app
+    app_rv = app(environ, start_response)
+TypeError: 'int' object is not callable
+The view function did not return a valid response. The return type must be a string, tuple, Response instance, or WSGI callable, but it was a int.
+
+[2020-Thg 5-25 14:11:00] 127.0.0.1 GET http /api/get_emotion/? 5xx INTERNAL SERVER ERROR
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1832, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1810, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1793, in raise_routing_exception
+    raise request.routing_exception
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/ctx.py", line 336, in match_request
+    self.url_adapter.match(return_rule=True)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/routing.py", line 1945, in match
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+[2020-Thg 5-25 14:11:00] 127.0.0.1 GET http /api/get_emotion/? 5xx INTERNAL SERVER ERROR
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1832, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1810, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1793, in raise_routing_exception
+    raise request.routing_exception
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/ctx.py", line 336, in match_request
+    self.url_adapter.match(return_rule=True)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/routing.py", line 1945, in match
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1993, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 269, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/test.py", line 1096, in run_wsgi_app
+    app_rv = app(environ, start_response)
+TypeError: 'int' object is not callable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 2311, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1834, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask_cors/extension.py", line 161, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 2001, in make_response
+    reraise(TypeError, new_error, sys.exc_info()[2])
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/_compat.py", line 35, in reraise
+    raise value.with_traceback(tb)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1993, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 269, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/test.py", line 1096, in run_wsgi_app
+    app_rv = app(environ, start_response)
+TypeError: 'int' object is not callable
+The view function did not return a valid response. The return type must be a string, tuple, Response instance, or WSGI callable, but it was a int.
+
+[2020-Thg 5-25 14:11:00] 127.0.0.1 GET http /favicon.ico? 5xx INTERNAL SERVER ERROR
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1832, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1810, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1793, in raise_routing_exception
+    raise request.routing_exception
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/ctx.py", line 336, in match_request
+    self.url_adapter.match(return_rule=True)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/routing.py", line 1945, in match
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+[2020-Thg 5-25 14:11:00] 127.0.0.1 GET http /favicon.ico? 5xx INTERNAL SERVER ERROR
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1832, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1810, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1793, in raise_routing_exception
+    raise request.routing_exception
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/ctx.py", line 336, in match_request
+    self.url_adapter.match(return_rule=True)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/routing.py", line 1945, in match
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1993, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 269, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/test.py", line 1096, in run_wsgi_app
+    app_rv = app(environ, start_response)
+TypeError: 'int' object is not callable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 2311, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1834, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask_cors/extension.py", line 161, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 2001, in make_response
+    reraise(TypeError, new_error, sys.exc_info()[2])
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/_compat.py", line 35, in reraise
+    raise value.with_traceback(tb)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1993, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 269, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/test.py", line 1096, in run_wsgi_app
+    app_rv = app(environ, start_response)
+TypeError: 'int' object is not callable
+The view function did not return a valid response. The return type must be a string, tuple, Response instance, or WSGI callable, but it was a int.
+
+[2020-Thg 5-25 14:11:04] 127.0.0.1 GET http /api/get_emotion? 5xx INTERNAL SERVER ERROR
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1832, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1810, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1793, in raise_routing_exception
+    raise request.routing_exception
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/ctx.py", line 336, in match_request
+    self.url_adapter.match(return_rule=True)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/routing.py", line 1940, in match
+    raise MethodNotAllowed(valid_methods=list(have_match_for))
+werkzeug.exceptions.MethodNotAllowed: 405 Method Not Allowed: The method is not allowed for the requested URL.
+
+[2020-Thg 5-25 14:11:04] 127.0.0.1 GET http /api/get_emotion? 5xx INTERNAL SERVER ERROR
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1832, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1810, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1793, in raise_routing_exception
+    raise request.routing_exception
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/ctx.py", line 336, in match_request
+    self.url_adapter.match(return_rule=True)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/routing.py", line 1940, in match
+    raise MethodNotAllowed(valid_methods=list(have_match_for))
+werkzeug.exceptions.MethodNotAllowed: 405 Method Not Allowed: The method is not allowed for the requested URL.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1993, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 269, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/test.py", line 1096, in run_wsgi_app
+    app_rv = app(environ, start_response)
+TypeError: 'int' object is not callable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 2311, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1834, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask_cors/extension.py", line 161, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 2001, in make_response
+    reraise(TypeError, new_error, sys.exc_info()[2])
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/_compat.py", line 35, in reraise
+    raise value.with_traceback(tb)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1993, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 269, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/test.py", line 1096, in run_wsgi_app
+    app_rv = app(environ, start_response)
+TypeError: 'int' object is not callable
+The view function did not return a valid response. The return type must be a string, tuple, Response instance, or WSGI callable, but it was a int.
+
+[2020-Thg 5-25 14:11:04] 127.0.0.1 GET http /favicon.ico? 5xx INTERNAL SERVER ERROR
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1832, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1810, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1793, in raise_routing_exception
+    raise request.routing_exception
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/ctx.py", line 336, in match_request
+    self.url_adapter.match(return_rule=True)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/routing.py", line 1945, in match
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+[2020-Thg 5-25 14:11:04] 127.0.0.1 GET http /favicon.ico? 5xx INTERNAL SERVER ERROR
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1832, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1810, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1793, in raise_routing_exception
+    raise request.routing_exception
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/ctx.py", line 336, in match_request
+    self.url_adapter.match(return_rule=True)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/routing.py", line 1945, in match
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1993, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 269, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/test.py", line 1096, in run_wsgi_app
+    app_rv = app(environ, start_response)
+TypeError: 'int' object is not callable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 2311, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1834, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask_cors/extension.py", line 161, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 2001, in make_response
+    reraise(TypeError, new_error, sys.exc_info()[2])
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/_compat.py", line 35, in reraise
+    raise value.with_traceback(tb)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1993, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 269, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/test.py", line 1096, in run_wsgi_app
+    app_rv = app(environ, start_response)
+TypeError: 'int' object is not callable
+The view function did not return a valid response. The return type must be a string, tuple, Response instance, or WSGI callable, but it was a int.
+
+[2020-Thg 5-25 14:13:17] 127.0.0.1 GET http /api/get_emotion? 5xx INTERNAL SERVER ERROR
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1832, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1810, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1793, in raise_routing_exception
+    raise request.routing_exception
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/ctx.py", line 336, in match_request
+    self.url_adapter.match(return_rule=True)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/routing.py", line 1940, in match
+    raise MethodNotAllowed(valid_methods=list(have_match_for))
+werkzeug.exceptions.MethodNotAllowed: 405 Method Not Allowed: The method is not allowed for the requested URL.
+
+[2020-Thg 5-25 14:13:17] 127.0.0.1 GET http /api/get_emotion? 5xx INTERNAL SERVER ERROR
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1832, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1810, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1793, in raise_routing_exception
+    raise request.routing_exception
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/ctx.py", line 336, in match_request
+    self.url_adapter.match(return_rule=True)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/routing.py", line 1940, in match
+    raise MethodNotAllowed(valid_methods=list(have_match_for))
+werkzeug.exceptions.MethodNotAllowed: 405 Method Not Allowed: The method is not allowed for the requested URL.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1993, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 269, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/test.py", line 1096, in run_wsgi_app
+    app_rv = app(environ, start_response)
+TypeError: 'int' object is not callable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 2311, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1834, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask_cors/extension.py", line 161, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 2001, in make_response
+    reraise(TypeError, new_error, sys.exc_info()[2])
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/_compat.py", line 35, in reraise
+    raise value.with_traceback(tb)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1993, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 269, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/test.py", line 1096, in run_wsgi_app
+    app_rv = app(environ, start_response)
+TypeError: 'int' object is not callable
+The view function did not return a valid response. The return type must be a string, tuple, Response instance, or WSGI callable, but it was a int.
+
+[2020-Thg 5-25 14:13:17] 127.0.0.1 GET http /favicon.ico? 5xx INTERNAL SERVER ERROR
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1832, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1810, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1793, in raise_routing_exception
+    raise request.routing_exception
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/ctx.py", line 336, in match_request
+    self.url_adapter.match(return_rule=True)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/routing.py", line 1945, in match
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+[2020-Thg 5-25 14:13:17] 127.0.0.1 GET http /favicon.ico? 5xx INTERNAL SERVER ERROR
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1832, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1810, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1793, in raise_routing_exception
+    raise request.routing_exception
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/ctx.py", line 336, in match_request
+    self.url_adapter.match(return_rule=True)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/routing.py", line 1945, in match
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1993, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 269, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/test.py", line 1096, in run_wsgi_app
+    app_rv = app(environ, start_response)
+TypeError: 'int' object is not callable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 2311, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1834, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask_cors/extension.py", line 161, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 2001, in make_response
+    reraise(TypeError, new_error, sys.exc_info()[2])
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/_compat.py", line 35, in reraise
+    raise value.with_traceback(tb)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1993, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 269, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/test.py", line 1096, in run_wsgi_app
+    app_rv = app(environ, start_response)
+TypeError: 'int' object is not callable
+The view function did not return a valid response. The return type must be a string, tuple, Response instance, or WSGI callable, but it was a int.
+
+[2020-Thg 5-25 14:13:54] 127.0.0.1 GET http /api/get_emotion? 200 OK
+[2020-Thg 5-25 14:13:55] 127.0.0.1 GET http /favicon.ico? 5xx INTERNAL SERVER ERROR
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1832, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1810, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1793, in raise_routing_exception
+    raise request.routing_exception
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/ctx.py", line 336, in match_request
+    self.url_adapter.match(return_rule=True)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/routing.py", line 1945, in match
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+[2020-Thg 5-25 14:13:55] 127.0.0.1 GET http /favicon.ico? 5xx INTERNAL SERVER ERROR
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1832, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1810, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1793, in raise_routing_exception
+    raise request.routing_exception
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/ctx.py", line 336, in match_request
+    self.url_adapter.match(return_rule=True)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/routing.py", line 1945, in match
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1993, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 269, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 26, in _run_wsgi_app
+    return _run_wsgi_app(*args)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/test.py", line 1096, in run_wsgi_app
+    app_rv = app(environ, start_response)
+TypeError: 'int' object is not callable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 2311, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1834, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask_cors/extension.py", line 161, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 2001, in make_response
+    reraise(TypeError, new_error, sys.exc_info()[2])
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/_compat.py", line 35, in reraise
+    raise value.with_traceback(tb)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1993, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 269, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 26, in _run_wsgi_app
+    return _run_wsgi_app(*args)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/test.py", line 1096, in run_wsgi_app
+    app_rv = app(environ, start_response)
+TypeError: 'int' object is not callable
+The view function did not return a valid response. The return type must be a string, tuple, Response instance, or WSGI callable, but it was a int.
+
+[2020-Thg 5-25 14:24:50] 127.0.0.1 GET http /api/get_emotion? 5xx INTERNAL SERVER ERROR
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1832, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1810, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1793, in raise_routing_exception
+    raise request.routing_exception
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/ctx.py", line 336, in match_request
+    self.url_adapter.match(return_rule=True)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/routing.py", line 1940, in match
+    raise MethodNotAllowed(valid_methods=list(have_match_for))
+werkzeug.exceptions.MethodNotAllowed: 405 Method Not Allowed: The method is not allowed for the requested URL.
+
+[2020-Thg 5-25 14:24:50] 127.0.0.1 GET http /api/get_emotion? 5xx INTERNAL SERVER ERROR
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1832, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1810, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1793, in raise_routing_exception
+    raise request.routing_exception
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/ctx.py", line 336, in match_request
+    self.url_adapter.match(return_rule=True)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/routing.py", line 1940, in match
+    raise MethodNotAllowed(valid_methods=list(have_match_for))
+werkzeug.exceptions.MethodNotAllowed: 405 Method Not Allowed: The method is not allowed for the requested URL.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1993, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 269, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 26, in _run_wsgi_app
+    return _run_wsgi_app(*args)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/test.py", line 1096, in run_wsgi_app
+    app_rv = app(environ, start_response)
+TypeError: 'int' object is not callable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 2311, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1834, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask_cors/extension.py", line 161, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 2001, in make_response
+    reraise(TypeError, new_error, sys.exc_info()[2])
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/_compat.py", line 35, in reraise
+    raise value.with_traceback(tb)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1993, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 269, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 26, in _run_wsgi_app
+    return _run_wsgi_app(*args)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/test.py", line 1096, in run_wsgi_app
+    app_rv = app(environ, start_response)
+TypeError: 'int' object is not callable
+The view function did not return a valid response. The return type must be a string, tuple, Response instance, or WSGI callable, but it was a int.
+
+[2020-Thg 5-25 14:24:50] 127.0.0.1 GET http /favicon.ico? 5xx INTERNAL SERVER ERROR
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1832, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1810, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1793, in raise_routing_exception
+    raise request.routing_exception
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/ctx.py", line 336, in match_request
+    self.url_adapter.match(return_rule=True)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/routing.py", line 1945, in match
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+[2020-Thg 5-25 14:24:50] 127.0.0.1 GET http /favicon.ico? 5xx INTERNAL SERVER ERROR
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1832, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1810, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1793, in raise_routing_exception
+    raise request.routing_exception
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/ctx.py", line 336, in match_request
+    self.url_adapter.match(return_rule=True)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/routing.py", line 1945, in match
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1993, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 269, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/test.py", line 1096, in run_wsgi_app
+    app_rv = app(environ, start_response)
+TypeError: 'int' object is not callable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 2311, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1834, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask_cors/extension.py", line 161, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 2001, in make_response
+    reraise(TypeError, new_error, sys.exc_info()[2])
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/_compat.py", line 35, in reraise
+    raise value.with_traceback(tb)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1993, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 269, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/test.py", line 1096, in run_wsgi_app
+    app_rv = app(environ, start_response)
+TypeError: 'int' object is not callable
+The view function did not return a valid response. The return type must be a string, tuple, Response instance, or WSGI callable, but it was a int.
+
+[2020-Thg 5-25 14:24:51] 127.0.0.1 GET http /api/get_emotion? 5xx INTERNAL SERVER ERROR
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1832, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1810, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1793, in raise_routing_exception
+    raise request.routing_exception
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/ctx.py", line 336, in match_request
+    self.url_adapter.match(return_rule=True)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/routing.py", line 1940, in match
+    raise MethodNotAllowed(valid_methods=list(have_match_for))
+werkzeug.exceptions.MethodNotAllowed: 405 Method Not Allowed: The method is not allowed for the requested URL.
+
+[2020-Thg 5-25 14:24:51] 127.0.0.1 GET http /api/get_emotion? 5xx INTERNAL SERVER ERROR
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1832, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1810, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1793, in raise_routing_exception
+    raise request.routing_exception
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/ctx.py", line 336, in match_request
+    self.url_adapter.match(return_rule=True)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/routing.py", line 1940, in match
+    raise MethodNotAllowed(valid_methods=list(have_match_for))
+werkzeug.exceptions.MethodNotAllowed: 405 Method Not Allowed: The method is not allowed for the requested URL.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1993, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 269, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/test.py", line 1096, in run_wsgi_app
+    app_rv = app(environ, start_response)
+TypeError: 'int' object is not callable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 2311, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1834, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask_cors/extension.py", line 161, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 2001, in make_response
+    reraise(TypeError, new_error, sys.exc_info()[2])
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/_compat.py", line 35, in reraise
+    raise value.with_traceback(tb)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1993, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 269, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/test.py", line 1096, in run_wsgi_app
+    app_rv = app(environ, start_response)
+TypeError: 'int' object is not callable
+The view function did not return a valid response. The return type must be a string, tuple, Response instance, or WSGI callable, but it was a int.
+
+[2020-Thg 5-25 14:24:51] 127.0.0.1 GET http /favicon.ico? 5xx INTERNAL SERVER ERROR
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1832, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1810, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1793, in raise_routing_exception
+    raise request.routing_exception
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/ctx.py", line 336, in match_request
+    self.url_adapter.match(return_rule=True)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/routing.py", line 1945, in match
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+[2020-Thg 5-25 14:24:51] 127.0.0.1 GET http /favicon.ico? 5xx INTERNAL SERVER ERROR
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1832, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1810, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1793, in raise_routing_exception
+    raise request.routing_exception
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/ctx.py", line 336, in match_request
+    self.url_adapter.match(return_rule=True)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/routing.py", line 1945, in match
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1993, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 269, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/test.py", line 1096, in run_wsgi_app
+    app_rv = app(environ, start_response)
+TypeError: 'int' object is not callable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 2311, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1834, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask_cors/extension.py", line 161, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 2001, in make_response
+    reraise(TypeError, new_error, sys.exc_info()[2])
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/_compat.py", line 35, in reraise
+    raise value.with_traceback(tb)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1993, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 269, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/test.py", line 1096, in run_wsgi_app
+    app_rv = app(environ, start_response)
+TypeError: 'int' object is not callable
+The view function did not return a valid response. The return type must be a string, tuple, Response instance, or WSGI callable, but it was a int.
+
+[2020-Thg 5-25 14:24:51] 127.0.0.1 GET http /api/get_emotion? 5xx INTERNAL SERVER ERROR
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1832, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1810, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1793, in raise_routing_exception
+    raise request.routing_exception
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/ctx.py", line 336, in match_request
+    self.url_adapter.match(return_rule=True)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/routing.py", line 1940, in match
+    raise MethodNotAllowed(valid_methods=list(have_match_for))
+werkzeug.exceptions.MethodNotAllowed: 405 Method Not Allowed: The method is not allowed for the requested URL.
+
+[2020-Thg 5-25 14:24:51] 127.0.0.1 GET http /api/get_emotion? 5xx INTERNAL SERVER ERROR
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1832, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1810, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1793, in raise_routing_exception
+    raise request.routing_exception
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/ctx.py", line 336, in match_request
+    self.url_adapter.match(return_rule=True)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/routing.py", line 1940, in match
+    raise MethodNotAllowed(valid_methods=list(have_match_for))
+werkzeug.exceptions.MethodNotAllowed: 405 Method Not Allowed: The method is not allowed for the requested URL.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1993, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 269, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/test.py", line 1096, in run_wsgi_app
+    app_rv = app(environ, start_response)
+TypeError: 'int' object is not callable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 2311, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1834, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask_cors/extension.py", line 161, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 2001, in make_response
+    reraise(TypeError, new_error, sys.exc_info()[2])
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/_compat.py", line 35, in reraise
+    raise value.with_traceback(tb)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1993, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 269, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/test.py", line 1096, in run_wsgi_app
+    app_rv = app(environ, start_response)
+TypeError: 'int' object is not callable
+The view function did not return a valid response. The return type must be a string, tuple, Response instance, or WSGI callable, but it was a int.
+
+[2020-Thg 5-25 14:24:51] 127.0.0.1 GET http /favicon.ico? 5xx INTERNAL SERVER ERROR
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1832, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1810, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1793, in raise_routing_exception
+    raise request.routing_exception
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/ctx.py", line 336, in match_request
+    self.url_adapter.match(return_rule=True)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/routing.py", line 1945, in match
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+[2020-Thg 5-25 14:24:51] 127.0.0.1 GET http /favicon.ico? 5xx INTERNAL SERVER ERROR
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1832, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1810, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1793, in raise_routing_exception
+    raise request.routing_exception
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/ctx.py", line 336, in match_request
+    self.url_adapter.match(return_rule=True)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/routing.py", line 1945, in match
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1993, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 269, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/test.py", line 1096, in run_wsgi_app
+    app_rv = app(environ, start_response)
+TypeError: 'int' object is not callable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 2311, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1834, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask_cors/extension.py", line 161, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 2001, in make_response
+    reraise(TypeError, new_error, sys.exc_info()[2])
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/_compat.py", line 35, in reraise
+    raise value.with_traceback(tb)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1993, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 269, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/test.py", line 1096, in run_wsgi_app
+    app_rv = app(environ, start_response)
+TypeError: 'int' object is not callable
+The view function did not return a valid response. The return type must be a string, tuple, Response instance, or WSGI callable, but it was a int.
+
+[2020-Thg 5-25 14:25:02] 127.0.0.1 GET http /api/get_emotion? 200 OK
+[2020-Thg 5-25 14:25:02] 127.0.0.1 GET http /favicon.ico? 5xx INTERNAL SERVER ERROR
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1832, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1810, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1793, in raise_routing_exception
+    raise request.routing_exception
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/ctx.py", line 336, in match_request
+    self.url_adapter.match(return_rule=True)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/routing.py", line 1945, in match
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+[2020-Thg 5-25 14:25:02] 127.0.0.1 GET http /favicon.ico? 5xx INTERNAL SERVER ERROR
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1832, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1810, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1793, in raise_routing_exception
+    raise request.routing_exception
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/ctx.py", line 336, in match_request
+    self.url_adapter.match(return_rule=True)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/routing.py", line 1945, in match
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1993, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 269, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 26, in _run_wsgi_app
+    return _run_wsgi_app(*args)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/test.py", line 1096, in run_wsgi_app
+    app_rv = app(environ, start_response)
+TypeError: 'int' object is not callable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 2311, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1834, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask_cors/extension.py", line 161, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 2001, in make_response
+    reraise(TypeError, new_error, sys.exc_info()[2])
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/_compat.py", line 35, in reraise
+    raise value.with_traceback(tb)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1993, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 269, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 26, in _run_wsgi_app
+    return _run_wsgi_app(*args)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/test.py", line 1096, in run_wsgi_app
+    app_rv = app(environ, start_response)
+TypeError: 'int' object is not callable
+The view function did not return a valid response. The return type must be a string, tuple, Response instance, or WSGI callable, but it was a int.
+
+[2020-Thg 5-25 14:40:14] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-25 14:40:36] 127.0.0.1 GET http /api/get_emotion? 200 OK
+[2020-Thg 5-25 14:40:53] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-25 14:44:24] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-25 14:48:58] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-25 14:50:48] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-25 14:51:46] 127.0.0.1 GET http /api/get_emotion? 5xx INTERNAL SERVER ERROR
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1832, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1810, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1793, in raise_routing_exception
+    raise request.routing_exception
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/ctx.py", line 336, in match_request
+    self.url_adapter.match(return_rule=True)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/routing.py", line 1940, in match
+    raise MethodNotAllowed(valid_methods=list(have_match_for))
+werkzeug.exceptions.MethodNotAllowed: 405 Method Not Allowed: The method is not allowed for the requested URL.
+
+[2020-Thg 5-25 14:51:46] 127.0.0.1 GET http /api/get_emotion? 5xx INTERNAL SERVER ERROR
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1832, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1810, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1793, in raise_routing_exception
+    raise request.routing_exception
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/ctx.py", line 336, in match_request
+    self.url_adapter.match(return_rule=True)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/routing.py", line 1940, in match
+    raise MethodNotAllowed(valid_methods=list(have_match_for))
+werkzeug.exceptions.MethodNotAllowed: 405 Method Not Allowed: The method is not allowed for the requested URL.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1993, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 269, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 26, in _run_wsgi_app
+    return _run_wsgi_app(*args)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/test.py", line 1096, in run_wsgi_app
+    app_rv = app(environ, start_response)
+TypeError: 'int' object is not callable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 2311, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1834, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask_cors/extension.py", line 161, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 2001, in make_response
+    reraise(TypeError, new_error, sys.exc_info()[2])
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/_compat.py", line 35, in reraise
+    raise value.with_traceback(tb)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1993, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 269, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 26, in _run_wsgi_app
+    return _run_wsgi_app(*args)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/test.py", line 1096, in run_wsgi_app
+    app_rv = app(environ, start_response)
+TypeError: 'int' object is not callable
+The view function did not return a valid response. The return type must be a string, tuple, Response instance, or WSGI callable, but it was a int.
+
+[2020-Thg 5-25 14:51:46] 127.0.0.1 GET http /favicon.ico? 5xx INTERNAL SERVER ERROR
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1832, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1810, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1793, in raise_routing_exception
+    raise request.routing_exception
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/ctx.py", line 336, in match_request
+    self.url_adapter.match(return_rule=True)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/routing.py", line 1945, in match
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+[2020-Thg 5-25 14:51:46] 127.0.0.1 GET http /favicon.ico? 5xx INTERNAL SERVER ERROR
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1832, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1810, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1793, in raise_routing_exception
+    raise request.routing_exception
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/ctx.py", line 336, in match_request
+    self.url_adapter.match(return_rule=True)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/routing.py", line 1945, in match
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1993, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 269, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/test.py", line 1096, in run_wsgi_app
+    app_rv = app(environ, start_response)
+TypeError: 'int' object is not callable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 2311, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1834, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask_cors/extension.py", line 161, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 2001, in make_response
+    reraise(TypeError, new_error, sys.exc_info()[2])
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/_compat.py", line 35, in reraise
+    raise value.with_traceback(tb)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1993, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 269, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/test.py", line 1096, in run_wsgi_app
+    app_rv = app(environ, start_response)
+TypeError: 'int' object is not callable
+The view function did not return a valid response. The return type must be a string, tuple, Response instance, or WSGI callable, but it was a int.
+
+[2020-Thg 5-25 14:51:53] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-25 14:52:24] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-25 14:53:02] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-25 14:54:02] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-25 14:54:05] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-25 14:54:29] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-25 14:54:53] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-25 14:55:11] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-25 14:55:15] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-25 14:57:58] 127.0.0.1 GET http /api/get_emotion? 200 OK
+[2020-Thg 5-25 14:57:58] 127.0.0.1 GET http /favicon.ico? 5xx INTERNAL SERVER ERROR
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1832, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1810, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1793, in raise_routing_exception
+    raise request.routing_exception
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/ctx.py", line 336, in match_request
+    self.url_adapter.match(return_rule=True)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/routing.py", line 1945, in match
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+[2020-Thg 5-25 14:57:58] 127.0.0.1 GET http /favicon.ico? 5xx INTERNAL SERVER ERROR
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1832, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1810, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1793, in raise_routing_exception
+    raise request.routing_exception
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/ctx.py", line 336, in match_request
+    self.url_adapter.match(return_rule=True)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/routing.py", line 1945, in match
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1993, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 269, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 26, in _run_wsgi_app
+    return _run_wsgi_app(*args)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/test.py", line 1096, in run_wsgi_app
+    app_rv = app(environ, start_response)
+TypeError: 'int' object is not callable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 2311, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1834, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask_cors/extension.py", line 161, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 2001, in make_response
+    reraise(TypeError, new_error, sys.exc_info()[2])
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/_compat.py", line 35, in reraise
+    raise value.with_traceback(tb)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1993, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 269, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 26, in _run_wsgi_app
+    return _run_wsgi_app(*args)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/test.py", line 1096, in run_wsgi_app
+    app_rv = app(environ, start_response)
+TypeError: 'int' object is not callable
+The view function did not return a valid response. The return type must be a string, tuple, Response instance, or WSGI callable, but it was a int.
+
+[2020-Thg 5-25 15:05:10] 127.0.0.1 POST http /api/get_emotion? 5xx INTERNAL SERVER ERROR
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1832, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1810, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1793, in raise_routing_exception
+    raise request.routing_exception
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/ctx.py", line 336, in match_request
+    self.url_adapter.match(return_rule=True)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/routing.py", line 1940, in match
+    raise MethodNotAllowed(valid_methods=list(have_match_for))
+werkzeug.exceptions.MethodNotAllowed: 405 Method Not Allowed: The method is not allowed for the requested URL.
+
+[2020-Thg 5-25 15:05:10] 127.0.0.1 POST http /api/get_emotion? 5xx INTERNAL SERVER ERROR
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1832, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1810, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1793, in raise_routing_exception
+    raise request.routing_exception
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/ctx.py", line 336, in match_request
+    self.url_adapter.match(return_rule=True)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/routing.py", line 1940, in match
+    raise MethodNotAllowed(valid_methods=list(have_match_for))
+werkzeug.exceptions.MethodNotAllowed: 405 Method Not Allowed: The method is not allowed for the requested URL.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1993, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 269, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 26, in _run_wsgi_app
+    return _run_wsgi_app(*args)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/test.py", line 1096, in run_wsgi_app
+    app_rv = app(environ, start_response)
+TypeError: 'int' object is not callable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 2311, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1834, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask_cors/extension.py", line 161, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 2001, in make_response
+    reraise(TypeError, new_error, sys.exc_info()[2])
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/_compat.py", line 35, in reraise
+    raise value.with_traceback(tb)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1993, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 269, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 26, in _run_wsgi_app
+    return _run_wsgi_app(*args)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/test.py", line 1096, in run_wsgi_app
+    app_rv = app(environ, start_response)
+TypeError: 'int' object is not callable
+The view function did not return a valid response. The return type must be a string, tuple, Response instance, or WSGI callable, but it was a int.
+
+[2020-Thg 5-25 15:06:06] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-25 15:09:47] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-25 15:10:07] 127.0.0.1 GET http /api/get_emotion? 200 OK
+[2020-Thg 5-25 15:10:07] 127.0.0.1 GET http /favicon.ico? 5xx INTERNAL SERVER ERROR
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1832, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1810, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1793, in raise_routing_exception
+    raise request.routing_exception
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/ctx.py", line 336, in match_request
+    self.url_adapter.match(return_rule=True)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/routing.py", line 1945, in match
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+[2020-Thg 5-25 15:10:07] 127.0.0.1 GET http /favicon.ico? 5xx INTERNAL SERVER ERROR
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1832, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1810, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1793, in raise_routing_exception
+    raise request.routing_exception
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/ctx.py", line 336, in match_request
+    self.url_adapter.match(return_rule=True)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/routing.py", line 1945, in match
+    raise NotFound()
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1993, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 269, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 26, in _run_wsgi_app
+    return _run_wsgi_app(*args)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/test.py", line 1096, in run_wsgi_app
+    app_rv = app(environ, start_response)
+TypeError: 'int' object is not callable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 2311, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1834, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask_cors/extension.py", line 161, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 2001, in make_response
+    reraise(TypeError, new_error, sys.exc_info()[2])
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/_compat.py", line 35, in reraise
+    raise value.with_traceback(tb)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1993, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 269, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 26, in _run_wsgi_app
+    return _run_wsgi_app(*args)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/test.py", line 1096, in run_wsgi_app
+    app_rv = app(environ, start_response)
+TypeError: 'int' object is not callable
+The view function did not return a valid response. The return type must be a string, tuple, Response instance, or WSGI callable, but it was a int.
+
+[2020-Thg 5-25 15:22:48] 127.0.0.1 POST http /api/get_emotion? 5xx INTERNAL SERVER ERROR
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/wrappers.py", line 74, in get_json
+    rv = json.loads(data)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/json/__init__.py", line 236, in loads
+    return _json.loads(s, **kwargs)
+  File "/usr/lib/python3/dist-packages/simplejson/__init__.py", line 535, in loads
+    return cls(encoding=encoding, **kw).decode(s)
+  File "/usr/lib/python3/dist-packages/simplejson/decoder.py", line 370, in decode
+    obj, end = self.raw_decode(s)
+  File "/usr/lib/python3/dist-packages/simplejson/decoder.py", line 400, in raw_decode
+    return self.scan_once(s, idx=_w(s, idx).end())
+simplejson.errors.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1832, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1818, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/kl/PycharmProjects/face_emotion-master/face_emotion/index.py", line 78, in get_emotion
+    request_json = request.get_json()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/wrappers.py", line 82, in get_json
+    rv = self.on_json_loading_failed(e)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/wrappers.py", line 108, in on_json_loading_failed
+    raise BadRequest()
+werkzeug.exceptions.BadRequest: 400 Bad Request: The browser (or proxy) sent a request that this server could not understand.
+
+[2020-Thg 5-25 15:22:48] 127.0.0.1 POST http /api/get_emotion? 5xx INTERNAL SERVER ERROR
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/wrappers.py", line 74, in get_json
+    rv = json.loads(data)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/json/__init__.py", line 236, in loads
+    return _json.loads(s, **kwargs)
+  File "/usr/lib/python3/dist-packages/simplejson/__init__.py", line 535, in loads
+    return cls(encoding=encoding, **kw).decode(s)
+  File "/usr/lib/python3/dist-packages/simplejson/decoder.py", line 370, in decode
+    obj, end = self.raw_decode(s)
+  File "/usr/lib/python3/dist-packages/simplejson/decoder.py", line 400, in raw_decode
+    return self.scan_once(s, idx=_w(s, idx).end())
+simplejson.errors.JSONDecodeError: Expecting value: line 1 column 1 (char 0)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1832, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1818, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/home/kl/PycharmProjects/face_emotion-master/face_emotion/index.py", line 78, in get_emotion
+    request_json = request.get_json()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/wrappers.py", line 82, in get_json
+    rv = self.on_json_loading_failed(e)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/wrappers.py", line 108, in on_json_loading_failed
+    raise BadRequest()
+werkzeug.exceptions.BadRequest: 400 Bad Request: The browser (or proxy) sent a request that this server could not understand.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1993, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 269, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 26, in _run_wsgi_app
+    return _run_wsgi_app(*args)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/test.py", line 1096, in run_wsgi_app
+    app_rv = app(environ, start_response)
+TypeError: 'int' object is not callable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 2311, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1834, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask_cors/extension.py", line 161, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 2001, in make_response
+    reraise(TypeError, new_error, sys.exc_info()[2])
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/_compat.py", line 35, in reraise
+    raise value.with_traceback(tb)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1993, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 269, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 26, in _run_wsgi_app
+    return _run_wsgi_app(*args)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/test.py", line 1096, in run_wsgi_app
+    app_rv = app(environ, start_response)
+TypeError: 'int' object is not callable
+The view function did not return a valid response. The return type must be a string, tuple, Response instance, or WSGI callable, but it was a int.
+
+[2020-Thg 5-25 15:23:07] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-25 15:24:08] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-25 15:39:35] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-25 15:42:13] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-25 15:42:15] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-25 15:42:16] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-25 15:42:17] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-25 15:42:17] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-25 15:42:17] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-25 15:42:19] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-25 15:42:21] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-25 15:42:23] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-25 15:42:27] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-25 15:43:12] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-25 15:43:23] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-25 15:43:28] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-25 15:43:58] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-25 15:44:49] 127.0.0.1 POST http /api/get_emotion? 5xx INTERNAL SERVER ERROR
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1832, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1810, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1793, in raise_routing_exception
+    raise request.routing_exception
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/ctx.py", line 336, in match_request
+    self.url_adapter.match(return_rule=True)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/routing.py", line 1940, in match
+    raise MethodNotAllowed(valid_methods=list(have_match_for))
+werkzeug.exceptions.MethodNotAllowed: 405 Method Not Allowed: The method is not allowed for the requested URL.
+
+[2020-Thg 5-25 15:44:49] 127.0.0.1 POST http /api/get_emotion? 5xx INTERNAL SERVER ERROR
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1832, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1810, in dispatch_request
+    self.raise_routing_exception(req)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1793, in raise_routing_exception
+    raise request.routing_exception
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/ctx.py", line 336, in match_request
+    self.url_adapter.match(return_rule=True)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/routing.py", line 1940, in match
+    raise MethodNotAllowed(valid_methods=list(have_match_for))
+werkzeug.exceptions.MethodNotAllowed: 405 Method Not Allowed: The method is not allowed for the requested URL.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1993, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 269, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 26, in _run_wsgi_app
+    return _run_wsgi_app(*args)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/test.py", line 1096, in run_wsgi_app
+    app_rv = app(environ, start_response)
+TypeError: 'int' object is not callable
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 2311, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1834, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask_cors/extension.py", line 161, in wrapped_function
+    return cors_after_request(app.make_response(f(*args, **kwargs)))
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 2001, in make_response
+    reraise(TypeError, new_error, sys.exc_info()[2])
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/_compat.py", line 35, in reraise
+    raise value.with_traceback(tb)
+  File "/home/kl/.local/lib/python3.6/site-packages/flask/app.py", line 1993, in make_response
+    rv = self.response_class.force_type(rv, request.environ)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 269, in force_type
+    response = BaseResponse(*_run_wsgi_app(response, environ))
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/wrappers/base_response.py", line 26, in _run_wsgi_app
+    return _run_wsgi_app(*args)
+  File "/home/kl/.local/lib/python3.6/site-packages/werkzeug/test.py", line 1096, in run_wsgi_app
+    app_rv = app(environ, start_response)
+TypeError: 'int' object is not callable
+The view function did not return a valid response. The return type must be a string, tuple, Response instance, or WSGI callable, but it was a int.
+
+[2020-Thg 5-25 15:45:27] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-25 15:46:46] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-25 16:02:40] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-25 16:05:22] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-25 16:10:47] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-25 17:23:20] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-25 19:56:49] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-25 19:59:31] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-25 20:00:00] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-25 20:00:02] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-25 20:04:47] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-25 20:09:39] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-25 20:09:41] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-25 20:09:42] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-25 20:09:43] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-25 20:09:43] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-25 20:09:44] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-25 20:09:44] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-25 20:09:44] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-25 20:09:44] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-25 20:09:45] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-25 20:09:45] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-25 20:09:45] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-25 20:09:45] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-25 20:09:46] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-25 20:09:46] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-25 20:10:15] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-25 20:13:02] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-25 20:13:55] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-25 20:15:11] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-25 20:17:01] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-25 20:17:27] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-25 20:23:49] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-25 20:24:08] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-25 20:25:18] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-25 20:26:27] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-25 20:27:53] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-25 20:30:46] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-25 20:31:35] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-26 08:55:19] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-26 08:56:09] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-26 08:56:10] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-26 08:56:16] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-26 08:56:18] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-26 08:56:19] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-26 08:56:19] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-26 08:56:20] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-26 08:56:21] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-26 08:56:21] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-26 08:56:22] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-26 08:56:22] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-26 08:56:23] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-26 08:56:23] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-26 08:56:23] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-26 08:56:24] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-26 08:56:24] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-26 08:56:24] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-26 08:56:24] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-26 08:56:25] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-26 09:12:21] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-26 09:12:34] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-26 09:12:35] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-26 09:12:36] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-26 09:12:51] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-26 17:25:10] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-26 17:25:17] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-26 17:26:37] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-26 17:26:46] 127.0.0.1 POST http /api/get_emotion? 200 OK
+[2020-Thg 5-26 17:26:59] 127.0.0.1 POST http /api/get_emotion? 200 OK

@@ -1,0 +1,39 @@
+version: "2.3"
+services:
+  app:
+    container_name: face_emotion
+    restart: always
+    build: .
+    image: face_emotion:1.0
+    runtime: nvidia
+    tty: true
+    networks:
+      - beetai_network
+    ports:
+      - "5061:80"
+
+    volumes:
+      - /home/rnd/sdb5/face_emotion/static:/app/static 
+      - /home/rnd/sdb5/face_emotion/logs:/app/logs
+    environment:
+      WEB_CONCURRENCY: 1
+      APP_MODULE: 'index:app'
+
+      IMAGE_SIZE: '112,112'
+      MODEL: ''
+      GA_MODEL: './age_gender/gamodel-r50/model,0'
+      GPU: 0 #gpu id
+      DET: 0 #mtcnn option, 1 means using R+O, 0 means detect from begining
+      FLIP: 0 #whether do lr flip aug
+      THRESHOLD: 1.24  #ver dist threshold
+
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+networks:
+  beetai_network:
+    name: beetai_network
+    driver: bridge
