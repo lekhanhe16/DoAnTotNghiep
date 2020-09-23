@@ -1,10 +1,20 @@
 <component name="InspectionProjectProfileManager">
   <profile version="1.0">
     <option name="myName" value="Project Default" />
+    <inspection_tool class="PyCompatibilityInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ourVersions">
+        <value>
+          <list size="2">
+            <item index="0" class="java.lang.String" itemvalue="2.7" />
+            <item index="1" class="java.lang.String" itemvalue="3.8" />
+          </list>
+        </value>
+      </option>
+    </inspection_tool>
     <inspection_tool class="PyPackageRequirementsInspection" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="ignoredPackages">
         <value>
-          <list size="157">
+          <list size="160">
             <item index="0" class="java.lang.String" itemvalue="wheezy.routing" />
             <item index="1" class="java.lang.String" itemvalue="tensorflow-estimator" />
             <item index="2" class="java.lang.String" itemvalue="inform" />
@@ -162,8 +172,18 @@
             <item index="154" class="java.lang.String" itemvalue="paho-mqtt" />
             <item index="155" class="java.lang.String" itemvalue="grpcio" />
             <item index="156" class="java.lang.String" itemvalue="tensorflow-object-detection-api" />
+            <item index="157" class="java.lang.String" itemvalue="tensorflow" />
+            <item index="158" class="java.lang.String" itemvalue="opencv-python" />
+            <item index="159" class="java.lang.String" itemvalue="Keras" />
           </list>
         </value>
+      </option>
+    </inspection_tool>
+    <inspection_tool class="PyPep8NamingInspection" enabled="true" level="WEAK WARNING" enabled_by_default="true">
+      <option name="ignoredErrors">
+        <list>
+          <option value="N806" />
+        </list>
       </option>
     </inspection_tool>
   </profile>
