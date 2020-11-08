@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--    <link rel="stylesheet" type="text/css" href="/home/kl/Downloads/bootstrap-4.5.2-dist/css/bootstrap.min.css">-->
+    <!--    <script type="text/javascript" src="file:/home/kl/Downloads/bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>-->
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="css/style.css">
+    <title>Title</title>
+</head>
+<body>
+<div class="wrapper">
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <h3>Age Gender Expression</h3>
+        </div>
+        <ul class="lisst-unstyled components">
+            <p>The providers</p>
+            <li class="active">
+                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Thống kê</a>
+                <ul class="collapse lisst-unstyled" id="homeSubmenu">
+                    <li>
+                        <a href="https://google.com">Tuần này</a>
+                    </li>
+                    <li>
+                        <a href="#">Tháng này</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">About</a>
+            </li>
+        </ul>
+    </nav>
+    <div id="content">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <!-- <div class="container-fluid">
+                <button type="button" id="sidebarCollapse" class="btn btn-info">
+                    <i class="fas fa-align-left"></i>
+                    <span>Toggle Sidebar</span>
+                </button>
+            </div> -->
+        </nav>
+        <br><br>
+        <h2>Collapsible sidebar using bootstrap 4</h2>
+        <p>Tân binh Kai Havertz đang gây thất vọng tại Chelsea sau hai trận đầu tiên. Tiền vệ người Đức thi đấu lạc lõng
+            trong chiến thắng Brighton 3-1 ở vòng 1, và hoàn toàn mất dạng ở trận thua 0-2 trước Liverpool ở vòng 2.
+            Havertz thậm chí bị HLV Frank Lampard thay ra ngay sau khi hiệp 1 kết thúc ở trận đấu với Chelea.</p>
+        <p>Cựu cầu thủ Jamie Redknapp lại ủng hộ Havertz. Anh nói: "Bạn phải cho Havertz thời gian. Cần đánh giá cầu thủ
+            một cách cẩn thận. Chelsea sẽ có sự trở lại của Pulisic và Ziyech nữa. Và chúng ta đang làm gì đây? Đánh giá
+            cậu ấy sau chỉ 2 phút sao?".</p>
+        <div class="line"></div>
+        <h3>Lorem Ipsum</h3>
+        <p>Tân binh Kai Havertz đang gây thất vọng tại Chelsea sau hai trận đầu tiên. Tiền vệ người Đức thi đấu lạc lõng
+            trong chiến thắng Brighton 3-1 ở vòng 1, và hoàn toàn mất dạng ở trận thua 0-2 trước Liverpool ở vòng 2.
+            Havertz thậm chí bị HLV Frank Lampard thay ra ngay sau khi hiệp 1 kết thúc ở trận đấu với Chelea.</p>
+
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+
+<script>
+
+    $(document).ready(function(){
+        $("#sidebarCollapse").on('click', function(){
+        $("#sidebar").toggleClass('active');
+        });
+    });
+
+
+</script>
+</body>
+</html>
