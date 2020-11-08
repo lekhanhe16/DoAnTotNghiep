@@ -1,166 +1,188 @@
 # start import lib
 # import os#,json,io
 import os
-
-from flask import Flask, request, redirect, url_for, jsonify  # , send_file, Response, session
-# from werkzeug.utils import secure_filename
-from flask_cors import CORS
-# import base64
-# from functools import wraps
-# from datetime import datetime, timedelta
-# import requests
-# import time
-from logging.handlers import RotatingFileHandler
-import logging
-from time import strftime
-import traceback
-
-from gevent.pywsgi import WSGIServer
-
+import dlib
 import cv2
 import base64
+import threading
+import time
+from flask import Flask, request, jsonify
+from flask_mysqldb import MySQL
+from datetime import datetime as dt
+
 import requests
 import numpy as np
 from requests.auth import HTTPBasicAuth
 
 import io
 
-from age_gender.predict import predict, predict_emotion
+from age_gender.predict import predict, predict_emotion, get_faces
 
-# from age_gender.predict import predistr(gender) + '_' + str(age)ct
+app = Flask(__name__)
+app.config['MYSQL_HOST'] = '0.0.0.0'
+app.config['MYSQL_USER'] = 'root'
+app.config['MYSQL_PASSWORD'] = ''
+app.config['MYSQL_DB'] = 'agegenderexpression'
+mysql = MySQL(app)
 
-# handler = RotatingFileHandler(filename=os.path.join('logs', 'app.log'), maxBytes=1024 * 1024 * 1, backupCount=10)
-# logger = logging.getLogger('tdm')
-# logger.setLevel(logging.DEBUG)
-# logger.addHandler(handler)
-#
-# # config server
-# app = Flask(__name__)
-#
-#
-# # Log server
-# @app.after_request
-# def after_request(response):
-#     timestamp = strftime('[%Y-%b-%d %H:%M:%S]')
-#     logger.error('%s %s %s %s %s %s', timestamp, request.remote_addr, request.method, request.scheme, request.full_path,
-#                  response.status)
-#     return response
-#
-#
-# @app.errorhandler(Exception)
-# def exceptions(e):
-#     tb = traceback.format_exc()
-#     timestamp = strftime('[%Y-%b-%d %H:%M:%S]')
-#     logger.error('%s %s %s %s %s 5xx INTERNAL SERVER ERROR\n%s', timestamp, request.remote_addr, request.method,
-#                  request.scheme, request.full_path, tb)
-#     return 0
-#
-#
-# CORS(app, allow_headers=['Authorization', 'Content-Type'])
-#
-#
-# # handle http
-# @app.route("/")
-# def index():
-#     return "Hello beetsoft!"
-#
-#
-# # static filename
-#
-# @app.after_request
-# def add_header(r):
-#     """
-#     Add headers to both force latest IE rendering engine or Chrome Frame,
-#     and also to cache the rendered page for 10 minutes.
-#     """
-#     r.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
-#     r.headers["Pragma"] = "no-cache"
-#     r.headers["Expires"] = "0"
-#     r.headers['Cache-Control'] = 'public, max-age=0'
-#     return r
-#
-#
-# @app.route("/api/get_emotion", methods=['GET', 'POST'])
-# def get_emotion():
-#     request_json = request.get_json()
-#     try:
-#         image = request_json.get('image')
-#         _emotion = predict_emotion(image)
-#         if len(_emotion) > 0:
-#             _emotion = _emotion[0]
-#         else:
-#             _emotion = []
-#         emotion = ''
-#
-#         if _emotion in ['sad', 'angry', 'disgust', 'fear']:
-#             emotion = 'sad'
-#         if _emotion in ['happy', 'surprise']:
-#             emotion = 'happy'
-#         if _emotion == 'neutral':
-#             emotion = 'neutral'
-#         data = {'emotion': emotion}
-#         print(data)
-#         return jsonify({'status': 10000, 'data': data})
-#     except Exception as e:
-#         print(e)
-#         return jsonify({'status': 10002})
-#
-url = "http://ipcampython:1234567@192.168.42.129:8080/video"
+# url = "http://ipcampython:1234567@192.168.42.129:8080/video"
+url = "http://172.20.10.1:4747/video"
+url1 = "http://192.168.42.129:4747/video"
+
+
+def assign_label(tl, fid, emo, age, gender):
+    time.sleep(1)
+    tl[fid, 0] = emo
+    tl[fid, 1] = age
+    tl[fid, 2] = gender
+    return
+
+
+def get_emotion(fr, x1, y1, w1, h1):
+    detected_face = fr[y1: (y1 + h1), x1:(x1 + w1)]
+    r, jpeg = cv2.imencode('.jpg', detected_face)
+
+    imgdata = jpeg.tobytes()
+
+    _emotion = predict_emotion(str(base64.b64encode(imgdata).decode('utf-8')))
+    if len(_emotion) > 0:
+        _emotion = _emotion[0]
+    else:
+        _emotion = []
+    emotion = 'neutral'
+
+    if _emotion in ['sad', 'angry', 'disgust', 'fear']:
+        emotion = 'sad'
+    if _emotion in ['happy', 'supprise']:
+        emotion = 'happy'
+    if _emotion == 'neutral':
+        emotion = 'neutral'
+    return emotion, imgdata
+
+
 if __name__ == '__main__':
-    # app.run(host='0.0.0.0', debug=False, port=3000)
-    # http_server = WSGIServer(('0.0.0.0', 3000), app)
-    # http_server.serve_forever()
 
     face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
     # video_capture = cv2.VideoCapture(url)
-    video_capture = cv2.VideoCapture(0)
+    video_capture = cv2.VideoCapture(1)
     try:
+        os.chdir('/home/kl/detected')
+        count = 1
+        face_id = 0
+        frame_counter = 0
+        tracked_faces = {}
+        tracked_label = {}
 
         while True:
             # Grab a single frame of video
             ret, frame = video_capture.read()
-            fps = video_capture.get(cv2.CAP_PROP_FPS)
+            # fps = video_capture.get(cv2.CAP_PROP_FPS)
             # Resize frame of video to 1/4 size for faster face recognition processing
             small_frame = cv2.resize(frame, (0, 0), fx=0.25, fy=0.25)
-            gray = cv2.cvtColor(small_frame, cv2.COLOR_BGR2GRAY)
-            faces = face_cascade.detectMultiScale(gray, 1.1, 5)
+            # gray = cv2.cvtColor(small_frame, cv2.COLOR_BGR2GRAY)
+            # faces = face_cascade.detectMultiScale(gray, 1.2, 5)
 
-            if (len(faces) > 0):
-                for face in faces:
-                    detected_face = small_frame[face[1]: (face[1] + face[3]), face[0]:(face[0] + face[2])]
-                    ret, jpeg = cv2.imencode('.jpg', detected_face)
-                    imgdata = jpeg.tobytes()
+            frame_counter += 1
 
-                    age = ''
-                    gender = ''
-                    _emotion = predict_emotion(str(base64.b64encode(imgdata).decode('utf-8')))
-                    if len(_emotion) > 0:
-                        _emotion = _emotion[0]
-                    else:
-                        _emotion = []
-                    emotion = 'None'
+            for f in tracked_faces.copy():
+                track_quality = tracked_faces[f].update(small_frame)
+                if track_quality < 8:
+                    with app.app_context():
+                        cur = mysql.connection.cursor()
+                        cur.execute("INSERT INTO Person VALUES (default)")
+                        mysql.connection.commit()
+                        last_insert_id = cur.lastrowid
+                        cur.execute("INSERT INTO Civilian VALUES(%s, '2020-12-12 ', ' 2020-12-13')",
+                                    (int(last_insert_id),))
+                        mysql.connection.commit()
+                        last_civil = last_insert_id
+                        if tracked_label[f, 2] == 1:
+                            cil_gender = 1
+                        else:
+                            cil_gender = 2
+                        cur.execute("INSERT INTO Civilian_gender VALUES (default, %s, %s)",
+                                    (int(last_civil), int(cil_gender)))
+                        mysql.connection.commit()
+                        cur.execute("INSERT INTO Age VALUES (default, %s, %s)",
+                                    (int(last_civil),
+                                     str(str(int(tracked_label[f, 1]) - 3) + "-" + str(int(tracked_label[f, 1]) + 3))))
+                        mysql.connection.commit()
+                        cur.execute("INSERT INTO Expression VALUES (default, %s, %s)",
+                                    (int(last_civil), str(tracked_label[f, 0])))
+                        mysql.connection.commit()
 
-                    if _emotion in ['sad', 'angry', 'disgust', 'fear']:
-                        emotion = 'sad'
-                    if _emotion in ['happy', 'supprise']:
-                        emotion = 'happy'
-                    if _emotion == 'neutral':
-                        emotion = 'neutral'
-                        # ret2, jpeg2 = cv2.imencode('.jpg', small_frame)
-                        # imgdata2 = jpeg2.tobytes()
-                        gender, age = predict(str(base64.b64encode(imgdata).decode('utf-8')))
+                        cur.close()
+                    tracked_faces.pop(f)
+                    # tracked_label.pop(f)
+            if frame_counter % 15 == 0:
+                # tracked_label = {}
+                gray = cv2.cvtColor(small_frame, cv2.COLOR_BGR2GRAY)
+                faces = face_cascade.detectMultiScale(gray, 1.1, 4)
+                if len(faces):
 
-                    cv2.putText(frame, emotion + '_' + str(age) + '_' + str(gender),
-                                (int(face[0] / 0.25), int(face[1] / 0.25)), cv2.FONT_HERSHEY_DUPLEX, 0.75,
+                    for (x, y, w, h) in faces:
+                        x_bar = x + 0.5 * w
+                        y_bar = y + 0.5 * h
+                        matchedFid = None
+                        for fid in tracked_faces.copy():
+                            tracked_position = tracked_faces[fid].get_position()
+
+                            t_x = int(tracked_position.left())
+                            t_y = int(tracked_position.top())
+                            t_w = int(tracked_position.width())
+                            t_h = int(tracked_position.height())
+
+                            t_x_bar = t_x + 0.5 * t_w
+                            t_y_bar = t_y + 0.5 * t_h
+
+                            if ((t_x <= x_bar <= (t_x + t_w)) and
+                                    (t_y <= y_bar <= (t_y + t_h)) and
+                                    (x <= t_x_bar <= (x + w)) and
+                                    (y <= t_y_bar <= (y + h))):
+                                matchedFid = fid
+                        if matchedFid is None:
+                            tracker = dlib.correlation_tracker()
+
+                            tracker.start_track(small_frame,
+                                                dlib.rectangle(x, y, x + w, y + h))
+                            face_id += 1
+                            tracked_faces[face_id] = tracker
+                            age = ''
+                            gender = ''
+                            emo, imgd = get_emotion(small_frame, x, w, w, h)
+                            # if emo == 'neutral':
+                            # gender, age = predict(str(base64.b64encode(imgd).decode('utf-8')))
+                            # print(str(face_id) + " " + str(emo) + " " + str(age) + " " + str(gender))
+                            t = threading.Thread(target=assign_label,
+                                                 args=(tracked_label, face_id, emo, age, gender))
+                            t.start()
+                            # assign_label(tracked_label, face_id, emotion, age, gender)
+            for fid in tracked_faces.copy():
+                tracked_position = tracked_faces[fid].get_position()
+
+                t_x = int(tracked_position.left())
+                t_y = int(tracked_position.top())
+                t_w = int(tracked_position.width())
+                t_h = int(tracked_position.height())
+
+                if (fid, 0) in tracked_label.copy():
+                    emo1, imgd1 = get_emotion(small_frame, t_x, t_y, t_w, t_h)
+
+                    if emo1 == 'neutral' and frame_counter % 15 == 14 and imgd1 is not None:
+                        gender, age = predict(str(base64.b64encode(imgd1).decode('utf-8')))
+                        threading.Thread(target=assign_label,
+                                         args=(tracked_label, fid, emo1, age, gender)).start()
+                    #     assign_label(tracked_label, fid, emo1, age, gender)
+                    cv2.putText(frame, emo1 + '_' +
+                                str(tracked_label[fid, 1]) + '_' + str(tracked_label[fid, 2]),
+                                (int(t_x / 0.25), int(t_y / 0.25)), cv2.FONT_HERSHEY_DUPLEX, 0.5,
                                 (0, 0, 255), 1)
-                    cv2.putText(frame, str(fps),
-                                (20, 20), cv2.FONT_HERSHEY_DUPLEX, 0.75,
-                                (0, 0, 255), 1)
-                    # cv2.resizeWindow()
-                cv2.imshow("Video", frame)
-            else:
-                cv2.imshow("Video", frame)
+
+            cv2.imshow("Video", frame)
+
             if cv2.waitKey(1) & 0xFF == ord('q'):
+
                 break
     except Exception as e:
+
         print(e)

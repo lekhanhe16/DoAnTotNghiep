@@ -3,16 +3,21 @@
   <component name="ChangeListManager">
     <list default="true" id="1a114976-6894-4462-bef5-a76f2e29e455" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/age_gender/predict.py" beforeDir="false" afterPath="$PROJECT_DIR$/age_gender/predict.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.py" beforeDir="false" afterPath="$PROJECT_DIR$/index.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -25,8 +30,9 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../face_age_gender-master/face_age_gender" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
@@ -100,37 +106,33 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="248" y="58" width="800" height="677" key="#Inspections" timestamp="1592303198071">
-      <screen x="0" y="27" width="1307" height="741" />
-    </state>
-    <state x="248" y="58" width="800" height="677" key="#Inspections/0.27.1307.741@0.27.1307.741" timestamp="1592303198071" />
     <state x="285" y="201" width="727" height="390" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1598150100410">
       <screen x="0" y="27" width="1307" height="741" />
     </state>
     <state x="285" y="201" width="727" height="390" key="#com.intellij.fileTypes.FileTypeChooser/0.27.1307.741@0.27.1307.741" timestamp="1598150100410" />
-    <state x="436" y="154" width="424" height="484" key="FileChooserDialogImpl" timestamp="1597849200218">
+    <state x="436" y="154" width="424" height="484" key="FileChooserDialogImpl" timestamp="1604139008045">
       <screen x="0" y="27" width="1307" height="741" />
     </state>
-    <state x="436" y="154" width="424" height="484" key="FileChooserDialogImpl/0.27.1307.741@0.27.1307.741" timestamp="1597849200218" />
-    <state width="1284" height="161" key="GridCell.Tab.0.bottom" timestamp="1598154233924">
+    <state x="436" y="154" width="424" height="484" key="FileChooserDialogImpl/0.27.1307.741@0.27.1307.741" timestamp="1604139008045" />
+    <state width="1284" height="161" key="GridCell.Tab.0.bottom" timestamp="1604140931984">
       <screen x="0" y="27" width="1307" height="741" />
     </state>
-    <state width="1284" height="161" key="GridCell.Tab.0.bottom/0.27.1307.741@0.27.1307.741" timestamp="1598154233924" />
-    <state width="1284" height="161" key="GridCell.Tab.0.center" timestamp="1598154233924">
+    <state width="1284" height="161" key="GridCell.Tab.0.bottom/0.27.1307.741@0.27.1307.741" timestamp="1604140931984" />
+    <state width="1284" height="161" key="GridCell.Tab.0.center" timestamp="1604140931980">
       <screen x="0" y="27" width="1307" height="741" />
     </state>
-    <state width="1284" height="161" key="GridCell.Tab.0.center/0.27.1307.741@0.27.1307.741" timestamp="1598154233924" />
-    <state width="1284" height="161" key="GridCell.Tab.0.left" timestamp="1598154233923">
+    <state width="1284" height="161" key="GridCell.Tab.0.center/0.27.1307.741@0.27.1307.741" timestamp="1604140931980" />
+    <state width="1284" height="161" key="GridCell.Tab.0.left" timestamp="1604140931978">
       <screen x="0" y="27" width="1307" height="741" />
     </state>
-    <state width="1284" height="161" key="GridCell.Tab.0.left/0.27.1307.741@0.27.1307.741" timestamp="1598154233923" />
-    <state width="1284" height="161" key="GridCell.Tab.0.right" timestamp="1598154233924">
+    <state width="1284" height="161" key="GridCell.Tab.0.left/0.27.1307.741@0.27.1307.741" timestamp="1604140931978" />
+    <state width="1284" height="161" key="GridCell.Tab.0.right" timestamp="1604140931981">
       <screen x="0" y="27" width="1307" height="741" />
     </state>
-    <state width="1284" height="161" key="GridCell.Tab.0.right/0.27.1307.741@0.27.1307.741" timestamp="1598154233924" />
-    <state x="307" y="27" width="683" height="741" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1590559541640">
+    <state width="1284" height="161" key="GridCell.Tab.0.right/0.27.1307.741@0.27.1307.741" timestamp="1604140931981" />
+    <state x="316" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1604138800179">
       <screen x="0" y="27" width="1307" height="741" />
     </state>
-    <state x="307" y="27" width="683" height="741" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.27.1307.741@0.27.1307.741" timestamp="1590559541640" />
+    <state x="316" y="89" width="672" height="678" key="search.everywhere.popup/0.27.1307.741@0.27.1307.741" timestamp="1604138800179" />
   </component>
 </project>

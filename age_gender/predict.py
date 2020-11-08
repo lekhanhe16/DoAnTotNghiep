@@ -30,6 +30,7 @@ rec_name_str = 'arcface_r100_v1'
 ga_name_str = 'genderage_v1'
 
 ctx_id = int(os.environ.get('GPU', -1))
+print('quantity: ' + str(mx.util.get_gpu_count()))
 
 det_model = model_zoo.get_model(det_name_str)
 det_model.prepare(ctx_id, nms=0.4)
@@ -41,6 +42,7 @@ if len(mx.test_utils.list_gpus()) == 0:
 else:
     ctx_context = mx.gpu(0)
     ctx = 0
+
 ga_model.prepare(ctx_id)
 
 # detection_model_path = 'haarcascade_frontalface_default.xml'
@@ -89,6 +91,10 @@ rss_model_gender.bind(
 rss_model_gender.set_params(arg_params2, aux_params2)
 
 
+def get_faces(frame):
+    return det_model.detect(frame, threshold=0.8, scale=1.0)
+
+
 def predict_emotion(base64_image):
     file_like = io.BytesIO(base64.b64decode(base64_image))
     image_input = Image.open(file_like)
@@ -131,58 +137,64 @@ def predict_emotion(base64_image):
 
 
 def predict(base64_image):
+    img_no = 1
     global sess
     global graph
     with graph.as_default():
         set_session(sess)
         file_like = io.BytesIO(base64.b64decode(base64_image))
         image_input = Image.open(file_like)
+
         frame = np.array(image_input)
-        # frame = cv2.cvtColor(frame_1, cv2.COLOR_BGR2RGB)
 
         try:
+
             bboxes, landmarks = det_model.detect(frame, threshold=0.8, scale=1.0)
+            # print(len(landmarks))
             if len(landmarks) > 0:
+
                 _img = face_align.norm_crop(frame, landmark=landmarks[0])
+
                 if _img is None:
                     gender, age = None, None
+                # else:
+                #
+                # print('FaceAgeOnly', gender, age)
                 else:
                     gender, age = ga_model.get(_img)
-                # print('FaceAgeOnly', gender, age)
+                    rss_input = cv2.cvtColor(_img, cv2.COLOR_BGR2RGB)
+                    rss_input = cv2.resize(rss_input, (64, 64))
+                    nimg = rss_input[:, :, ::-1]
+                    nimg = np.transpose(nimg, (2, 0, 1))
+
+                    input_blob = np.expand_dims(nimg, axis=0)
+                    data = mx.nd.array(input_blob)
+                    db = mx.io.DataBatch(
+                        data=(data, mx.nd.array([[0, 1, 2]]), mx.nd.array([[0, 1, 2]]), mx.nd.array([[0, 1, 2]])))
+                    rss_model_age.forward(db, is_train=True)
+                    age_1 = rss_model_age.get_outputs()[0].asnumpy()
+
+                    rss_model_gender.forward(db, is_train=True)
+                    gender_1 = rss_model_gender.get_outputs()[0].asnumpy()
+
+                    if len(age_1) > 0:
+                        age_1 = age_1[0]
+                    if len(gender_1) > 0:
+                        gender_1 = gender_1[0]
+
+                    # print('rss ', gender_1, age_1)
+
+                    if gender is not None and len(gender_1) > 0:
+                        if gender != round(gender_1[0], 0):
+                            if gender_1[0] > 0:
+                                gender = 1
+                            else:
+                                gender = 0
+
+                    if age is not None and len(age_1) > 0:
+                        age = round((0.5 * age + 0.5 * age_1[0]), 0)
             else:
                 gender, age = None, None
-
-            rss_input = cv2.cvtColor(_img, cv2.COLOR_BGR2RGB)
-            rss_input = cv2.resize(rss_input, (64, 64))
-            nimg = rss_input[:, :, ::-1]
-            nimg = np.transpose(nimg, (2, 0, 1))
-
-            input_blob = np.expand_dims(nimg, axis=0)
-            data = mx.nd.array(input_blob)
-            db = mx.io.DataBatch(
-                data=(data, mx.nd.array([[0, 1, 2]]), mx.nd.array([[0, 1, 2]]), mx.nd.array([[0, 1, 2]])))
-            rss_model_age.forward(db, is_train=False)
-            age_1 = rss_model_age.get_outputs()[0].asnumpy()
-
-            rss_model_gender.forward(db, is_train=False)
-            gender_1 = rss_model_gender.get_outputs()[0].asnumpy()
-
-            if len(age_1) > 0:
-                age_1 = age_1[0]
-            if len(gender_1) > 0:
-                gender_1 = gender_1[0]
-
-            # print('rss ', gender_1, age_1)
-
-            if gender is not None and len(gender_1) > 0:
-                if gender != round(gender_1[0], 0):
-                    if gender_1[0] > 0:
-                        gender = 1
-                    else:
-                        gender = 0
-
-            if age is not None and len(age_1) > 0:
-                age = round((0.5 * age + 0.5 * age_1[0]), 0)
 
             return gender, age
         except Exception as e:
