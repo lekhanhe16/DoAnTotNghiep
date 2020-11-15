@@ -1,0 +1,45 @@
+
+<body>
+  <div class="container-fluid">
+
+      <div class="row d-flex justify-content-center">
+          
+        <div class="col-md-6">
+          <canvas id="barChart" height="500" width="800"></canvas>
+          
+        </div>
+      </div>
+  </div>
+
+  <br>
+  <div class="container-fluid">
+    
+    <div class="row d-flex justify-content-center">
+      
+      <div class="col-md-6">
+        <br>
+        <br>
+        <p>MALE</p>
+        <canvas id="polarChart" height="200"></canvas>
+      </div>
+
+      <div class="col-md-6">
+        <br>
+        <br>
+        <p>FEMALE</p>
+        <canvas id="polarChart2" height="200"></canvas>
+      </div>
+    </div>
+  </div>
+  <br>
+  <br>
+<script type="text/javascript" src="../static/js/weekfunction.js" ></script>
+  <script>
+    var fetch_data = JSON.parse('{{tabledata}}'.replace(/&#34;/g,"\""))
+    // alert(fetch_data);
+    var ageBarChart = showBarChart(fetch_data);
+    var ageMalePolarChart = showPolarChart("polarChart");
+    var ageMalePolarChart = showPolarChart("polarChart2");
+</script>
+</body>
+<!-- </html> -->

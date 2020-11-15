@@ -30,11 +30,17 @@ url = "http://172.20.10.1:4747/video"
 url1 = "http://192.168.42.129:4747/video"
 
 
-def assign_label(tl, fid, emo, age, gender):
+def assign_label(tl, fid, emo, age, gender, intime, indate, ind):
     time.sleep(1)
-    tl[fid, 0] = emo
-    tl[fid, 1] = age
-    tl[fid, 2] = gender
+    if ind is not None:
+        tl[fid, 0].append(emo)
+    if age is not None and gender is not None:
+        tl[fid, 1] = age
+        tl[fid, 2] = gender
+    if intime is not None and indate is not None:
+        tl[fid, 3] = intime
+        tl[fid, 4] = indate
+
     return
 
 
@@ -64,7 +70,7 @@ if __name__ == '__main__':
 
     face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
     # video_capture = cv2.VideoCapture(url)
-    video_capture = cv2.VideoCapture(1)
+    video_capture = cv2.VideoCapture(0)
     try:
         os.chdir('/home/kl/detected')
         count = 1
@@ -88,12 +94,16 @@ if __name__ == '__main__':
                 track_quality = tracked_faces[f].update(small_frame)
                 if track_quality < 8:
                     with app.app_context():
+                        emo_check = np.zeros(3, dtype=int)
+                        out_time = dt.strftime(dt.now(), '%H:%M:%S')
+                        out_date = dt.strftime(dt.now(), '%Y-%m-%d')
                         cur = mysql.connection.cursor()
                         cur.execute("INSERT INTO Person VALUES (default)")
                         mysql.connection.commit()
                         last_insert_id = cur.lastrowid
-                        cur.execute("INSERT INTO Civilian VALUES(%s, '2020-12-12 ', ' 2020-12-13')",
-                                    (int(last_insert_id),))
+                        cur.execute("INSERT INTO Civilian VALUES(%s, %s, %s, %s, %s)",
+                                    (int(last_insert_id), str(tracked_label[f, 3]), str(tracked_label[f, 4]),
+                                     str(out_time), str(out_date)))
                         mysql.connection.commit()
                         last_civil = last_insert_id
                         if tracked_label[f, 2] == 1:
@@ -103,13 +113,24 @@ if __name__ == '__main__':
                         cur.execute("INSERT INTO Civilian_gender VALUES (default, %s, %s)",
                                     (int(last_civil), int(cil_gender)))
                         mysql.connection.commit()
-                        cur.execute("INSERT INTO Age VALUES (default, %s, %s)",
+                        cur.execute("INSERT INTO Age VALUES (default, %s, %s, %s)",
                                     (int(last_civil),
-                                     str(str(int(tracked_label[f, 1]) - 3) + "-" + str(int(tracked_label[f, 1]) + 3))))
+                                     int((tracked_label[f, 1]) - 3), int((tracked_label[f, 1]) + 3)))
                         mysql.connection.commit()
-                        cur.execute("INSERT INTO Expression VALUES (default, %s, %s)",
-                                    (int(last_civil), str(tracked_label[f, 0])))
-                        mysql.connection.commit()
+                        for e in tracked_label[f, 0]:
+
+                            if str(e) == 'neutral':
+                                iemo = 0
+                            elif str(e) == 'happy':
+                                iemo = 1
+                            elif str(e) == 'sad':
+                                iemo = 2
+
+                            if emo_check[iemo] == 0:
+                                cur.execute("INSERT INTO Expression VALUES (default, %s, %s)",
+                                            (int(last_civil), str(e)))
+                                mysql.connection.commit()
+                            emo_check[iemo] = 1
 
                         cur.close()
                     tracked_faces.pop(f)
@@ -147,6 +168,9 @@ if __name__ == '__main__':
                                                 dlib.rectangle(x, y, x + w, y + h))
                             face_id += 1
                             tracked_faces[face_id] = tracker
+                            in_time = dt.strftime(dt.now(), '%H:%M:%S')
+                            in_date = dt.strftime(dt.now(), '%Y-%m-%d')
+                            tracked_label[face_id, 0] = []
                             age = ''
                             gender = ''
                             emo, imgd = get_emotion(small_frame, x, w, w, h)
@@ -154,7 +178,7 @@ if __name__ == '__main__':
                             # gender, age = predict(str(base64.b64encode(imgd).decode('utf-8')))
                             # print(str(face_id) + " " + str(emo) + " " + str(age) + " " + str(gender))
                             t = threading.Thread(target=assign_label,
-                                                 args=(tracked_label, face_id, emo, age, gender))
+                                                 args=(tracked_label, face_id, emo, age, gender, in_time, in_date, 1))
                             t.start()
                             # assign_label(tracked_label, face_id, emotion, age, gender)
             for fid in tracked_faces.copy():
@@ -165,14 +189,17 @@ if __name__ == '__main__':
                 t_w = int(tracked_position.width())
                 t_h = int(tracked_position.height())
 
-                if (fid, 0) in tracked_label.copy():
+                if (fid, 1) in tracked_label.copy():
                     emo1, imgd1 = get_emotion(small_frame, t_x, t_y, t_w, t_h)
 
                     if emo1 == 'neutral' and frame_counter % 15 == 14 and imgd1 is not None:
                         gender, age = predict(str(base64.b64encode(imgd1).decode('utf-8')))
                         threading.Thread(target=assign_label,
-                                         args=(tracked_label, fid, emo1, age, gender)).start()
+                                         args=(tracked_label, fid, emo1, age, gender, None, None, None)).start()
                     #     assign_label(tracked_label, fid, emo1, age, gender)
+                    elif emo1 != 'neutral' and frame_counter % 15 == 14 and imgd1 is not None:
+                        threading.Thread(target=assign_label,
+                                         args=(tracked_label, fid, emo1, None, None, None, None, 1)).start()
                     cv2.putText(frame, emo1 + '_' +
                                 str(tracked_label[fid, 1]) + '_' + str(tracked_label[fid, 2]),
                                 (int(t_x / 0.25), int(t_y / 0.25)), cv2.FONT_HERSHEY_DUPLEX, 0.5,
@@ -181,7 +208,6 @@ if __name__ == '__main__':
             cv2.imshow("Video", frame)
 
             if cv2.waitKey(1) & 0xFF == ord('q'):
-
                 break
     except Exception as e:
 

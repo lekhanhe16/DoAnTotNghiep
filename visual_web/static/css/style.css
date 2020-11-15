@@ -1,6 +1,6 @@
 body{
     font-family: 'Poppins' sans-serif;
-    background: #fafafa;
+    background: #DCDCDC;
 }
 p{
     font-family: 'Poppins' sans-serif;
@@ -10,6 +10,12 @@ p{
     color: #999;
 
 }
+br {
+    content: "";
+    margin: 2em;
+    display: block;
+    font-size: 24%;
+  }
 a,
 a:hover,
 a:focus{
@@ -28,6 +34,7 @@ a:focus{
 }
 
 #sidebar{
+    margin-right: 10px;
     min-width: 250px;
     max-width: 250px;
     background: #7386D5;
@@ -42,8 +49,12 @@ a:focus{
 #sidebar .sidebar-header{
     padding: 20px;
     background: #6d7fcc;
+    border-bottom: 5px solid #DCDCDC;
 }
 
+#datavisual{
+    border-bottom: 5px solid #DCDCDC;
+}
 #sidebar ul.components{
     padding: 20px 0;
     /* border-bottom: 1px solid #47748b; */
@@ -87,7 +98,7 @@ a[data-toggle="collapse"] {
 }
 
 #sidebar ul li{
-    border-bottom: 1px solid #fff;
+    /* border-bottom: 1px solid #fff; */
 }
 ul ul a{
     font-size: 0.9em !important;
@@ -96,23 +107,35 @@ ul ul a{
     
 }
 
+#sidebarCollapse{
+    margin-top: 12px;
+}
+.container-fluid{
+    position: relative;
+    background: #ffffff;
+}
+
+#headbar{
+    height: 40px;
+}
 #content{
     width: 100%;
-    padding: 20px;
+    /* padding: 20px; */
     min-height: 100vh;
     transition: all 0.3s;
-    
 }
 
 @media (max-width: 768px) {
+    body {
+        /* overflow-x: hidden!important; */
+        overflow-x: hidden !important;
+    }
     #sidebar {
         margin-left: -250px;
     }
 
     #sidebar.active {
-        margin-left: 250;
-    }
-    #sidebarCollapse span {
-        display: none;
+        margin-left: 0px;
+        
     }
 }

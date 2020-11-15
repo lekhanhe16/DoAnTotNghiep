@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<!--        <link rel="stylesheet" type="text/css" href="/home/kl/Downloads/bootstrap-4.5.2-dist/css/bootstrap.min.css">-->
+<!--        <script type="text/javascript" src="file:/home/kl/Downloads/bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>-->
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/mdb.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Title</title>
+  
+</head>
+<body>
+    <div class="wrapper">
+        <nav id="sidebar">
+            <div class="sidebar-header">
+                <h3>Age Gender Expression</h3>
+            </div>
+            <ul class="lisst-unstyled components">
+                <li id = "datavisual">
+                    <p>Data Visualization</p>
+                </li>
+                <li>
+                    <a href="#" onclick="showChart('today')">Today</a>
+                </li>
+                <li>
+                    <a href="#ageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Age-Gender</a>
+                    <ul class="collapse lisst-unstyled" id="ageSubmenu">
+                        <li>
+                            <a href="#ageweek" onclick="showChart('ageweek')">This week</a>
+                        </li>
+                        <li>
+                            <a href="#ageoverall" onclick="showChart('ageoverall')">Overall</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#genderSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Expression</a>
+                    <ul class="collapse lisst-unstyled" id="genderSubmenu">
+                        <li>
+                            <a href="http://0.0.0.0:8855/ageweek">This week</a>
+                        </li>
+                        <li>
+                            <a href="#">Overall</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="/logout">Log out</a>
+                </li>
+            </ul>
+        </nav>
+
+        <div id="content">
+            <div class="container-fluid" id="headbar">
+                <img src="{{ url_for('static', filename='images/m16.png')}}" id="sidebarCollapse">
+                    <i class="fas fa-align-left"></i>
+                </img>
+
+            </div> 
+            <br>
+            <div id="includedContent"></div>
+            
+        </div>
+        
+    </div>
+    
+   
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+            integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+            integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+            crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/mdb.min.js') }}"></script>
+    <script type="text/javascript" src="../static/js/plotly.min.js"></script>
+    <script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+    
+    <script type="text/javascript">
+        if ( window.history.replaceState ) {
+            window.history.replaceState( null, null, window.location.href );
+        }
+        $(function() {
+
+        var $sidebar   = $("#sidebar"), 
+            $window    = $(window),
+            offset     = $sidebar.offset(),
+            topPadding = 1;
+
+            $window.scroll(function() {
+                if ($window.scrollTop() > offset.top) {
+                    $sidebar.stop().animate({
+                        marginTop: $window.scrollTop() - offset.top + topPadding
+                    });
+                } else {
+                    $sidebar.stop().animate({
+                        marginTop: 0
+                    });
+                }
+            });
+        });
+        $(document).ready(function(){
+            
+            $("#sidebarCollapse").on('click', function(){
+                // alert("hello")
+                $("#sidebar").toggleClass('active');
+            });
+        });
+        $(function(){
+          $("#includedContent").load("http://0.0.0.0:8855/ageweek"); 
+        });
+        function showChart(chart){
+            if (chart === 'ageweek'){
+                $(function(){
+                $("#includedContent").load("http://0.0.0.0:8855/ageweek"); 
+                });
+            }
+            else if(chart == 'ageoverall'){
+                $(function(){
+                    $('#includedContent').load("http://0.0.0.0:8855/ageoverall");
+                });
+            }
+        }
+
+       
+    </script>
+</body>
+</html>
