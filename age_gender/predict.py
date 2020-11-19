@@ -171,10 +171,10 @@ def predict(base64_image):
                     data = mx.nd.array(input_blob)
                     db = mx.io.DataBatch(
                         data=(data, mx.nd.array([[0, 1, 2]]), mx.nd.array([[0, 1, 2]]), mx.nd.array([[0, 1, 2]])))
-                    rss_model_age.forward(db, is_train=True)
+                    rss_model_age.forward(db, is_train=False)
                     age_1 = rss_model_age.get_outputs()[0].asnumpy()
 
-                    rss_model_gender.forward(db, is_train=True)
+                    rss_model_gender.forward(db, is_train=False)
                     gender_1 = rss_model_gender.get_outputs()[0].asnumpy()
 
                     if len(age_1) > 0:

@@ -75,3 +75,50 @@ var trace2 = {
     Plotly.newPlot(document.getElementById("threedchart"), data, layout);
     });
 }
+
+function showLabelChartMonth(fetch_data){
+  var ctxP = document.getElementById("labelChartMonth").getContext('2d');
+  var myPieChart = new Chart(ctxP, {
+    plugins: [ChartDataLabels],
+    type: 'pie',
+    data: {
+      labels: ["Neutral", "Happy", "Sad"],
+      datasets: [{
+        data: [fetch_data.mneutral, fetch_data.mhappy, fetch_data.msad],
+        backgroundColor: ["#46BFBD", "#FDB45C", "#F7464A"],
+        hoverBackgroundColor: ["#5AD3D1", "#FFC870", "#FF5A5E"]
+      }]
+    },
+    options: {
+      responsive: true,
+      legend: {
+        position: 'right',
+        labels: {
+          padding: 20,
+          boxWidth: 10
+        }
+      },
+      plugins: {
+        datalabels: {
+          formatter: (value, ctx) => {
+            let sum = 0;
+            let dataArr = ctx.chart.data.datasets[0].data;
+            dataArr.map(data => {
+              sum += data;
+            });
+            let percentage = (value * 100 / sum).toFixed(2) + "%";
+            return percentage;
+          },
+          color: 'white',
+          labels: {
+            title: {
+              font: {
+                size: '16'
+              }
+            }
+          }
+        }
+      }
+    }
+  });
+}

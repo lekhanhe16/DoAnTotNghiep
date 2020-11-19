@@ -9,7 +9,7 @@
           integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/mdb.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
-    <title>Title</title>
+    <title>DoAnPTIT</title>
   
 </head>
 <body>
@@ -23,7 +23,7 @@
                     <p>Data Visualization</p>
                 </li>
                 <li>
-                    <a href="#" onclick="showChart('today')">Today</a>
+                    <a href="#today" onclick="showChart('today')">Today</a>
                 </li>
                 <li>
                     <a href="#ageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Age-Gender</a>
@@ -37,15 +37,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="#genderSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Expression</a>
-                    <ul class="collapse lisst-unstyled" id="genderSubmenu">
-                        <li>
-                            <a href="http://0.0.0.0:8855/ageweek">This week</a>
-                        </li>
-                        <li>
-                            <a href="#">Overall</a>
-                        </li>
-                    </ul>
+                    <a href="#expression" onclick="showChart('expression')">Expression</a>
                 </li>
                 <li>
                     <a href="/logout">Log out</a>
@@ -55,12 +47,13 @@
 
         <div id="content">
             <div class="container-fluid" id="headbar">
-                <img src="{{ url_for('static', filename='images/m16.png')}}" id="sidebarCollapse">
+                <img src="{{ url_for('static', filename='images/16menu.png')}}" id="sidebarCollapse">
                     <i class="fas fa-align-left"></i>
                 </img>
 
             </div> 
-            <br>
+            <br id="cusbr">
+            <br id="cusbr">
             <div id="includedContent"></div>
             
         </div>
@@ -82,9 +75,9 @@
     <script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
     
     <script type="text/javascript">
-        if ( window.history.replaceState ) {
-            window.history.replaceState( null, null, window.location.href );
-        }
+        // if ( window.history.replaceState ) {
+        //     window.history.replaceState( null, null, window.location.href );
+        // }
         $(function() {
 
         var $sidebar   = $("#sidebar"), 
@@ -104,6 +97,7 @@
                 }
             });
         });
+
         $(document).ready(function(){
             
             $("#sidebarCollapse").on('click', function(){
@@ -112,7 +106,7 @@
             });
         });
         $(function(){
-          $("#includedContent").load("http://0.0.0.0:8855/ageweek"); 
+          $("#includedContent").load("http://0.0.0.0:8855/today"); 
         });
         function showChart(chart){
             if (chart === 'ageweek'){
@@ -124,6 +118,16 @@
                 $(function(){
                     $('#includedContent').load("http://0.0.0.0:8855/ageoverall");
                 });
+            }
+            else if(chart == 'expression'){
+                $(function(){
+                    $('#includedContent').load("http://0.0.0.0:8855/expression");
+                })
+            }
+            else if(chart == 'today'){
+                $(function(){
+                    $('#includedContent').load("http://0.0.0.0:8855/today");
+                })
             }
         }
 

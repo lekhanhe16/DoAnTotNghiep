@@ -9,7 +9,7 @@ function showBarChart(fetch_data){
     data: {
     labels: ["10-15", "16-20", "21-25", "26-30", "31-35", "36-40"],
     datasets: [{
-    label: 'Num of persons',
+    label: 'Person(s)',
     data: quantityEachRange, 
     backgroundColor: [
     'rgba(255, 99, 132, 0.2)',
@@ -29,10 +29,82 @@ function showBarChart(fetch_data){
     ],
     borderWidth: 1}]
     },
-    options: {scales: {yAxes: [{ticks: {beginAtZero: true}}]}}
+    options: 
+    {scales: {
+        xAxes: [{
+        display: true,
+        scaleLabel: {
+            display: true,
+            labelString: 'Ranges of age',
+            fontColor:'#000000',
+            fontSize:10
+        },
+        ticks: {
+           fontColor: "black",
+           fontSize: 14
+          }
+        }],
+        yAxes: [{
+            display: true,
+                            scaleLabel: {
+                                display: true,
+                                labelString: 'Quantiy',
+                                fontColor: '#000000',
+                                fontSize:10
+                            },
+                            ticks: {
+                                  fontColor: "black",
+                                  fontSize: 14,
+                                  beginatzero: true
+                            }}]}}
     });
 }
-
+function showLabelChartWeek(fetch_data){
+    var ctxP = document.getElementById("labelChartWeek").getContext('2d');
+var myPieChart = new Chart(ctxP, {
+  plugins: [ChartDataLabels],
+  type: 'pie',
+  data: {
+    labels: ["Neutral", "Happy", "Sad"],
+    datasets: [{
+      data: [fetch_data.wneutral, fetch_data.whappy, fetch_data.wsad],
+      backgroundColor: ["#46BFBD", "#FDB45C", "#F7464A"],
+      hoverBackgroundColor: ["#5AD3D1", "#FFC870", "#FF5A5E"]
+    }]
+  },
+  options: {
+    responsive: true,
+    legend: {
+      position: 'right',
+      labels: {
+        padding: 20,
+        boxWidth: 10
+      }
+    },
+    plugins: {
+      datalabels: {
+        formatter: (value, ctx) => {
+          let sum = 0;
+          let dataArr = ctx.chart.data.datasets[0].data;
+          dataArr.map(data => {
+            sum += data;
+          });
+          let percentage = (value * 100 / sum).toFixed(2) + "%";
+          return percentage;
+        },
+        color: 'white',
+        labels: {
+          title: {
+            font: {
+              size: '16'
+            }
+          }
+        }
+      }
+    }
+  }
+});
+}
 function showPolarChart(chart){
     
     var ds = (chart == "polarChart") ? male : female;
@@ -53,7 +125,7 @@ function showPolarChart(chart){
     }]
     },
     options: {
-    responsive: true
+        responsive: true
     }
     });
 }

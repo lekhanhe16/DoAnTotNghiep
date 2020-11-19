@@ -27,6 +27,9 @@ def login_required(f):
 
     return decorate_function
 
+@app.route('/today')
+def show_today():
+    return render_template('today.html')
 
 @app.route('/ageweek')
 def show_age_week():
@@ -144,6 +147,38 @@ def do_login():
     return home()
 
 
+@app.route('/expression')
+def expression():
+    we = [0, 0, 0]
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT expression FROM Expression, Civilian WHERE CivilianId = PersonId "
+                "AND YEARWEEK(dateout, 1) = YEARWEEK(CURDATE(), 1)")
+    week_data = cur.fetchall()
+    for d in week_data:
+        if d[0] == 'neutral':
+            we[0] += 1
+        elif d[0] == 'happy':
+            we[1] += 1
+        elif d[0] == 'sad':
+            we[2] += 1
+
+    me = [0, 0, 0]
+    cur.execute("SELECT expression FROM Expression, Civilian WHERE CivilianId = PersonId "
+                "AND MONTH(dateout) = MONTH(NOW())")
+    month_data = cur.fetchall()
+    for d in month_data:
+        if d[0] == 'neutral':
+            me[0] += 1
+        elif d[0] == 'happy':
+            me[1] += 1
+        elif d[0] == 'sad':
+            me[2] += 1
+    emo = json.dumps(
+        {"wneutral": we[0], "whappy": we[1], "wsad": we[2], "mneutral": me[0], "mhappy": me[1], "msad": me[2]})
+    print(emo)
+    return render_template('expression.html', data=emo)
+
+
 @app.route('/logout')
 def do_logout():
     session['logged_in'] = False
@@ -151,5 +186,5 @@ def do_logout():
 
 
 if __name__ == "__main__":
-    app.secret_key = os.urandom(12)
+    app.secret_key = 'kHaNhLeDePtRaI'
     app.run(debug=True, host='0.0.0.0', port=8855)

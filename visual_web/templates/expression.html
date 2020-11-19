@@ -1,0 +1,36 @@
+<body>
+    <div id="container">
+        <div class="container-fluid" id="leftchart">
+            <br>
+            <p>This week</p>
+            <div class="row d-flex justify-content-center">
+                <div class="col-md-6">
+                    <canvas id="labelChartWeek" width="900" height="900"></canvas>
+                </div>
+                
+            </div>
+        </div>
+        
+        <div class="container-fluid" id="rightchart">
+            <br>
+            <p>This month</p>
+            <div class="row d-flex justify-content-center">
+                <div class="col-md-6">
+                    <canvas id="labelChartMonth" width="900" height="900"></canvas>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="../static/js/monthfunction.js"></script>
+    <script type="text/javascript" src="../static/js/weekfunction.js"></script>
+    
+    <script>
+        
+        var fetch_data = JSON.parse('{{data}}'.replace(/&#34;/g,"\""));
+        console.log(fetch_data);
+       
+        showLabelChartWeek(fetch_data);
+        showLabelChartMonth(fetch_data);
+    </script>
+</body>
