@@ -9,6 +9,12 @@
           integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/mdb.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+ 
+<script src="https://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
+
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css" /> -->
+
     <title>DoAnPTIT</title>
   
 </head>
@@ -23,7 +29,7 @@
                     <p>Data Visualization</p>
                 </li>
                 <li>
-                    <a href="#today" onclick="showChart('today')">Today</a>
+                    <a href="#today" id="today" onclick="showChart('today')">Today</a>
                 </li>
                 <li>
                     <a href="#ageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Age-Gender</a>
@@ -64,6 +70,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
             integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
             crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
             integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
             crossorigin="anonymous"></script>
@@ -72,7 +79,8 @@
             crossorigin="anonymous"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/mdb.min.js') }}"></script>
     <script type="text/javascript" src="../static/js/plotly.min.js"></script>
-    <script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+    
+    <script type="text/javascript" src="../static/js/monthfunction.js" ></script>
     
     <script type="text/javascript">
         // if ( window.history.replaceState ) {
@@ -130,7 +138,10 @@
                 })
             }
         }
-
+        
+        // $("#today").one('click', function(){
+        //     $('#includedContent').load("http://0.0.0.0:8855/today");
+        // });
        
     </script>
 </body>

@@ -14,7 +14,7 @@
     <inspection_tool class="PyPackageRequirementsInspection" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="ignoredPackages">
         <value>
-          <list size="161">
+          <list size="163">
             <item index="0" class="java.lang.String" itemvalue="wheezy.routing" />
             <item index="1" class="java.lang.String" itemvalue="tensorflow-estimator" />
             <item index="2" class="java.lang.String" itemvalue="inform" />
@@ -176,6 +176,8 @@
             <item index="158" class="java.lang.String" itemvalue="opencv-python" />
             <item index="159" class="java.lang.String" itemvalue="Keras" />
             <item index="160" class="java.lang.String" itemvalue="Flask" />
+            <item index="161" class="java.lang.String" itemvalue="greenlet" />
+            <item index="162" class="java.lang.String" itemvalue="gevent" />
           </list>
         </value>
       </option>

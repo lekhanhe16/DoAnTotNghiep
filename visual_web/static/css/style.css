@@ -10,6 +10,37 @@ p{
     color: #999;
 
 }
+
+#btn .btn-primary .bshow{
+    width: 70px !important;
+    height: 30px !important;
+}
+table{
+    width: 100%;
+}
+thead th {
+    width: 30%;  
+}
+
+#noc {
+    width: 10%;  
+}
+
+#cno {
+    width: 10%;  
+}
+tbody td{
+    width: 30%;
+}
+thead, tbody { 
+    display: block; } 
+
+tbody {
+    height: 450px;       /* Just for the demo          */
+    overflow-y: auto;    /* Trigger vertical scroll    */
+    overflow-x: hidden;  /* Hide the horizontal scroll */
+}
+
 #cusbr{
     content: "";
     margin: 2em;
@@ -146,7 +177,7 @@ ul ul a{
   }
 
   #lefttoday {
-    width: 40%;
+    width: 30%;
     margin-right: 5px;
   }
   
@@ -156,9 +187,31 @@ ul ul a{
   }
 
   #righttoday {
-    width: 30%;
+    width: 40%;
+    height: 30%;
     /* margin-left: 5px; */
   }
+
+#leftvideo {
+    width: 60%;
+    margin-right: 5px;
+}
+
+#rightlist{
+    width: 40%;
+    height: 100%;
+}
+
+#leftlist {
+    width: 75%;
+    margin-right: 5px;
+}
+
+#rightfilter{
+    width: 25%;
+    height: 100%;
+}
+
 @media (max-width: 768px) {
     body {
         /* overflow-x: hidden!important; */

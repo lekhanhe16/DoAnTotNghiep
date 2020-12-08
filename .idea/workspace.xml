@@ -2,10 +2,32 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1a114976-6894-4462-bef5-a76f2e29e455" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/visual_web/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/visual_web/controller/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/visual_web/controller/appcontroller.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/age_gender/face_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/age_gender/face_model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/age_gender/face_preprocess.py" beforeDir="false" afterPath="$PROJECT_DIR$/age_gender/face_preprocess.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/age_gender/gender_models/gender_mini_XCEPTION.21-0.95.hdf5" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/age_gender/gender_models/simple_CNN.81-0.96.hdf5" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/age_gender/helper.py" beforeDir="false" afterPath="$PROJECT_DIR$/age_gender/helper.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/age_gender/mtcnn_detector.py" beforeDir="false" afterPath="$PROJECT_DIR$/age_gender/mtcnn_detector.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/age_gender/predict.py" beforeDir="false" afterPath="$PROJECT_DIR$/age_gender/predict.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.py" beforeDir="false" afterPath="$PROJECT_DIR$/index.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/age_gender/test_face/1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/age_gender/test_face/2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/age_gender/test_face/3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/age_gender/test_face/4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/age_gender/test_face/5.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/age_gender/test_face/6.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/visual_web/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/visual_web/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/visual_web/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/visual_web/static/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/visual_web/static/csv/agemonth.csv" beforeDir="false" afterPath="$PROJECT_DIR$/visual_web/static/csv/agemonth.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/visual_web/templates/agemonth.html" beforeDir="false" afterPath="$PROJECT_DIR$/visual_web/templates/agemonth.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/visual_web/templates/ageweek.html" beforeDir="false" afterPath="$PROJECT_DIR$/visual_web/templates/ageweek.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/visual_web/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/visual_web/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/visual_web/templates/today.html" beforeDir="false" afterPath="$PROJECT_DIR$/visual_web/templates/today.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,6 +38,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -32,7 +55,8 @@
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../DoAnSTP-Server/autobot.py" />
+    <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
@@ -41,9 +65,13 @@
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/age_gender" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/visual_web/controller" />
+      <recent name="$PROJECT_DIR$/visual_web" />
+    </key>
   </component>
-  <component name="RunManager" selected="Python.index">
-    <configuration name="index" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python.main">
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="face_emotion" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -55,7 +83,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/index.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/visual_web/main.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -85,10 +113,54 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="face_emotion" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/visual_web" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/visual_web/test.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="video_stream" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="face_emotion" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/visual_web" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/visual_web/video_stream.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.index" />
+        <item itemvalue="Python.main" />
+        <item itemvalue="Python.video_stream" />
         <item itemvalue="Python.predict" />
+        <item itemvalue="Python.test" />
       </list>
     </recent_temporary>
   </component>
@@ -106,33 +178,55 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="285" y="201" width="727" height="390" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1598150100410">
-      <screen x="0" y="27" width="1307" height="741" />
-    </state>
-    <state x="285" y="201" width="727" height="390" key="#com.intellij.fileTypes.FileTypeChooser/0.27.1307.741@0.27.1307.741" timestamp="1598150100410" />
-    <state x="436" y="154" width="424" height="484" key="FileChooserDialogImpl" timestamp="1604139008045">
-      <screen x="0" y="27" width="1307" height="741" />
+    <state x="456" y="154" width="424" height="484" key="FileChooserDialogImpl" timestamp="1607330999332">
+      <screen x="0" y="27" width="1366" height="741" />
     </state>
     <state x="436" y="154" width="424" height="484" key="FileChooserDialogImpl/0.27.1307.741@0.27.1307.741" timestamp="1604139008045" />
-    <state width="1284" height="161" key="GridCell.Tab.0.bottom" timestamp="1604140931984">
-      <screen x="0" y="27" width="1307" height="741" />
+    <state x="456" y="154" width="424" height="484" key="FileChooserDialogImpl/0.27.1366.741@0.27.1366.741" timestamp="1607330999332" />
+    <state width="1343" height="272" key="GridCell.Tab.0.bottom" timestamp="1607426741368">
+      <screen x="0" y="27" width="1366" height="741" />
     </state>
     <state width="1284" height="161" key="GridCell.Tab.0.bottom/0.27.1307.741@0.27.1307.741" timestamp="1604140931984" />
-    <state width="1284" height="161" key="GridCell.Tab.0.center" timestamp="1604140931980">
-      <screen x="0" y="27" width="1307" height="741" />
+    <state width="1343" height="272" key="GridCell.Tab.0.bottom/0.27.1366.741@0.27.1366.741" timestamp="1607426741368" />
+    <state width="1343" height="272" key="GridCell.Tab.0.center" timestamp="1607426741367">
+      <screen x="0" y="27" width="1366" height="741" />
     </state>
     <state width="1284" height="161" key="GridCell.Tab.0.center/0.27.1307.741@0.27.1307.741" timestamp="1604140931980" />
-    <state width="1284" height="161" key="GridCell.Tab.0.left" timestamp="1604140931978">
-      <screen x="0" y="27" width="1307" height="741" />
+    <state width="1343" height="272" key="GridCell.Tab.0.center/0.27.1366.741@0.27.1366.741" timestamp="1607426741367" />
+    <state width="1343" height="272" key="GridCell.Tab.0.left" timestamp="1607426741364">
+      <screen x="0" y="27" width="1366" height="741" />
     </state>
     <state width="1284" height="161" key="GridCell.Tab.0.left/0.27.1307.741@0.27.1307.741" timestamp="1604140931978" />
-    <state width="1284" height="161" key="GridCell.Tab.0.right" timestamp="1604140931981">
-      <screen x="0" y="27" width="1307" height="741" />
+    <state width="1343" height="272" key="GridCell.Tab.0.left/0.27.1366.741@0.27.1366.741" timestamp="1607426741364" />
+    <state width="1343" height="272" key="GridCell.Tab.0.right" timestamp="1607426741368">
+      <screen x="0" y="27" width="1366" height="741" />
     </state>
     <state width="1284" height="161" key="GridCell.Tab.0.right/0.27.1307.741@0.27.1307.741" timestamp="1604140931981" />
-    <state x="316" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1604138800179">
-      <screen x="0" y="27" width="1307" height="741" />
+    <state width="1343" height="272" key="GridCell.Tab.0.right/0.27.1366.741@0.27.1366.741" timestamp="1607426741368" />
+    <state width="1343" height="219" key="GridCell.Tab.1.bottom" timestamp="1607399434594">
+      <screen x="0" y="27" width="1366" height="741" />
+    </state>
+    <state width="1343" height="219" key="GridCell.Tab.1.bottom/0.27.1366.741@0.27.1366.741" timestamp="1607399434594" />
+    <state width="1343" height="219" key="GridCell.Tab.1.center" timestamp="1607399434594">
+      <screen x="0" y="27" width="1366" height="741" />
+    </state>
+    <state width="1343" height="219" key="GridCell.Tab.1.center/0.27.1366.741@0.27.1366.741" timestamp="1607399434594" />
+    <state width="1343" height="219" key="GridCell.Tab.1.left" timestamp="1607399434593">
+      <screen x="0" y="27" width="1366" height="741" />
+    </state>
+    <state width="1343" height="219" key="GridCell.Tab.1.left/0.27.1366.741@0.27.1366.741" timestamp="1607399434593" />
+    <state width="1343" height="219" key="GridCell.Tab.1.right" timestamp="1607399434594">
+      <screen x="0" y="27" width="1366" height="741" />
+    </state>
+    <state width="1343" height="219" key="GridCell.Tab.1.right/0.27.1366.741@0.27.1366.741" timestamp="1607399434594" />
+    <state x="172" y="31" key="SettingsEditor" timestamp="1607232392897">
+      <screen x="0" y="27" width="1366" height="741" />
+    </state>
+    <state x="172" y="31" key="SettingsEditor/0.27.1366.741@0.27.1366.741" timestamp="1607232392897" />
+    <state x="330" y="89" width="703" height="678" key="search.everywhere.popup" timestamp="1606386634013">
+      <screen x="0" y="27" width="1366" height="741" />
     </state>
     <state x="316" y="89" width="672" height="678" key="search.everywhere.popup/0.27.1307.741@0.27.1307.741" timestamp="1604138800179" />
+    <state x="330" y="89" width="703" height="678" key="search.everywhere.popup/0.27.1366.741@0.27.1366.741" timestamp="1606386634013" />
   </component>
 </project>

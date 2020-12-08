@@ -10,15 +10,99 @@
           </div> -->
           <div class="row d-flex justify-content-center" id="threedchart" height="800" width="800"></div>
         </div>
+    </div>
+    <br id="cusbr">
+    <div id="container">
+      <div class="container-fluid" id="leftlist">
         <br>
+        <div class="row d-flex justify-content-center">
+          <table class="table table-striped" id="customer" width="100%" cellpadding="10">
+            <thead>
+                <tr>
+                    <th id="noc">#</td>
+                    <th >In-time</td>
+                    <th>Gender</th>
+                    <th >IMG</td>
+                    <th >Expression</td>
+                </tr>
+            </thead>
+            <tbody id="tablebody">
+                
+            </tbody>
+        </table>
         <br>
+        </div>
+      </div>
+      <div class="container-fluid" id="rightfilter">
+        <br>
+        
+        <div>
+          <div>Year</div>
+          <select class="mdb-select md-form" id="selectyear" style="width: max-content">
+            <option value="" disabled selected>Choose a year</option>
+            <option value="2020">2020</option>
+            <option value="2021">2021</option>
+            
+          </select>
+          
+          <div>Month</div>
+          <select class="mdb-select md-form" id="selectmonth" style="width: max-content">
+            <option value="" disabled selected>Choose a month</option>
+            <option value="1">January</option>
+            <option value="2">February</option>
+            <option value="3">March</option>
+            <option value="4">April</option>
+            <option value="5">May</option>
+            <option value="6">June</option>
+            <option value="7">July</option>
+            <option value="8">August</option>
+            <option value="9">September</option>
+            <option value="10">October</option>
+            <option value="11">November</option>
+            <option value="12">December</option>
+          </select>
+          <div class="row d-flex justify-content-center">
+            <button type="button" id="getdata" class="btn btn-primary" height="30" width="40">View</button>
+          </div>
+          
+        </div>
+      </div>
     </div>
     
-    <script type="text/javascript" src="../static/js/monthfunction.js" ></script>
-    <script type="text/javascript" src="../static/js/plotly.min.js"></script>
+   
     <script>
-
+        var customer = [];
         showAgeOverAll();
+        $('#getdata').on('click', function(){
+          var $year = $('#selectyear').val();
+          var $month = $('#selectmonth').val();
+          var querydata = {"month": $month, "year":$year}
+          $.ajax({
+                url: "http://0.0.0.0:8855/getcustomerbymonthyear",
+                type: "POST",
+                contentType: "application/json",
+                data: JSON.stringify(querydata),
+                success: function(data){
+                    var fetch_data = JSON.parse(data.replace(/&#34;/g,"\""))
+                    // alert(fetch_data[1].age)
+                    $('#tablebody').empty();
+                    for ([i,c] of fetch_data.entries()){
+                        
+                        c.no = i+1;
+                        customer.push(c);
+                        var srce = "data:image/jpeg;base64,"+c.faceimg;
+                        var newImage = document.createElement('img');
+                        newImage.src = srce;
+                        newImage.width = newImage.height = "40";
+                        $('#customer tbody').append
+                            ('<tr><td class="nr" id="cno"><span>'+c.no+'</span></td><td>'+c.timein+" "+c.datein+'</td>'+
+                                '<td>'+c.gender+'</td><td><img src='+newImage.src+' height="30" width="30" /></td>'+
+                                '<td>'+c.expression+'</td></tr>');
+                    }
+                    // console.log(customer);
+                }
+            });
+        });
     </script>
 </body>
 

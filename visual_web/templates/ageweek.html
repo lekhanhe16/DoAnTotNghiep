@@ -41,7 +41,7 @@
 <script type="text/javascript" src="../static/js/weekfunction.js" ></script>
   <script>
     var fetch_data = JSON.parse('{{tabledata}}'.replace(/&#34;/g,"\""))
-    // alert(fetch_data);
+    console.log(fetch_data);
     var ageBarChart = showBarChart(fetch_data);
     var ageMalePolarChart = showPolarChart("polarChart");
     var ageMalePolarChart = showPolarChart("polarChart2");

@@ -1,4 +1,24 @@
 <body>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> -->
+                     <h4 class="modal-title" id="myModalLabel">Customer Information</h4>
+                </div>
+                <div class="modal-body">
+                    <img id="cusface"/>
+                    <p id="cusage"></p>
+                    <p id="cusgender"></p>
+                    <p id="cusemo"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
     <div id="container">
         <div class="container-fluid" id="lefttoday">
             <br>
@@ -24,11 +44,105 @@
 
     </div>
     <br id="cusbr">
-    <div class="container-fluid" >
-        <br>
-        <div class="row d-flex justify-content-center">
-            <p>x</p>
+    <div id="container">
+        <div class="container-fluid" id="leftvideo">
+            <br>
+            <div class="row d-flex justify-content-center">
+                <!-- <img id="bg" src="{{ url_for('vid_stream') }}"> -->
+            </div>
+        </div>
+
+        <div class="container-fluid" id="rightlist">
+            
+            <div class="row d-flex justify-content-center">
+                <p>List customers</p>
+                <br>
+                <table class="table table-striped" id="newcustoday" width="100%" cellpadding="10">
+                    <!-- <thead>
+                        <tr>
+                            <th >#</td>
+                            <th >Intime</td>
+                            <th >IMG</td>
+                            <th >Option</td>
+                        </tr>
+                    </thead> -->
+                    <tbody>
+                        
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
+    
+
     <script type="text/javascript" src="../static/js/todayfunction.js"></script>
+    <script>
+        var customer = [];
+        $(document).ready(function(){
+            var currentdate = new Date().toJSON().slice(0,10);
+            var querydate = {"date": currentdate}
+            $.ajax({
+                url: "http://0.0.0.0:8855/getcustomerbyday",
+                type: "POST",
+                contentType: "application/json",
+                data: JSON.stringify(querydate),
+                success: function(data){
+                    var fetch_data = JSON.parse(data.replace(/&#34;/g,"\""))
+                    for ([i,c] of fetch_data.entries()){
+                        
+                        c.no = i+1;
+                        customer.push(c);
+                        var srce = "data:image/jpeg;base64,"+c.faceimg;
+                        var newImage = document.createElement('img');
+                        newImage.src = srce;
+                        newImage.width = newImage.height = "40";
+                        $('#newcustoday tbody').append
+                            ('<tr><td class="nr"><span>'+c.no+'</span></td><td>'+c.timein+" "+c.datein+'</td>'+
+                                '<td><img src='+newImage.src+' height="30" width="30" /></td>'+
+                                '<td><button type="button" class="btn btn-primary bshow" height="30" width="40">View</button></tr>');
+                    }
+                    console.log(customer);
+                }
+            });
+            var eventSource = new EventSource("http://0.0.0.0:8855/getnewcustomer");
+            eventSource.onmessage = function(e){
+               
+                var jd = JSON.parse(e.data.replace(/'/g,'"'));
+                var cusno = customer.length+1;
+                jd.no = cusno;
+                customer.push(jd);
+                var srce = "data:image/jpeg;base64,"+jd.faceimg;
+                var newImage = document.createElement('img');
+                newImage.src = srce;
+                
+                $('#newcustoday tbody').append
+                ('<tr><td class="nr"><span>'+cusno+'</span></td><td>'+jd.timein+" "+jd.datein+'</td>'+
+                    '<td><img src='+newImage.src+' height="30" width="30" /></td>'+
+                    '<td><button type="button" class="btn btn-primary bshow" height="30" width="40">View</button></td></tr>');
+            }
+            
+        });
+        $(document).on('click', '.bshow', function(){
+            var $row = $(this).closest('tr');    // Find the row
+            var $no = $row.find('.nr').text(); // Find the text
+            var cimage, cage;
+            var cgender = cexpresion = "";
+            for(c of customer){
+                if (c.no == $no){
+                    cimage = c.faceimg;
+                    cage = c.age;
+                    cgender = (c.gender==1) ? "male" : "female";
+                    cexpresion += c.expression;
+                }
+            }
+            var srce = "data:image/jpeg;base64,"+cimage;
+            var newImage = document.createElement('img');
+            newImage.src = srce;
+            document.getElementById('cusface').src = newImage.src;
+            $('#cusage').text("Age: "+cage);
+            $('#cusgender').text("Gender: "+cgender);
+            $('#cusemo').text("Expression: "+cexpresion);
+            $('#myModal').modal('show');
+        });
+    </script>
 </body>
