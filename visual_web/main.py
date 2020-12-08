@@ -16,6 +16,7 @@ from flask import Response
 from flask_mysqldb import MySQL
 from visual_web.controller import appcontroller
 from age_gender.predict import predict_ga, predict_emotion, get_faces
+from visual_web.model import *
 
 app = Flask(__name__)
 app.static_folder = 'static'

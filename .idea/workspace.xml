@@ -2,32 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1a114976-6894-4462-bef5-a76f2e29e455" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/visual_web/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/visual_web/controller/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/visual_web/controller/appcontroller.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/visual_web/model/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/visual_web/model/account.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/visual_web/model/admin.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/visual_web/model/age.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/visual_web/model/civilian.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/visual_web/model/expression.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/visual_web/model/gender.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/age_gender/face_model.py" beforeDir="false" afterPath="$PROJECT_DIR$/age_gender/face_model.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/age_gender/face_preprocess.py" beforeDir="false" afterPath="$PROJECT_DIR$/age_gender/face_preprocess.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/age_gender/gender_models/gender_mini_XCEPTION.21-0.95.hdf5" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/age_gender/gender_models/simple_CNN.81-0.96.hdf5" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/age_gender/helper.py" beforeDir="false" afterPath="$PROJECT_DIR$/age_gender/helper.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/age_gender/mtcnn_detector.py" beforeDir="false" afterPath="$PROJECT_DIR$/age_gender/mtcnn_detector.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/age_gender/predict.py" beforeDir="false" afterPath="$PROJECT_DIR$/age_gender/predict.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/age_gender/test_face/1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/age_gender/test_face/2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/age_gender/test_face/3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/age_gender/test_face/4.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/age_gender/test_face/5.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/age_gender/test_face/6.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/visual_web/controller/appcontroller.py" beforeDir="false" afterPath="$PROJECT_DIR$/visual_web/controller/appcontroller.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/visual_web/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/visual_web/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/visual_web/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/visual_web/static/css/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/visual_web/static/csv/agemonth.csv" beforeDir="false" afterPath="$PROJECT_DIR$/visual_web/static/csv/agemonth.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/visual_web/templates/agemonth.html" beforeDir="false" afterPath="$PROJECT_DIR$/visual_web/templates/agemonth.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/visual_web/templates/ageweek.html" beforeDir="false" afterPath="$PROJECT_DIR$/visual_web/templates/ageweek.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/visual_web/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/visual_web/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/visual_web/templates/today.html" beforeDir="false" afterPath="$PROJECT_DIR$/visual_web/templates/today.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -183,26 +168,26 @@
     </state>
     <state x="436" y="154" width="424" height="484" key="FileChooserDialogImpl/0.27.1307.741@0.27.1307.741" timestamp="1604139008045" />
     <state x="456" y="154" width="424" height="484" key="FileChooserDialogImpl/0.27.1366.741@0.27.1366.741" timestamp="1607330999332" />
-    <state width="1343" height="272" key="GridCell.Tab.0.bottom" timestamp="1607426741368">
+    <state width="1343" height="272" key="GridCell.Tab.0.bottom" timestamp="1607430887020">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
     <state width="1284" height="161" key="GridCell.Tab.0.bottom/0.27.1307.741@0.27.1307.741" timestamp="1604140931984" />
-    <state width="1343" height="272" key="GridCell.Tab.0.bottom/0.27.1366.741@0.27.1366.741" timestamp="1607426741368" />
-    <state width="1343" height="272" key="GridCell.Tab.0.center" timestamp="1607426741367">
+    <state width="1343" height="272" key="GridCell.Tab.0.bottom/0.27.1366.741@0.27.1366.741" timestamp="1607430887020" />
+    <state width="1343" height="272" key="GridCell.Tab.0.center" timestamp="1607430887020">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
     <state width="1284" height="161" key="GridCell.Tab.0.center/0.27.1307.741@0.27.1307.741" timestamp="1604140931980" />
-    <state width="1343" height="272" key="GridCell.Tab.0.center/0.27.1366.741@0.27.1366.741" timestamp="1607426741367" />
-    <state width="1343" height="272" key="GridCell.Tab.0.left" timestamp="1607426741364">
+    <state width="1343" height="272" key="GridCell.Tab.0.center/0.27.1366.741@0.27.1366.741" timestamp="1607430887020" />
+    <state width="1343" height="272" key="GridCell.Tab.0.left" timestamp="1607430887019">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
     <state width="1284" height="161" key="GridCell.Tab.0.left/0.27.1307.741@0.27.1307.741" timestamp="1604140931978" />
-    <state width="1343" height="272" key="GridCell.Tab.0.left/0.27.1366.741@0.27.1366.741" timestamp="1607426741364" />
-    <state width="1343" height="272" key="GridCell.Tab.0.right" timestamp="1607426741368">
+    <state width="1343" height="272" key="GridCell.Tab.0.left/0.27.1366.741@0.27.1366.741" timestamp="1607430887019" />
+    <state width="1343" height="272" key="GridCell.Tab.0.right" timestamp="1607430887020">
       <screen x="0" y="27" width="1366" height="741" />
     </state>
     <state width="1284" height="161" key="GridCell.Tab.0.right/0.27.1307.741@0.27.1307.741" timestamp="1604140931981" />
-    <state width="1343" height="272" key="GridCell.Tab.0.right/0.27.1366.741@0.27.1366.741" timestamp="1607426741368" />
+    <state width="1343" height="272" key="GridCell.Tab.0.right/0.27.1366.741@0.27.1366.741" timestamp="1607430887020" />
     <state width="1343" height="219" key="GridCell.Tab.1.bottom" timestamp="1607399434594">
       <screen x="0" y="27" width="1366" height="741" />
     </state>

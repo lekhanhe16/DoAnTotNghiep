@@ -36,6 +36,7 @@ print('quantity: ' + str(mx.util.get_gpu_count()))
 
 det_model = model_zoo.get_model(det_name_str)
 det_model.prepare(ctx_id, nms=0.4)
+
 # ga_model = model_zoo.get_model(ga_name_str)
 os.environ["MXNET_CUDNN_AUTOTUNE_DEFAULT"] = '0'
 if len(mx.test_utils.list_gpus()) == 0:

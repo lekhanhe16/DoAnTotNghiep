@@ -5,6 +5,7 @@ from datetime import datetime as dt
 import numpy as np
 from flask import Flask
 from flask_mysqldb import MySQL
+from visual_web.model import *
 
 app = Flask(__name__)
 app.static_folder = 'static'
