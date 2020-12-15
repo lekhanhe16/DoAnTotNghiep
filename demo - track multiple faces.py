@@ -90,6 +90,7 @@ def detectAndTrackMultipleFaces():
             # indicated the quality was not good enough
             fidsToDelete = []
             for fid in faceTrackers.keys():
+                print(str(fid) +" d")
                 trackingQuality = faceTrackers[fid].update(baseImage)
 
                 # If the tracking quality is good enough, we must delete

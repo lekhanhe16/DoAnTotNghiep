@@ -1,24 +1,167 @@
 <body>
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal fade" id="myModalAddNew" tabindex="-1" role="dialog" aria-labelledby="myModalNewCus"
+        aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                     <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> -->
-                     <h4 class="modal-title" id="myModalLabel">Customer Information</h4>
+                    <h4 class="modal-title" id="myModalNewCus">Add new Customer</h4>
                 </div>
                 <div class="modal-body">
-                    <img id="cusface"/>
-                    <p id="cusage"></p>
-                    <p id="cusgender"></p>
-                    <p id="cusemo"></p>
+                    <form action="http://0.0.0.0:8855/addnewcustomer" id="addcusform" posCus="" idCus=""
+                        onsubmit="onSubmitClicked()" method="POST">
+                        <div class="form-group">
+                            <label for="customerID">ID</label>
+                            <input type="text" class="form-control" name="cID" id="customerID">
+                        </div>
+                        <div class="form-group">
+                            <label for="customerName">Name</label>
+                            <input type="text" class="form-control" name="cName" id="customerName"
+                                placeholder="Enter name">
+                        </div>
+                        <div class="form-group">
+                            <label for="customerPhone">Phone</label>
+                            <input type="text" class="form-control" name="cPhone" id="customerPhone"
+                                placeholder="Enter phone number">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="customerAddress">Address</label>
+                            <input type="text" class="form-control" name="cAddress" id="customerAddress"
+                                placeholder="Enter address">
+                        </div>
+
+                        <button formtarget="_blank" type="submit" class="btn btn-primary" id="submitinfo">ADD</button>
+                    </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    
+                    <div class="container-fluid">
+                        <div class="row d-flex justify-content-center">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
     </div>
+
+    <div class="modal fade" id="myModalPurchase" tabindex="-1" role="dialog" aria-labelledby="modalpurchase"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> -->
+                    <h4 class="modal-title" id="modalpurchase">Purchase Items</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row d-flex">
+                            <div class="col-md-6">
+                                <div>List Product</div>
+                                <select class="mdb-select md-form" onchange="onSelectedItem(this)"
+                                    onfocus="this.selectedIndex = -1;" id="selectproduct">
+                                    <option value="" disabled selected>Choose a product</option>
+
+                                </select>
+                            </div>
+                            <!-- <div class="row d-flex justify-content-center"> -->
+
+                            <div class="col-md-6">
+                                <label for="productname">Product</label>
+                                <input type="text" id="productname">
+                                <label for="quantity">Quant.</label>
+                                <input type="text" id="quantity" placeholder="Enter quantity">
+
+                                <div class="row d-flex justify-content-center">
+                                    <br>
+                                    <button type="button" id="addtocart" class="btn btn-primary" height="30"
+                                        width="40">Add to cart</button>
+                                </div>
+
+                            </div>
+                            <!-- </div> -->
+                        </div>
+
+                        <hr>
+                        <div class="container-fluid">
+                            <div>Cart</div>
+
+                            <div class="row d-flex justify-content-center">
+
+                                <table class="table table-striped" id="cartproduct" width="100%" cellpadding="10">
+                                    <thead>
+                                        <tr>
+                                            <th id="noc">#</td>
+                                            <th>PID</th>
+                                            <th>Product Name</td>
+                                            <th>Unit Price</th>
+                                            <th>Quantity</td>
+                                            <th>Total</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="bodycartproduct">
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="container-fluid">
+                        <div class="row d-flex justify-content-center">
+                            <button type="button" class="btn btn-primary" id="btndone">Done</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="myModalInfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> -->
+                    <h4 class="modal-title" id="myModalLabel">Customer Information</h4>
+                </div>
+                <div class="modal-body">
+
+                    <div class="row d-flex justify-content-center">
+
+                        <div class="col-md-6">
+                            <img id="cusface" />
+                        </div>
+
+                        <div class="col-md-6">
+                            <p id="cusname"></p>
+                            <p id="cusphone"></p>
+                            <p id="cusaddress"></p>
+                        </div>
+                    </div>
+                    <p id="cusage"></p>
+                    <p id="cusgender"></p>
+                    <p id="cusemo"></p>
+
+                </div>
+                <div class="modal-footer">
+                    <div class="container-fluid">
+                        <div class="row d-flex justify-content-center">
+                            <button type="button" class="btn btn-primary" id="btnaddcustomer">New customer</button>
+                            <button type="button" class="btn btn-default" id="btnpurchase">Purchase</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <div id="container">
         <div class="container-fluid" id="lefttoday">
             <br>
@@ -26,7 +169,7 @@
                 <p>s</p>
             </div>
         </div>
-        
+
         <div class="container-fluid" id="midtoday">
             <br>
             <div class="row d-flex justify-content-center">
@@ -40,7 +183,7 @@
                 <p>x</p>
             </div>
         </div>
-        
+
 
     </div>
     <br id="cusbr">
@@ -48,101 +191,256 @@
         <div class="container-fluid" id="leftvideo">
             <br>
             <div class="row d-flex justify-content-center">
-                <!-- <img id="bg" src="{{ url_for('vid_stream') }}"> -->
+                <img id="bg" src="{{ url_for('vid_stream') }}">
             </div>
         </div>
 
         <div class="container-fluid" id="rightlist">
-            
+
             <div class="row d-flex justify-content-center">
-                <p>List customers</p>
+                <h4>List customers</h4>
                 <br>
                 <table class="table table-striped" id="newcustoday" width="100%" cellpadding="10">
-                    <!-- <thead>
-                        <tr>
-                            <th >#</td>
-                            <th >Intime</td>
-                            <th >IMG</td>
-                            <th >Option</td>
-                        </tr>
-                    </thead> -->
                     <tbody>
-                        
+
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
-    
 
+    <!-- <script src="../static/js/jquery.js"></script> -->
     <script type="text/javascript" src="../static/js/todayfunction.js"></script>
     <script>
         var customer = [];
-        $(document).ready(function(){
-            var currentdate = new Date().toJSON().slice(0,10);
-            var querydate = {"date": currentdate}
+        var products;
+        var sum = 0;
+        var clickCusID = 0;
+        var clickPos = 0;
+        var productno = 0;
+        var deleteproduct = 0;
+        var listpurchase = [];
+        $(document).ready(function () {
+            var currentdate = new Date().getFullYear() + '-' +
+                ("0" + (new Date().getMonth() + 1)).slice(-2) + '-' +
+                ("0" + new Date().getDate()).slice(-2);
+            // .toJSON().slice(0, 10);
+            // alert(currentdate)
+            var querydate = { "date": currentdate }
+
             $.ajax({
-                url: "http://0.0.0.0:8855/getcustomerbyday",
+                url: "http://0.0.0.0:8855/getcivilianbyday",
                 type: "POST",
                 contentType: "application/json",
                 data: JSON.stringify(querydate),
-                success: function(data){
-                    var fetch_data = JSON.parse(data.replace(/&#34;/g,"\""))
-                    for ([i,c] of fetch_data.entries()){
-                        
-                        c.no = i+1;
+                success: function (data) {
+                    var fetch_data = JSON.parse(data.replace(/&#34;/g, "\""));
+                    // alert(fetch_data[0].no)
+                    for ([i, c] of fetch_data.entries()) {
+                        if (i > 0) {
+                            if ((c.no == customer[customer.length - 1].no) && c.timein == customer[customer.length - 1].timein) {
+                                customer[customer.length - 1].expression += ", " + c.expression;
+                                continue;
+                            }
+                        }
+                        // console.log(customer[i-1].no)
+
+
+                        c.pos = customer.length + 1;
                         customer.push(c);
-                        var srce = "data:image/jpeg;base64,"+c.faceimg;
+                        var srce = "data:image/jpeg;base64," + c.faceimg;
                         var newImage = document.createElement('img');
                         newImage.src = srce;
                         newImage.width = newImage.height = "40";
+                        cname = ""
+                        if (c.cid != 0 && c.cid != null) cname = c.name;
                         $('#newcustoday tbody').append
-                            ('<tr><td class="nr"><span>'+c.no+'</span></td><td>'+c.timein+" "+c.datein+'</td>'+
-                                '<td><img src='+newImage.src+' height="30" width="30" /></td>'+
-                                '<td><button type="button" class="btn btn-primary bshow" height="30" width="40">View</button></tr>');
+                            ('<tr><td class="nr" id="cno"><span>' + c.pos + '</span></td><td>' + c.timein + " " + c.datein + '</td>' +
+                                '<td id="namecustomer">' + cname + '</td>' +
+                                '<td><img src=' + newImage.src + ' height="30" width="30" /></td>' +
+                                '<td><button type="button" class="btn btn-primary bshow" onclick="showInfo(this, 0)" height="30" width="40">View</button></tr>');
                     }
-                    console.log(customer);
+
+                    // console.log(customer);
                 }
             });
-            var eventSource = new EventSource("http://0.0.0.0:8855/getnewcustomer");
-            eventSource.onmessage = function(e){
-               
-                var jd = JSON.parse(e.data.replace(/'/g,'"'));
-                var cusno = customer.length+1;
-                jd.no = cusno;
+            $.ajax({
+                url: "http://0.0.0.0:8855/allproducts",
+                type: "POST",
+                contentType: "application/json",
+                data: JSON.stringify(querydate),
+                success: function (data) {
+                    products = JSON.parse(data.replace(/&#34;/g, "\""));
+                    // alert(JSON.stringify(products[0]))
+                    for (p of products) {
+                        $("#selectproduct").append(new Option(p.id + "-" + p.productname, p.id))
+                    }
+                }
+            });
+            var eventSource = new EventSource("http://0.0.0.0:8855/getnewcivilian");
+            eventSource.onmessage = function (e) {
+
+                var jd = JSON.parse(e.data.replace(/'/g, '"'));
+                var cusno = customer.length + 1;
+                // jd.no = cusno
+
+                jd['pos'] = cusno;
                 customer.push(jd);
-                var srce = "data:image/jpeg;base64,"+jd.faceimg;
+                var srce = "data:image/jpeg;base64," + jd.faceimg;
                 var newImage = document.createElement('img');
                 newImage.src = srce;
-                
+                cname = ""
+                if (jd.cid != 0) cname = jd.name;
                 $('#newcustoday tbody').append
-                ('<tr><td class="nr"><span>'+cusno+'</span></td><td>'+jd.timein+" "+jd.datein+'</td>'+
-                    '<td><img src='+newImage.src+' height="30" width="30" /></td>'+
-                    '<td><button type="button" class="btn btn-primary bshow" height="30" width="40">View</button></td></tr>');
+                    ('<tr><td class="nr" id="cno"><span>' + cusno + '</span></td><td>' + jd.timein + " " + jd.datein + '</td>' +
+                        '<td id="namecustomer">' + cname + '</td>' +
+                        '<td><img src=' + newImage.src + ' height="30" width="30" /></td>' +
+                        '<td><button type="button" class="btn btn-primary bshow" onclick="showInfo(this, 0)" height="30" width="40">View</button></td></tr>');
             }
-            
+
         });
-        $(document).on('click', '.bshow', function(){
-            var $row = $(this).closest('tr');    // Find the row
-            var $no = $row.find('.nr').text(); // Find the text
+
+        function showInfo(obj, p) {
+            // alert("btn show clicj");
+            var $pos;
+            var $row
+            if (p == 0 && obj != null) {
+                $row = $(obj).closest('tr');    // tim dong chua civialian
+                $pos = $row.find('.nr').text(); // thu tu dong 
+            }
+            else $pos = p;
             var cimage, cage;
-            var cgender = cexpresion = "";
-            for(c of customer){
-                if (c.no == $no){
+            var cgender = cname = cid = cPhone = cexpresion = caddress = "";
+            for (c of customer) {
+                if (c.pos == $pos) {
                     cimage = c.faceimg;
+                    document.getElementById("customerID").value = c.no;
+                    clickCusID = c.no;
+                    clickPos = $pos;
                     cage = c.age;
-                    cgender = (c.gender==1) ? "male" : "female";
+                    cgender = (c.gender == 1) ? "male" : "female";
                     cexpresion += c.expression;
+                    cid = c.cid;
+                    cname = c.name;
+                    cPhone = c.phone;
+                    caddress = c.address;
+                    break;
                 }
             }
-            var srce = "data:image/jpeg;base64,"+cimage;
+            var srce = "data:image/jpeg;base64," + cimage;
             var newImage = document.createElement('img');
             newImage.src = srce;
             document.getElementById('cusface').src = newImage.src;
-            $('#cusage').text("Age: "+cage);
-            $('#cusgender').text("Gender: "+cgender);
-            $('#cusemo').text("Expression: "+cexpresion);
-            $('#myModal').modal('show');
+            if (cid != 0 && cid != null) {
+                $('#btnaddcustomer').hide();
+                $('#cusname').show()
+                $('#cusphone').show()
+                $('#cusaddress').show()
+                $('#cusname').text("Name: " + cname);
+                $('#cusphone').text("Phone: " + cPhone);
+                $('#cusaddress').text("Address: " + caddress);
+            }
+            else if (cid == 0 || cid == null) {
+                $('#btnaddcustomer').show()
+                $('#cusname').hide()
+                $('#cusphone').hide()
+                $('#cusaddress').hide()
+            }
+            $('#cusage').text("Age: " + cage);
+            $('#cusgender').text("Gender: " + cgender);
+            $('#cusemo').text("Expression: " + cexpresion);
+            $('#myModalAddNew').modal('hide');
+            $('#myModalInfo').modal('show');
+        }
+
+        $("#btndone").on("click", function () {
+            $.ajax({
+                url: "http://0.0.0.0:8855/neworder",
+                type: "POST",
+                contentType: "application/json",
+                data: JSON.stringify({ "order": listpurchase, "customerid": clickCusID, "totalprice": sum }),
+                success: function (data) {
+                    // products = JSON.parse(data.replace(/&#34;/g, "\""));
+                    // // alert(JSON.stringify(products[0]))
+                    // for (p of products) {
+                    //     $("#selectproduct").append(new Option(p.id + "-" + p.productname, p.id))
+                    // }
+                    alert(data)
+                }
+            });
+        });
+        $("#addtocart").on("click", function () {
+            // alert("HELLO")
+            var quant = document.getElementById("quantity").value;
+            // alert(quant)
+            quant = parseInt(quant)
+            if (Number.isInteger(quant) == true) {
+                // alert(quant);
+
+                var pro = String(document.getElementById("productname").value).split("-");
+                var proid = pro[0];
+                var proname = pro[1];
+                productno += 1;
+                var unitprice = products[proid - 1].price;
+                var total = unitprice * quant;
+                sum += total;
+                // alert(proid + " " + proname);
+                var cartP = products[proid - 1];
+                cartP['quantity'] = quant;
+                listpurchase.push(cartP);
+                $("#bodycartproduct").append('<tr><td id="cno">' + productno + '</td><td id="cno2">' + proid + '</td>' +
+                    '<td>' + proname + '</td><td id="pri">' + unitprice + '</td><td id="pri">' + quant + '</td><td id="pri">' + total + '</td></tr>')
+            }
+            else {
+                alert("Quantity must be a positive int!");
+            }
+        });
+
+        function onSelectedItem(obj) {
+            // alert($("#selectproduct option:selected").text());
+            document.getElementById("productname").value = $("#selectproduct option:selected").text();
+        }
+
+        function onSubmitClicked() {
+            var ncid = document.getElementById("addcusform").getAttribute("idCus");
+            var cpos = document.getElementById("addcusform").getAttribute("posCus");
+            var newCusName = document.getElementById("customerName").value;
+            var newCusPhone = document.getElementById("customerPhone").value;
+            var newCusAddress = document.getElementById("customerAddress").value;
+            customer[cpos - 1].cid = ncid;
+            customer[cpos - 1].name = newCusName;
+            customer[cpos - 1].phone = newCusPhone;
+            customer[cpos - 1].address = newCusAddress;
+            // var table = document.getElementById("newcustoday")[0].rows;
+            // alert(JSON.stringify(table));
+            // for (i = 0; i < table.length; i++)
+            // {
+
+            //         //do something with cells in a row
+            //     if (table[i].cells[0].innerHTML == cpos){
+            //         table[i].cells[2].innerHTML = newCusName;
+            //         break;
+            //     }
+            // }
+            showInfo(null, cpos);
+        }
+
+        $("#btnaddcustomer").on("click", function () {
+            // console.log("clck");
+            document.getElementById("addcusform").setAttribute("idCus", clickCusID);
+            document.getElementById("addcusform").setAttribute("posCus", clickPos);
+            $("#myModalInfo").removeClass("fade").modal("hide");
+            $("#myModalAddNew").addClass("fade").modal("show");
+
+        });
+
+        $("#btnpurchase").on("click", function () {
+            listpurchase = [];
+            $("#bodycartproduct").empty();
+            sum = 0;
+            productno = 0;
+            $("#myModalInfo").removeClass("fade").modal("hide");
+            $("#myModalPurchase").addClass("fade").modal("show");
         });
     </script>
 </body>

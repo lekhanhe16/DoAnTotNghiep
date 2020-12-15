@@ -1,11 +1,17 @@
+import base64
 import csv
+import io
 import json
 from datetime import datetime as dt
-
+import pickle as pkl
 import numpy as np
+from PIL import Image
+from cv2 import cv2
 from flask import Flask
 from flask_mysqldb import MySQL
 from visual_web.model import *
+from visual_web.controller import face_embedding as FE
+from visual_web.model.customer import Customer
 
 app = Flask(__name__)
 app.static_folder = 'static'
@@ -14,67 +20,143 @@ app.config['MYSQL_HOST'] = '0.0.0.0'
 app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = ''
 app.config['MYSQL_DB'] = 'agegenderexpression'
+app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 mysql = MySQL(app)
 
+customers = []
 
-def get_account(user, pwd):
+
+def match_a_customer(civilian):
+    global customers
+
+    if len(customers) == 0:
+        return None
+    for i in range(len(customers)):
+        if FE.is_match(civilian.face_embed, customers[i].embbed) is True:
+            return Customer(cid=customers[i].civilianid, cusname=customers[i].name, cusphone=customers[i].phone,
+                            emb=None, addr=customers[i].address)
+        # print(i)
+
+    return None
+
+
+def get_customers():
+    global customers
+    customers.clear()
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT DISTINCT CivilianPersonId, name, phone, faceembed, address "
+                "from Civilian, Customer, Person WHERE Person.id = Civilian.PersonId "
+                "AND Civilian.PersonId = CivilianPersonId")
+    fetch_data = cur.fetchall()
+    # print(len(fetch_data))
+    if len(fetch_data) > 0:
+        for d in fetch_data:
+            # 0 customer id, 1 name, 2 phone, 3 faceimg
+            id = d[0]
+            name = d[1]
+            phone = d[2]
+            # print(d[3])
+            femb = pkl.loads(d[3])
+            # print("get emb:" + str(femb))
+            address = d[4]
+            customer = Customer(id, name, phone, femb, address)
+            customers.append(customer)
+
+
+def get_admin_by_account(account):
     cur = mysql.connection.cursor()
     cur.execute(
-        "SELECT * FROM Account, Admin WHERE username = %s AND password = %s AND Account.AdminId = Admin.PersonId",
-        (str(user), str(pwd)))
+        "SELECT PersonId, AccountId, Name FROM Account, Admin WHERE username = %s AND password = %s "
+        "AND Account.Id = Admin.AccountId",
+        (str(account.username), str(account.pwd)))
     fetch_data = cur.fetchone()
     return fetch_data
 
 
-def add_new_customer(timein, datein, gender, age, expressions, base64):
-    emo_check = np.zeros(3, dtype=int)
-    out_time = dt.strftime(dt.now(), '%H:%M:%S')
-    out_date = dt.strftime(dt.now(), '%Y-%m-%d')
-    cur = mysql.connection.cursor()
-    cur.execute("INSERT INTO Person VALUES (default)")
-    mysql.connection.commit()
-    last_insert_id = cur.lastrowid
-    cur.execute("INSERT INTO Civilian VALUES(%s, %s, %s, %s, %s, %s)",
-                (int(last_insert_id), str(timein), str(datein),
-                 str(out_time), str(out_date), str(base64)))
-    mysql.connection.commit()
-    last_civil = last_insert_id
-    if gender == 1:
-        cil_gender = 1
-    else:
-        cil_gender = 2
-    cur.execute("INSERT INTO Civilian_gender VALUES (default, %s, %s)",
-                (int(last_civil), int(cil_gender)))
-    mysql.connection.commit()
-    cur.execute("INSERT INTO Age VALUES (default, %s, %s, %s)",
-                (int(last_civil),
-                 int(age - 3), int(age + 3)))
-    mysql.connection.commit()
-    for e in expressions:
+def add_new_customer(customer):
+    with app.app_context():
+        # mysql.connection.begin()
+        print("new cus emb" + str(customer.embbed))
+        cur = mysql.connection.cursor()
+        cur.execute("INSERT INTO Customer VALUES(%s, %s, %s, %s, %s)",
+                    (customer.civilianid, customer.name, customer.phone,
+                     pkl.dumps(customer.embbed), customer.address))
+        mysql.connection.commit()
+        # mysql.connection.rollback()
+        # print(cur.lastrowid)
+    # return "called"
 
-        if str(e) == 'neutral':
-            iemo = 0
-        elif str(e) == 'happy':
-            iemo = 1
-        elif str(e) == 'sad':
-            iemo = 2
 
-        if emo_check[iemo] == 0:
-            cur.execute("INSERT INTO Expression VALUES (default, %s, %s)",
-                        (int(last_civil), str(e)))
+# def add_expression(civilian):
+#     with app.app_context():
+#         cur = mysql.connection.cursor()
+#         for e in civilian.expres:
+#             cur.execute("INSERT INTO Expression VALUES (default, %s, %s, %s)",
+#                         (int(civilian.id), str(e), str()))
+#         mysql.connection.commit()
+
+
+def add_new_civilian(civilian, addperson):
+    # print(civilian.gender.gender)
+    # print(expressions)
+    with app.app_context():
+        # mysql.connection.begin()
+        emo_check = np.zeros(3, dtype=int)
+        out_time = dt.strftime(dt.now(), '%H:%M:%S')
+        out_date = dt.strftime(dt.now(), '%Y-%m-%d')
+        cur = mysql.connection.cursor()
+        # last_insert_id = 0
+        if addperson == 1:
+            cur.execute("INSERT INTO Person VALUES (default)")
+
+            # print("last person "+str(cur.lastrowid))
+            last_insert_id = cur.lastrowid
             mysql.connection.commit()
-        emo_check[iemo] = 1
+        else:
+            last_insert_id = civilian.id
+        # mysql.connection.commit()
+        last_civil = last_insert_id
+        if civilian.gender.gender == 1:
+            cil_gender = 1
 
-    cur.close()
+        else:
+            cil_gender = 2
+
+        cur.execute("INSERT INTO Civilian VALUES(default,%s, %s, %s, %s, %s, %s, %s,%s,%s)",
+                    (int(last_insert_id), int(cil_gender), str(civilian.timein), str(civilian.datein),
+                     str(out_time), str(out_date), str(civilian.faceimg), int(civilian.lower), int(civilian.higher)))
+        mysql.connection.commit()
+
+        # mysql.connection.commit()
+        for e in civilian.expres:
+
+            if str(e) == 'neutral':
+                iemo = 0
+            elif str(e) == 'happy':
+                iemo = 1
+            elif str(e) == 'sad':
+                iemo = 2
+
+            if emo_check[iemo] == 0:
+                # print("emo cvi: " + str(last_civil))
+                cur.execute("INSERT INTO Expression VALUES (default, %s, %s, %s)",
+                            (int(last_insert_id), str(e), str(civilian.timein)))
+                # mysql.connection.commit()
+            emo_check[iemo] = 1
+            emo_check[iemo] = 1
+        mysql.connection.commit()
+        cur.close()
+        # mysql.connection.rollback()
+        return last_insert_id
 
 
-def get_customer_by_month_year(month, year):
+def get_civilian_by_month_year(month, year):
     cur = mysql.connection.cursor()
     cur.execute("SELECT PersonId, GenderId, expression, lower, "
                 "timein, datein, faceimg "
-                "FROM Civilian, Civilian_gender, Expression, Age "
-                "WHERE PersonId = Civilian_gender.CivilianId AND PersonId = Expression.CivilianId AND "
-                "PersonId = Age.CivilianId AND MONTH(datein) = %s AND YEAR(datein) = %s ORDER BY PersonId",
+                "FROM Civilian, Expression  "
+                "WHERE PersonId = Expression.CivilianPersonId AND timein = moment AND "
+                "MONTH(datein) = %s AND YEAR(datein) = %s ORDER BY PersonId",
                 (int(month), int(year)))
     fetch_data = cur.fetchall()
 
@@ -109,10 +191,9 @@ def show_age_week():
     cur = mysql.connection.cursor()
     cur.execute(
         "SELECT PersonId, timein, datein, timeout, dateout, lower, higher, Gender.gender "
-        "FROM Civilian, Age, Civilian_gender, Gender "
-        "WHERE Civilian.PersonId = Age.CivilianId "
-        "AND Civilian_gender.CivilianId = Civilian.PersonId "
-        "AND Civilian_gender.GenderId = Gender.Id "
+        "FROM Civilian, Gender "
+        "WHERE "
+        "Civilian.GenderId = Gender.Id "
         "AND YEARWEEK(dateout, 1) = YEARWEEK(CURDATE(), 1)")
     fetch_data = cur.fetchall()
 
@@ -126,10 +207,9 @@ def show_age_week():
 def ageoverall():
     cur = mysql.connection.cursor()
     cur.execute("SELECT lower, Gender.gender, Month(dateout) "
-                "FROM Civilian, Age, Civilian_gender, Gender "
-                "WHERE Civilian.PersonId = Age.CivilianId "
-                "AND Civilian_gender.CivilianId = Civilian.PersonId "
-                "AND Civilian_gender.GenderId = Gender.Id "
+                "FROM Civilian, Gender "
+                "WHERE "
+                "Civilian.GenderId = Gender.Id "
                 "ORDER BY Month(Civilian.dateout)")
     fetch_data = cur.fetchall()
     cur.close()
@@ -193,7 +273,7 @@ def ageoverall():
 def expression():
     we = [0, 0, 0]
     cur = mysql.connection.cursor()
-    cur.execute("SELECT expression FROM Expression, Civilian WHERE CivilianId = PersonId "
+    cur.execute("SELECT expression FROM Expression, Civilian WHERE CivilianPersonId = PersonId "
                 "AND YEARWEEK(dateout, 1) = YEARWEEK(CURDATE(), 1)")
     week_data = cur.fetchall()
     for d in week_data:
@@ -205,7 +285,7 @@ def expression():
             we[2] += 1
 
     me = [0, 0, 0]
-    cur.execute("SELECT expression FROM Expression, Civilian WHERE CivilianId = PersonId "
+    cur.execute("SELECT expression FROM Expression, Civilian WHERE CivilianPersonId = PersonId "
                 "AND MONTH(dateout) = MONTH(NOW())")
     month_data = cur.fetchall()
     for d in month_data:
@@ -217,23 +297,71 @@ def expression():
             me[2] += 1
     emo = json.dumps(
         {"wneutral": we[0], "whappy": we[1], "wsad": we[2], "mneutral": me[0], "mhappy": me[1], "msad": me[2]})
-    print(emo)
+    # print(emo)
     return emo
 
 
-def get_customer_byday(day):
+def check_data(data, i):
+    if data is not None and i == 7:
+        return int(data)
+    elif data is not None and i > 7:
+        return str(data)
+    else:
+        return 0
+
+
+def get_all_products():
+    # with app.app_context():
     cur = mysql.connection.cursor()
-    cur.execute("SELECT Distinct PersonId, GenderId, expression, lower, "
-                "timein, datein, faceimg "
-                "FROM Civilian, Civilian_gender, Expression, Age "
-                "WHERE PersonId = Civilian_gender.CivilianId AND PersonId = Expression.CivilianId AND "
-                "PersonId = Age.CivilianId AND datein = %s ORDER BY PersonId", (str(day),))
-    # cur.execute("SELECT * "
-    #             "FROM Civilian "
-    #             "WHERE datein = %s", (str(day),))
+    cur.execute("SELECT * FROM Product")
+    fetch_data = cur.fetchall()
+    # print(fetch_data[0][0])
+
+    cur.close()
+    return json.dumps([{"id": data[0], "productname": data[1], "price": data[2]} for data in fetch_data])
+
+
+def add_new_order(order):
+    cur = mysql.connection.cursor()
+    cur.execute("INSERT INTO Cart VALUES (default)")
+    mysql.connection.commit()
+    last_cart = cur.lastrowid
+    # print("Cart " + str(last_cart))
+    cart_products = order.cart.cart_products
+
+    for cp in cart_products:
+        cur.execute("INSERT INTO Cart_Product VALUES (default, %s, %s, %s)", (int(last_cart), int(cp.product),
+                                                                              int(cp.quantity)))
+        # mysql.connection.commit()
+
+    cur.execute("INSERT INTO CustomerOrder VALUES (default, %s, %s, %s)", (int(order.customer), int(last_cart),
+                                                                           int(order.totalprice)))
+
+    mysql.connection.commit()
+
+
+def get_civilian_byday(day):
+    cur = mysql.connection.cursor()
+    cur.execute(
+        "Select PersonId, GenderId, expression, lower, timein, datein, "
+        "faceimg, Customer.CivilianPersonId, name, phone, address "
+        "from (SELECT Distinct PersonId, GenderId, expression, lower, " +
+        "timein, datein, faceimg " +
+        "FROM Civilian, Expression, Gender "
+        "WHERE (Civilian.GenderId = Gender.Id AND PersonId = Expression.CivilianPersonId and timein = moment) " +
+        "AND datein = %s) as L " +
+        "LEFT JOIN Customer "
+        "on Customer.CivilianPersonId = PersonId "
+        "ORDER BY PersonId",
+        (str(day),))
+
     fetch_data = cur.fetchall()
 
     res = json.dumps([{'no': data[0], 'expression': data[2],
                        'age': data[3], 'gender': data[1], 'timein': str(data[4]), 'datein': str(data[5]),
-                       'faceimg': data[6], 'isadd': 0} for data in fetch_data])
+                       'faceimg': data[6], 'cid': data[7], 'name': str(data[8]),
+                       'phone': str(data[9]), 'address': str(data[10]), 'pos': i + 1} for i, data in
+                      enumerate(fetch_data)])
+    get_customers()
+
     return res

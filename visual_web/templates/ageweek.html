@@ -1,25 +1,24 @@
-
 <body>
-  
+
   <div class="container-fluid">
     <br>
     <br>
-      <div class="row d-flex justify-content-center">
-          
-        <div class="col-md-6">
-          <canvas id="barChart" height="500" width="800"></canvas>
-          
-        </div>
+    <div class="row d-flex justify-content-center">
+
+      <div class="col-md-6">
+        <canvas id="barChart" height="500" width="800"></canvas>
+
       </div>
-      <br>
-  <br>
+    </div>
+    <br>
+    <br>
   </div>
 
   <br id="cusbr">
   <div class="container-fluid">
-    
+
     <div class="row d-flex justify-content-center">
-      
+
       <div class="col-md-6">
         <br>
         <br>
@@ -37,14 +36,14 @@
     <br>
     <br>
   </div>
-  
-<script type="text/javascript" src="../static/js/weekfunction.js" ></script>
+
+  <script type="text/javascript" src="../static/js/weekfunction.js"></script>
   <script>
-    var fetch_data = JSON.parse('{{tabledata}}'.replace(/&#34;/g,"\""))
+    var fetch_data = JSON.parse('{{tabledata}}'.replace(/&#34;/g, "\""))
     console.log(fetch_data);
     var ageBarChart = showBarChart(fetch_data);
     var ageMalePolarChart = showPolarChart("polarChart");
     var ageMalePolarChart = showPolarChart("polarChart2");
-</script>
+  </script>
 </body>
 <!-- </html> -->

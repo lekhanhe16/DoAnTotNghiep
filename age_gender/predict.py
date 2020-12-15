@@ -3,7 +3,7 @@
 import base64
 import io
 import os
-
+import time
 import cv2
 import keras
 import mxnet as mx
@@ -17,14 +17,19 @@ from tensorflow.python.keras.backend import set_session
 import tensorflow as tf
 from age_gender.utils.datasets import get_labels
 from age_gender.utils.preprocessor import preprocess_input
+from tensorflow.python.keras import backend as K
 
-sess = tf.Session()
-graph = tf.get_default_graph()
-keras.backend.set_session(sess)
+# sess = tf.compat.v1.Session()
+# graph = tf.compat.v1.get_default_graph()
+# K.set_session(sess)
 # saved_model = tf.keras.models.load_model("test.h5")
+tf.config.set_visible_devices([], 'GPU')
 
-model_str = '/home/kl/PycharmProjects/Do an Tot nghiep PTIT/face_age_gender_emotion/age_gender/models/ssr2_megaage_1_1/model,0'
-model_gender_str = '/home/kl/PycharmProjects/Do an Tot nghiep PTIT/face_age_gender_emotion/age_gender/models/ssr2_imdb_gender_1_1/model,0'
+model_str = '/home/kl/PycharmProjects/Do an Tot nghiep ' \
+            'PTIT/face_age_gender_emotion/age_gender/models/ssr2_megaage_1_1/model,0 '
+
+model_gender_str = '/home/kl/PycharmProjects/Do an Tot nghiep ' \
+                   'PTIT/face_age_gender_emotion/age_gender/models/ssr2_imdb_gender_1_1/model,0 '
 # ga_name_str = 'genderage_v1'
 
 det_name_str = 'retinaface_r50_v1'
@@ -51,7 +56,8 @@ else:
 emotion_model_path = '/home/kl/PycharmProjects/Do an Tot nghiep PTIT/face_age_gender_emotion/age_gender/emotion_models/fer2013_mini_XCEPTION.100-0.65.hdf5'
 emotion_labels = get_labels('fer2013')
 emotion_classifier = load_model(emotion_model_path, compile=False)
-emotion_classifier._make_predict_function()
+# emotion_classifier._make_predict_function()
+emotion_classifier.compile()
 emotion_target_size = emotion_classifier.input_shape[1:3]
 # frame_window = 10
 # emotion_offsets = (20, 40)
@@ -101,59 +107,61 @@ def get_faces(frame):
     return det_model.detect(frame, threshold=0.8, scale=1.0)
 
 
-def predict_emotion(base64_image):
-    global sess
-    global graph
-    with sess.as_default():
-        with sess.graph.as_default():
-            # set_session(sess)
-            try:
+def predict_emotion(image):
+    # cv2.imshow('FACE', base64_image)
+    # global sess
+    # global graph
+    # with sess.as_default():
+    #     with sess.graph.as_default():
+    # set_session(sess)
+    # cv2.imshow("face", image)
+    # print(type(image))
+    time.sleep(0.0001)
+    if image is not None:
+        try:
+            emotion_text = []
 
-                file_like = io.BytesIO(base64.b64decode(base64_image))
+            gray_frame = np.dot(image, [0.2989, 0.5870, 0.1140])
 
-                image_input = Image.open(file_like)
-                # # print(type(image_input))
-                emotion_text = []
-                gray_frame = image_input.convert('L')
-                # print('gray_frame ', type(gray_frame))
-                gray_frame = image.img_to_array(gray_frame)
+            gray_frame = np.squeeze(gray_frame)
+            gray_frame = gray_frame.astype('uint8')
 
-                gray_frame = np.squeeze(gray_frame)
-                gray_frame = gray_frame.astype('uint8')
+            gray_face = cv2.resize(gray_frame, (64, 64))
 
-                gray_face = cv2.resize(gray_frame, emotion_target_size)
+            gray_face = preprocess_input(gray_face, True)
+            gray_face = np.expand_dims(gray_face, 0)
+            gray_face = np.expand_dims(gray_face, -1)
+            emotion_prediction = emotion_classifier.predict(gray_face)
+            emotion_label_arg = np.argmax(emotion_prediction)
+            emotion_text.append(emotion_labels[emotion_label_arg])
 
-                gray_face = preprocess_input(gray_face, True)
-                gray_face = np.expand_dims(gray_face, 0)
-                gray_face = np.expand_dims(gray_face, -1)
-                emotion_prediction = emotion_classifier.predict(gray_face)
-                emotion_label_arg = np.argmax(emotion_prediction)
-                emotion_text.append(emotion_labels[emotion_label_arg])
+            if len(emotion_text) == 0:
+                emotion_text = [' ']
 
-                if len(emotion_text) == 0:
-                    emotion_text = [' ']
+            return emotion_text
 
-                return emotion_text
-
-            except Exception as e:
-                print(e)
-                return [' ']
+        except Exception as e:
+            print("emo" + str(e.__class__.__name__) + " " + str(e.with_traceback(None)))
+            return [' ']
+    else:
+        return [' ']
 
 
-def predict_ga(base64_image):
+def predict_ga(frame):
+    time.sleep(0.0001)
     # global sess
     # global graph
     # with graph.as_default():
     #     set_session(sess)
-    file_like = io.BytesIO(base64.b64decode(base64_image))
-    image_input = Image.open(file_like)
-
-    frame = np.array(image_input)
-    # cv2.imshow('FACE', frame)
+    # file_like = io.BytesIO(base64.b64decode(base64_image))
+    # image_input = Image.open(file_like)
+    #
+    # frame = np.array(image_input)
+    # print(landmarks)
     try:
         bboxes, lm = det_model.detect(frame, threshold=0.8, scale=1.0)
-
-        if len(lm) > 0:
+        # print("lm "+str(lm))
+        if len(lm[0]) > 0:
             _img = face_align.norm_crop(frame, landmark=lm[0])
             # cv2.imshow('F', _img)
             if _img is None:
@@ -201,5 +209,5 @@ def predict_ga(base64_image):
 
         return gender, age
     except Exception as e:
-        print(e)
+        print("ga" + str(e.__class__.__name__) + str(e.with_traceback(None)))
         return None, None

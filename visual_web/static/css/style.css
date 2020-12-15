@@ -18,6 +18,10 @@ p{
 table{
     width: 100%;
 }
+
+.modal {
+    display: none;
+}
 thead th {
     width: 30%;  
 }
@@ -39,6 +43,20 @@ tbody {
     height: 450px;       /* Just for the demo          */
     overflow-y: auto;    /* Trigger vertical scroll    */
     overflow-x: hidden;  /* Hide the horizontal scroll */
+}
+
+#cno2{
+    width: 20%;
+}
+
+#pri{
+    width: 15%;
+}
+
+#bodycartproduct{
+    height: 150px;       /* Just for the demo          */
+    overflow-y: auto;    /* Trigger vertical scroll    */
+    overflow-x: hidden;
 }
 
 #cusbr{
