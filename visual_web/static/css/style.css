@@ -22,8 +22,15 @@ table{
 .modal {
     display: none;
 }
-thead th {
+/* thead th {
     width: 30%;  
+} */
+#prodexp tbody td{
+    width: 25%;
+    
+}
+ #prodexp thead th{
+    width: 25%;
 }
 
 #noc {
@@ -34,10 +41,17 @@ thead th {
     width: 10%;  
 }
 tbody td{
-    width: 30%;
+    width: 20%;
+    
 }
+thead th{
+    width: 20%;
+}
+
+
 thead, tbody { 
-    display: block; } 
+    display: block; 
+} 
 
 tbody {
     height: 450px;       /* Just for the demo          */
@@ -49,6 +63,9 @@ tbody {
     width: 20%;
 }
 
+#cno2{
+    width: 18%;
+}
 #pri{
     width: 15%;
 }

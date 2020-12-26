@@ -111,11 +111,11 @@ def add_new_civilian(civilian, addperson):
 
             # print("last person "+str(cur.lastrowid))
             last_insert_id = cur.lastrowid
-            mysql.connection.commit()
+            # mysql.connection.commit()
         else:
             last_insert_id = civilian.id
         # mysql.connection.commit()
-        last_civil = last_insert_id
+        # last_civil = last_insert_id
         if civilian.gender.gender == 1:
             cil_gender = 1
 
@@ -125,10 +125,10 @@ def add_new_civilian(civilian, addperson):
         cur.execute("INSERT INTO Civilian VALUES(default,%s, %s, %s, %s, %s, %s, %s,%s,%s)",
                     (int(last_insert_id), int(cil_gender), str(civilian.timein), str(civilian.datein),
                      str(out_time), str(out_date), str(civilian.faceimg), int(civilian.lower), int(civilian.higher)))
-        mysql.connection.commit()
+        # mysql.connection.commit()
 
         # mysql.connection.commit()
-        for e in civilian.expres:
+        for i, e in enumerate(civilian.expres):
 
             if str(e) == 'neutral':
                 iemo = 0
@@ -136,15 +136,16 @@ def add_new_civilian(civilian, addperson):
                 iemo = 1
             elif str(e) == 'sad':
                 iemo = 2
-
+            if str(e) == 'sad' and i == len(civilian.expres) - 1:
+                continue
             if emo_check[iemo] == 0:
                 # print("emo cvi: " + str(last_civil))
-                cur.execute("INSERT INTO Expression VALUES (default, %s, %s, %s)",
-                            (int(last_insert_id), str(e), str(civilian.timein)))
+                cur.execute("INSERT INTO Expression VALUES (default, %s, %s, %s, %s)",
+                            (int(last_insert_id), str(e), str(civilian.timein), str(civilian.datein)))
                 # mysql.connection.commit()
             emo_check[iemo] = 1
             emo_check[iemo] = 1
-        mysql.connection.commit()
+        # mysql.connection.commit()
         cur.close()
         # mysql.connection.rollback()
         return last_insert_id
@@ -153,10 +154,13 @@ def add_new_civilian(civilian, addperson):
 def get_civilian_by_month_year(month, year):
     cur = mysql.connection.cursor()
     cur.execute("SELECT PersonId, GenderId, expression, lower, "
+                "timein, datein, faceimg, Customer.CivilianPersonId, Customer.name from "
+                "(SELECT PersonId, GenderId, expression, lower, "
                 "timein, datein, faceimg "
                 "FROM Civilian, Expression  "
-                "WHERE PersonId = Expression.CivilianPersonId AND timein = moment AND "
-                "MONTH(datein) = %s AND YEAR(datein) = %s ORDER BY PersonId",
+                "WHERE PersonId = Expression.CivilianPersonId AND timein = moment AND datemoment = datein AND "
+                "MONTH(datein) = %s AND YEAR(datein) = %s) as l left join Customer on "
+                "Customer.CivilianPersonId = PersonId ORDER BY PersonId, datein, timein ",
                 (int(month), int(year)))
     fetch_data = cur.fetchall()
 
@@ -171,7 +175,7 @@ def get_civilian_by_month_year(month, year):
         else:
             d[1] = 'female'
         d = tuple(d)
-        if fetch_data[i - 1][0] == d[0] and i > 0:
+        if fetch_data[i - 1][0] == d[0] and i > 0 and fetch_data[i - 1][4] == d[4] and fetch_data[i - 1][5] == d[5]:
             res[len(res) - 1] = list(res[len(res) - 1])
             res[len(res) - 1][2] = str(res[len(res) - 1][2]) + ', ' + str(d[2])
             res[len(res) - 1] = tuple(res[len(res) - 1])
@@ -181,7 +185,8 @@ def get_civilian_by_month_year(month, year):
     ret = json.dumps([{'no': res[data][0], 'expression': res[data][2],
                        'age': res[data][3], 'gender': res[data][1], 'timein': str(res[data][4]),
                        'datein': str(res[data][5]),
-                       'faceimg': str(res[data][6]), 'isadd': int(0)} for data in res])
+                       'faceimg': str(res[data][6]), 'isadd': int(0), 'cusid': str(res[data][7]),
+                       'cusname': str(res[data][8])} for data in res])
     cur.close()
     return ret
 
@@ -270,6 +275,24 @@ def ageoverall():
                     writer.writerow(['', '', '', i, j, female[i][j]])
 
 
+def get_product_expression():
+    cur = mysql.connection.cursor()
+    cur.execute(
+        "SELECT t.id, t.Productname, t.expression, COUNT(t.expression) from (select Product.id, Product.Productname, "
+        "expression from Product, Cart_Product, Cart, CustomerOrder, Customer, Civilian, Expression " +
+        "WHERE CustomerOrder.CustomerId = Customer.CivilianPersonId AND CustomerOrder.CartId = Cart.id " +
+        "AND Cart_Product.CartId = Cart.id AND Cart_Product.ProductId = Product.id " +
+        "AND CustomerOrder.custimein = Civilian.timein AND CustomerOrder.orderdate = Civilian.datein " +
+        "AND Civilian.PersonId = Customer.CivilianPersonId AND Expression.CivilianPersonId = Customer.CivilianPersonId " +
+        "AND Expression.moment = CustomerOrder.custimein And Expression.datemoment = CustomerOrder.orderdate) " +
+        "as t GROUP BY t.Productname, t.expression ORDER BY id, t.expression")
+    fetch_data = cur.fetchall()
+    res = json.dumps([{"id": data[0], "productname": data[1],
+                       "expression": data[2], "count": data[3]} for data in fetch_data])
+
+    return res
+
+
 def expression():
     we = [0, 0, 0]
     cur = mysql.connection.cursor()
@@ -334,8 +357,9 @@ def add_new_order(order):
                                                                               int(cp.quantity)))
         # mysql.connection.commit()
 
-    cur.execute("INSERT INTO CustomerOrder VALUES (default, %s, %s, %s)", (int(order.customer), int(last_cart),
-                                                                           int(order.totalprice)))
+    cur.execute("INSERT INTO CustomerOrder VALUES (default, %s, %s, %s, %s, %s, %s)",
+                (int(order.customer), int(last_cart), int(order.totalprice), str(order.custimein), str(order.ordertime)
+                 , str(order.orderdate)))
 
     mysql.connection.commit()
 
@@ -349,7 +373,7 @@ def get_civilian_byday(day):
         "timein, datein, faceimg " +
         "FROM Civilian, Expression, Gender "
         "WHERE (Civilian.GenderId = Gender.Id AND PersonId = Expression.CivilianPersonId and timein = moment) " +
-        "AND datein = %s) as L " +
+        "AND datein = %s and datemoment = datein) as L " +
         "LEFT JOIN Customer "
         "on Customer.CivilianPersonId = PersonId "
         "ORDER BY PersonId",

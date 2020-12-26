@@ -37,7 +37,7 @@ det_name_str = 'retinaface_r50_v1'
 
 
 ctx_id = int(os.environ.get('GPU', -1))
-print('quantity: ' + str(mx.util.get_gpu_count()))
+# print('quantity: ' + str(mx.util.get_gpu_count()))
 
 det_model = model_zoo.get_model(det_name_str)
 det_model.prepare(ctx_id, nms=0.4)

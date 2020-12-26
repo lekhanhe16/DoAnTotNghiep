@@ -86,10 +86,10 @@ def home():
         return render_template('index.html')
 
 
-@app.route('/login', methods=['POST'])
+@app.route('/home', methods=['POST'])
 def do_login():
-    user = request.form['email']
-    pwd = request.form['pass']
+    user = request.form['username']
+    pwd = request.form['password']
     acc = Account(aid=0, auser=user, apwd=pwd)
     fetch_data = appcontroller.get_admin_by_account(acc)
     try:
@@ -139,15 +139,19 @@ def add_new_order():
     o = content['order']
     c = content['customerid']
     sum = content['totalprice']
+    custimeein = content['custimein']
+    ordertime = content['ordertime']
+    orderdate = content['orderdate']
+
     cart = Cart(0)
     for cp in o:
         cart_product = CartProduct(0, cart.id, cp['id'], cp['quantity'])
 
         cart.cart_products.append(cart_product)
-    order = CustomerOrder(0, c, cart=cart)
+    order = CustomerOrder(0, c, cart=cart, custimein=custimeein, ordertime=ordertime, orderdate=orderdate)
     order.totalprice = sum
     appcontroller.add_new_order(order)
-    return "OK"
+    return "Succesfully purchased!"
 
 
 @app.route('/getcivilianbyday', methods=['POST'])
@@ -191,6 +195,11 @@ def update_new_civilian():
     return Response(event_stream(), mimetype="text/event-stream")
 
 
+@app.route('/productexpression')
+def get_product_expression():
+    return appcontroller.get_product_expression()
+
+
 @app.route('/today')
 def show_today():
     return render_template('today.html')
@@ -221,8 +230,8 @@ def get_cus_emb(cid):
         # print("hey" + str(c.id))
         # print("ember: " + str(c.face_embed))
         # if int(c.id) == int(cid):
-            print("found: " + str(c.id))
-            return c.face_embed
+        print("found: " + str(c.id))
+        return c.face_embed
     return None
 
 
@@ -264,7 +273,7 @@ def assign_label(fid, emo, age, gender, intime, indate, ind, face_base64):
         # tracked_civ[fid, 0].append(emo)
         tracked_civ[fid].expres.append(emo)
     if age is not None and gender is not None:
-        if age < tracked_civ[fid].lower + 3 or tracked_civ[fid].lower + 3 >= 0:
+        if age < tracked_civ[fid].lower + 3 and tracked_civ[fid].lower + 3 >= 0:
             tracked_civ[fid].lower = age - 3
             tracked_civ[fid].higher = age + 3
         tracked_civ[fid].gender.gender = gender

@@ -20,9 +20,11 @@
           <thead>
             <tr>
               <th id="noc">#</td>
-              <th>In-time</td>
-              <th>Gender</th>
-              <th>IMG</td>
+              <th >In-time</td>
+              <th >Gender</th>
+              <th >IMG</td>
+              <th >Customer</td>
+              <th >Age</th>
               <th>Expression</td>
             </tr>
           </thead>
@@ -90,6 +92,10 @@
 
             c.no = i + 1;
             customer.push(c);
+            var customerName = ""
+            if (c.cusid != null){
+              customerName = c.cusname;
+            }
             var srce = "data:image/jpeg;base64," + c.faceimg;
             var newImage = document.createElement('img');
             newImage.src = srce;
@@ -97,6 +103,8 @@
             $('#customer tbody').append
               ('<tr><td class="nr" id="cno"><span>' + c.no + '</span></td><td>' + c.timein + " " + c.datein + '</td>' +
                 '<td>' + c.gender + '</td><td><img src=' + newImage.src + ' height="30" width="30" /></td>' +
+                '<td>' + customerName + '</td>'+
+                '<td>' + c.age + '</td>'+
                 '<td>' + c.expression + '</td></tr>');
           }
           // console.log(customer);

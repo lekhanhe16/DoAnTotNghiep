@@ -48,14 +48,14 @@
 
     <div class="modal fade" id="myModalPurchase" tabindex="-1" role="dialog" aria-labelledby="modalpurchase"
         aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
+        <div class="modal-dialog modal-dialog-centered" style="width: auto; max-width: 500px;">
+            <div class="modal-content" >
                 <div class="modal-header">
                     <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> -->
                     <h4 class="modal-title" id="modalpurchase">Purchase Items</h4>
                 </div>
                 <div class="modal-body">
-                    <div class="container-fluid">
+                    <div class="container-fluid" >
                         <div class="row d-flex">
                             <div class="col-md-6">
                                 <div>List Product</div>
@@ -166,15 +166,18 @@
         <div class="container-fluid" id="lefttoday">
             <br>
             <div class="row d-flex justify-content-center">
-                <p>s</p>
+                <img src="../static/images/male.png"/>
+                <div style="margin-left: 20px;" id="numofmale">0</div>
             </div>
         </div>
 
         <div class="container-fluid" id="midtoday">
             <br>
             <div class="row d-flex justify-content-center">
-                <p>s</p>
+                <img src="../static/images/femenine.png"/>
+                <div style="margin-left: 20px;" id="numoffemale">0</div>
             </div>
+            <br>
         </div>
 
         <div class="container-fluid" id="righttoday">
@@ -182,6 +185,7 @@
             <div class="row d-flex justify-content-center">
                 <p>x</p>
             </div>
+            <br>
         </div>
 
 
@@ -191,8 +195,9 @@
         <div class="container-fluid" id="leftvideo">
             <br>
             <div class="row d-flex justify-content-center">
-                <img id="bg" src="{{ url_for('vid_stream') }}">
+                <!-- <img id="bg" src="{{ url_for('vid_stream') }}"> -->
             </div>
+            <br>
         </div>
 
         <div class="container-fluid" id="rightlist">
@@ -216,9 +221,10 @@
         var products;
         var sum = 0;
         var clickCusID = 0;
+        
         var clickPos = 0;
         var productno = 0;
-        var deleteproduct = 0;
+        // var deleteproduct = 0;
         var listpurchase = [];
         $(document).ready(function () {
             var currentdate = new Date().getFullYear() + '-' +
@@ -283,12 +289,23 @@
                 var jd = JSON.parse(e.data.replace(/'/g, '"'));
                 var cusno = customer.length + 1;
                 // jd.no = cusno
-
+                // alert(jd.expression)
                 jd['pos'] = cusno;
                 customer.push(jd);
                 var srce = "data:image/jpeg;base64," + jd.faceimg;
                 var newImage = document.createElement('img');
                 newImage.src = srce;
+                if (jd.gender == 1){
+                    // var g = $("#numofmale").value;
+                    // alert(g)
+                    
+                    document.getElementById("numofmale").innerHTML = new Number(document.getElementById("numofmale").textContent) + 1;
+                }
+                else {
+                    // var g = $("#numoffemale").value;
+                    // alert(g)
+                    document.getElementById("numoffemale").innerHTML = new Number(document.getElementById("numoffemale").textContent) + 1;
+                }
                 cname = ""
                 if (jd.cid != 0) cname = jd.name;
                 $('#newcustoday tbody').append
@@ -319,6 +336,7 @@
                     clickPos = $pos;
                     cage = c.age;
                     cgender = (c.gender == 1) ? "male" : "female";
+                    // alert(typeof(c.expression))
                     cexpresion += c.expression;
                     cid = c.cid;
                     cname = c.name;
@@ -333,18 +351,20 @@
             document.getElementById('cusface').src = newImage.src;
             if (cid != 0 && cid != null) {
                 $('#btnaddcustomer').hide();
-                $('#cusname').show()
-                $('#cusphone').show()
-                $('#cusaddress').show()
+                $('#btnpurchase').show();
+                $('#cusname').show();
+                $('#cusphone').show();
+                $('#cusaddress').show();
                 $('#cusname').text("Name: " + cname);
                 $('#cusphone').text("Phone: " + cPhone);
                 $('#cusaddress').text("Address: " + caddress);
             }
             else if (cid == 0 || cid == null) {
-                $('#btnaddcustomer').show()
-                $('#cusname').hide()
-                $('#cusphone').hide()
-                $('#cusaddress').hide()
+                $('#btnaddcustomer').show();
+                $('#btnpurchase').hide();
+                $('#cusname').hide();
+                $('#cusphone').hide();
+                $('#cusaddress').hide();
             }
             $('#cusage').text("Age: " + cage);
             $('#cusgender').text("Gender: " + cgender);
@@ -354,11 +374,15 @@
         }
 
         $("#btndone").on("click", function () {
+            var today = new Date();
+            var timeorder = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
             $.ajax({
                 url: "http://0.0.0.0:8855/neworder",
                 type: "POST",
                 contentType: "application/json",
-                data: JSON.stringify({ "order": listpurchase, "customerid": clickCusID, "totalprice": sum }),
+                data: JSON.stringify({ "order": listpurchase, "customerid": clickCusID, "totalprice": sum,
+                                    "custimein": customer[clickPos-1].timein, "ordertime": timeorder,
+                                    "orderdate": customer[clickPos-1].datein}),
                 success: function (data) {
                     // products = JSON.parse(data.replace(/&#34;/g, "\""));
                     // // alert(JSON.stringify(products[0]))
@@ -366,6 +390,7 @@
                     //     $("#selectproduct").append(new Option(p.id + "-" + p.productname, p.id))
                     // }
                     alert(data)
+                    $("#myModalPurchase").modal("hide");
                 }
             });
         });
