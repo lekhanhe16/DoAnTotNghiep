@@ -43,10 +43,10 @@ def is_match(known_embedding, candidate_embedding, thresh=0.5):
     score = cosine(known_embedding, candidate_embedding)
     if score <= thresh:
         print('>face is a Match (%.3f <= %.3f)' % (score, thresh))
-        return True
+        return score, True
     else:
         print('>face is NOT a Match (%.3f > %.3f)' % (score, thresh))
-        return False
+        return score, False
 
 
 

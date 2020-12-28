@@ -15,6 +15,10 @@ class Civilian(Person):
         self.customer = None
         self.lower = low
         self.higher = high
+        self.expreg = False
+        self.ishappy = False
+        self.issad = False
+        self.isneutral = False
 
     def set_time_out(self, to):
         self.timeout = to

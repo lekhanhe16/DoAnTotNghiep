@@ -37,6 +37,10 @@ table{
     width: 10%;  
 }
 
+#tablecustomer thead{
+    width: auto;
+}
+
 #cno {
     width: 10%;  
 }
@@ -74,6 +78,15 @@ tbody {
     height: 150px;       /* Just for the demo          */
     overflow-y: auto;    /* Trigger vertical scroll    */
     overflow-x: hidden;
+}
+
+.table tr {
+    cursor: pointer;
+}
+.hiddenRow {
+    padding: 0 4px !important;
+    background-color: #eeeeee;
+    font-size: 13px;
 }
 
 #cusbr{

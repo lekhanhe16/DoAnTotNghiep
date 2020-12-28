@@ -7,7 +7,7 @@ import pickle as pkl
 import numpy as np
 from PIL import Image
 from cv2 import cv2
-from flask import Flask
+from flask import Flask, jsonify
 from flask_mysqldb import MySQL
 from visual_web.model import *
 from visual_web.controller import face_embedding as FE
@@ -28,16 +28,62 @@ customers = []
 
 def match_a_customer(civilian):
     global customers
-
+    mind = 9999
+    ind = 0
+    nomatch = True
     if len(customers) == 0:
         return None
     for i in range(len(customers)):
-        if FE.is_match(civilian.face_embed, customers[i].embbed) is True:
-            return Customer(cid=customers[i].civilianid, cusname=customers[i].name, cusphone=customers[i].phone,
-                            emb=None, addr=customers[i].address)
-        # print(i)
+        score, ismatch = FE.is_match(civilian.face_embed, customers[i].embbed)
+        if ismatch and score < mind:
+            mind = score
+            nomatch = False
+            ind = i
+    if nomatch is False:
+        return Customer(cid=customers[ind].civilianid, cusname=customers[ind].name, cusphone=customers[ind].phone,
+                        emb=None, addr=customers[ind].address)
+    # print(i)
+    else:
+        return None
 
-    return None
+
+def customer_to_json():
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT max(CivilianPersonId), name, phone, address, faceimg, lower "
+                "from Civilian, Customer, Person WHERE Person.id = Civilian.PersonId "
+                "AND Civilian.PersonId = CivilianPersonId group by CivilianPersonId")
+    fetch_data = cur.fetchall()
+    res = json.dumps([{"id": c[0], "cname": c[1], "cphone": c[2],
+                       "caddress": c[3], "faceimg": c[4], "cage": c[5]} for c in fetch_data])
+    cur.close()
+    return res
+
+
+def edit_customer(cusname, cusaddress, cusphone, cusid):
+    cur = mysql.connection.cursor()
+    if cusname != '':
+        cur.execute("UPDATE Customer SET name = %s WHERE CivilianPersonId = %s", (str(cusname), int(cusid)))
+    if cusphone != '':
+        cur.execute("UPDATE Customer SET phone = %s WHERE CivilianPersonId = %s", (str(cusphone), int(cusid)))
+    if cusaddress != '':
+        cur.execute("UPDATE Customer SET address = %s WHERE CivilianPersonId = %s", (str(cusaddress), int(cusid)))
+    mysql.connection.commit()
+    cur.close()
+    return "Successfully Edited!"
+
+
+def search_customer_by_name(cusname):
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT max(CivilianPersonId), name, phone, address, faceimg, lower "
+                "from Civilian, Customer, Person WHERE Person.id = Civilian.PersonId "
+                "AND Civilian.PersonId = CivilianPersonId AND Customer.name LIKE %s group by CivilianPersonId",
+                (str(cusname),))
+    fetch_data = cur.fetchall()
+    cur.close()
+    res = json.dumps([{"id": c[0], "cname": c[1], "cphone": c[2],
+                       "caddress": c[3], "faceimg": c[4], "cage": c[5]} for c in fetch_data])
+    # print(res)
+    return res
 
 
 def get_customers():
@@ -63,10 +109,32 @@ def get_customers():
             customers.append(customer)
 
 
+def admin_login(admin):
+    with app.app_context():
+        cur = mysql.connection.cursor()
+        timein = dt.now().strftime("%Y-%m-%d %H:%M:%S")
+        cur.execute("INSERT INTO Activitylog VALUES(default, %s, %s, default)",
+                    (int(admin.account.id), str(timein)))
+        mysql.connection.commit()
+        cur.close()
+        return timein
+
+
+def setoutime(accountid, timein):
+    with app.app_context():
+        cur = mysql.connection.cursor()
+        cur.execute("UPDATE Activitylog SET outime = %s WHERE AccountId = %s AND intime = %s",
+                    (str(dt.now().strftime("%Y-%m-%d %H:%M:%S")), int(accountid), str(timein)))
+        mysql.connection.commit()
+        cur.close()
+        return "OK"
+
+
 def get_admin_by_account(account):
     cur = mysql.connection.cursor()
     cur.execute(
-        "SELECT PersonId, AccountId, Name FROM Account, Admin WHERE username = %s AND password = %s "
+        "SELECT PersonId, AccountId, Name, role, username, password "
+        "FROM Account, Admin WHERE username = %s AND password = %s "
         "AND Account.Id = Admin.AccountId",
         (str(account.username), str(account.pwd)))
     fetch_data = cur.fetchone()
@@ -101,7 +169,7 @@ def add_new_civilian(civilian, addperson):
     # print(expressions)
     with app.app_context():
         # mysql.connection.begin()
-        emo_check = np.zeros(3, dtype=int)
+
         out_time = dt.strftime(dt.now(), '%H:%M:%S')
         out_date = dt.strftime(dt.now(), '%Y-%m-%d')
         cur = mysql.connection.cursor()
@@ -126,29 +194,32 @@ def add_new_civilian(civilian, addperson):
                     (int(last_insert_id), int(cil_gender), str(civilian.timein), str(civilian.datein),
                      str(out_time), str(out_date), str(civilian.faceimg), int(civilian.lower), int(civilian.higher)))
         # mysql.connection.commit()
-
-        # mysql.connection.commit()
-        for i, e in enumerate(civilian.expres):
-
-            if str(e) == 'neutral':
-                iemo = 0
-            elif str(e) == 'happy':
-                iemo = 1
-            elif str(e) == 'sad':
-                iemo = 2
-            if str(e) == 'sad' and i == len(civilian.expres) - 1:
-                continue
-            if emo_check[iemo] == 0:
-                # print("emo cvi: " + str(last_civil))
-                cur.execute("INSERT INTO Expression VALUES (default, %s, %s, %s, %s)",
-                            (int(last_insert_id), str(e), str(civilian.timein), str(civilian.datein)))
-                # mysql.connection.commit()
-            emo_check[iemo] = 1
-            emo_check[iemo] = 1
-        # mysql.connection.commit()
         cur.close()
         # mysql.connection.rollback()
         return last_insert_id
+
+
+def add_emotion(civilian, e):
+    with app.app_context():
+        cur = mysql.connection.cursor()
+        # emo_check = np.zeros(3, dtype=int)
+        # for i, e in enumerate(civilian.expres):
+        #
+        #     if str(e) == 'neutral':
+        #         iemo = 0
+        #     elif str(e) == 'happy':
+        #         iemo = 1
+        #     elif str(e) == 'sad':
+        #         iemo = 2
+        #     if str(e) == 'sad' and i == len(civilian.expres) - 1:
+        #         continue
+        #     if emo_check[iemo] == 0:
+        # print("emo cvi: " + str(last_civil))
+        cur.execute("INSERT INTO Expression VALUES (default, %s, %s, %s, %s)",
+                    (int(civilian.id), str(e), str(civilian.timein), str(civilian.datein)))
+        # mysql.connection.commit()
+        cur.close()
+        # emo_check[iemo] = 1
 
 
 def get_civilian_by_month_year(month, year):
@@ -273,6 +344,54 @@ def ageoverall():
                     writer.writerow([i, j, male[i][j], '', '', ''])
                 elif male[i][j] == 0 and female[i][j] != 0:
                     writer.writerow(['', '', '', i, j, female[i][j]])
+
+
+def expression_with_employee():
+    cur = mysql.connection.cursor()
+    cur.execute("SELECT PersonId, Account.id, Admin.Name, role, Account.username "
+                "From Account, Admin WHERE role = 'employee' AND Admin.AccountId = "
+                "Account.id")
+    admin = cur.fetchall()
+    adm = json.dumps([{"pid": d[0], "aid": d[1], "name": d[2], "role": d[3], "username": d[4]} for d in admin])
+    # date
+    cur.execute("SELECT Account.id,Admin.Name, role,  Account.username, Expression.expression "
+                ",COUNT(Expression.expression) FROM `Activitylog`, Admin,Account, Civilian, Expression "
+                "WHERE Civilian.PersonId = Expression.CivilianPersonId AND Activitylog.AccountId = Account.id "
+                "AND Admin.AccountId = Account.id and role ='employee' "
+                "AND CAST( CAST(datein as DATETIME)+timein as DATETIME) >= intime"
+                " AND outime >= CAST( CAST(datein as DATETIME)+timein as DATETIME) "
+                "AND timein = moment AND datein = CURDATE() and datein = datemoment "
+                "GROUP BY Admin.AccountId, expression")
+    day_data = cur.fetchall()
+    res_day = json.dumps([{"id": d[0], "name": d[1], "role": d[2],
+                           "username": d[3], "expression": d[4], "count": d[5]} for d in day_data])
+
+    #     week
+    cur.execute("SELECT Account.id,Admin.Name, role,  Account.username, Expression.expression "
+                ",COUNT(Expression.expression) FROM `Activitylog`, Admin,Account, Civilian, Expression "
+                "WHERE Civilian.PersonId = Expression.CivilianPersonId AND Activitylog.AccountId = Account.id "
+                "AND Admin.AccountId = Account.id and role ='employee' "
+                "AND CAST( CAST(datein as DATETIME)+timein as DATETIME) >= intime"
+                " AND outime >= CAST( CAST(datein as DATETIME)+timein as DATETIME) "
+                "AND timein = moment AND YEARWEEK(datein,1) = YEARWEEK(CURDATE(), 1) and datein = datemoment "
+                "GROUP BY Admin.AccountId, expression")
+    week_data = cur.fetchall()
+    res_week = json.dumps([{"id": d[0], "name": d[1], "role": d[2],
+                            "username": d[3], "expression": d[4], "count": d[5]} for d in week_data])
+    # month
+    cur.execute("SELECT Account.id,Admin.Name, role,  Account.username, Expression.expression "
+                ",COUNT(Expression.expression) FROM `Activitylog`, Admin,Account, Civilian, Expression "
+                "WHERE Civilian.PersonId = Expression.CivilianPersonId AND Activitylog.AccountId = Account.id "
+                "AND Admin.AccountId = Account.id and role ='"
+                "employee' AND CAST( CAST(datein as DATETIME)+timein as DATETIME) >= intime"
+                " AND outime >= CAST( CAST(datein as DATETIME)+timein as DATETIME) "
+                "AND timein = moment AND MONTH(datein) = MONTH(NOW()) and datein = datemoment "
+                "GROUP BY Admin.AccountId, expression")
+    month_data = cur.fetchall()
+    res_month = json.dumps([{"id": d[0], "name": d[1], "role": d[2],
+                             "username": d[3], "expression": d[4], "count": d[5]} for d in month_data])
+
+    return res_day, res_week, res_month, adm
 
 
 def get_product_expression():

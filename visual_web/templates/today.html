@@ -49,13 +49,13 @@
     <div class="modal fade" id="myModalPurchase" tabindex="-1" role="dialog" aria-labelledby="modalpurchase"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" style="width: auto; max-width: 500px;">
-            <div class="modal-content" >
+            <div class="modal-content">
                 <div class="modal-header">
                     <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> -->
                     <h4 class="modal-title" id="modalpurchase">Purchase Items</h4>
                 </div>
                 <div class="modal-body">
-                    <div class="container-fluid" >
+                    <div class="container-fluid">
                         <div class="row d-flex">
                             <div class="col-md-6">
                                 <div>List Product</div>
@@ -166,7 +166,7 @@
         <div class="container-fluid" id="lefttoday">
             <br>
             <div class="row d-flex justify-content-center">
-                <img src="../static/images/male.png"/>
+                <img src="../static/images/male.png" />
                 <div style="margin-left: 20px;" id="numofmale">0</div>
             </div>
         </div>
@@ -174,7 +174,7 @@
         <div class="container-fluid" id="midtoday">
             <br>
             <div class="row d-flex justify-content-center">
-                <img src="../static/images/femenine.png"/>
+                <img src="../static/images/femenine.png" />
                 <div style="margin-left: 20px;" id="numoffemale">0</div>
             </div>
             <br>
@@ -215,13 +215,13 @@
     </div>
 
     <!-- <script src="../static/js/jquery.js"></script> -->
-    <script type="text/javascript" src="../static/js/todayfunction.js"></script>
+   
     <script>
         var customer = [];
         var products;
         var sum = 0;
         var clickCusID = 0;
-        
+
         var clickPos = 0;
         var productno = 0;
         // var deleteproduct = 0;
@@ -242,6 +242,7 @@
                 success: function (data) {
                     var fetch_data = JSON.parse(data.replace(/&#34;/g, "\""));
                     // alert(fetch_data[0].no)
+                    var totalmale = totalfemale = 0
                     for ([i, c] of fetch_data.entries()) {
                         if (i > 0) {
                             if ((c.no == customer[customer.length - 1].no) && c.timein == customer[customer.length - 1].timein) {
@@ -251,7 +252,8 @@
                         }
                         // console.log(customer[i-1].no)
 
-
+                        if(c.gender == 1) totalmale += 1;
+                        else totalfemale += 1;
                         c.pos = customer.length + 1;
                         customer.push(c);
                         var srce = "data:image/jpeg;base64," + c.faceimg;
@@ -259,12 +261,16 @@
                         newImage.src = srce;
                         newImage.width = newImage.height = "40";
                         cname = ""
+                        document.getElementById("numofmale").innerHTML = totalmale;
+                        document.getElementById("numoffemale").innerHTML = totalfemale;
                         if (c.cid != 0 && c.cid != null) cname = c.name;
+
                         $('#newcustoday tbody').append
                             ('<tr><td class="nr" id="cno"><span>' + c.pos + '</span></td><td>' + c.timein + " " + c.datein + '</td>' +
                                 '<td id="namecustomer">' + cname + '</td>' +
                                 '<td><img src=' + newImage.src + ' height="30" width="30" /></td>' +
-                                '<td><button type="button" class="btn btn-primary bshow" onclick="showInfo(this, 0)" height="30" width="40">View</button></tr>');
+                                '<td><button type="button" class="btn btn-primary bshow" '+
+                                'onclick="showInfo(this, 0)" height="30" width="40">View</button></tr>');
                     }
 
                     // console.log(customer);
@@ -295,16 +301,18 @@
                 var srce = "data:image/jpeg;base64," + jd.faceimg;
                 var newImage = document.createElement('img');
                 newImage.src = srce;
-                if (jd.gender == 1){
+                if (jd.gender == 1) {
                     // var g = $("#numofmale").value;
                     // alert(g)
-                    
-                    document.getElementById("numofmale").innerHTML = new Number(document.getElementById("numofmale").textContent) + 1;
+
+                    document.getElementById("numofmale").innerHTML = 
+                    new Number(document.getElementById("numofmale").textContent) + 1;
                 }
                 else {
                     // var g = $("#numoffemale").value;
                     // alert(g)
-                    document.getElementById("numoffemale").innerHTML = new Number(document.getElementById("numoffemale").textContent) + 1;
+                    document.getElementById("numoffemale").innerHTML = 
+                    new Number(document.getElementById("numoffemale").textContent) + 1;
                 }
                 cname = ""
                 if (jd.cid != 0) cname = jd.name;
@@ -312,7 +320,8 @@
                     ('<tr><td class="nr" id="cno"><span>' + cusno + '</span></td><td>' + jd.timein + " " + jd.datein + '</td>' +
                         '<td id="namecustomer">' + cname + '</td>' +
                         '<td><img src=' + newImage.src + ' height="30" width="30" /></td>' +
-                        '<td><button type="button" class="btn btn-primary bshow" onclick="showInfo(this, 0)" height="30" width="40">View</button></td></tr>');
+                        '<td><button type="button" class="btn btn-primary bshow" '+
+                            'onclick="showInfo(this, 0)" height="30" width="40">View</button></td></tr>');
             }
 
         });
@@ -324,6 +333,7 @@
             if (p == 0 && obj != null) {
                 $row = $(obj).closest('tr');    // tim dong chua civialian
                 $pos = $row.find('.nr').text(); // thu tu dong 
+
             }
             else $pos = p;
             var cimage, cage;
@@ -380,9 +390,11 @@
                 url: "http://0.0.0.0:8855/neworder",
                 type: "POST",
                 contentType: "application/json",
-                data: JSON.stringify({ "order": listpurchase, "customerid": clickCusID, "totalprice": sum,
-                                    "custimein": customer[clickPos-1].timein, "ordertime": timeorder,
-                                    "orderdate": customer[clickPos-1].datein}),
+                data: JSON.stringify({
+                    "order": listpurchase, "customerid": clickCusID, "totalprice": sum,
+                    "custimein": customer[clickPos - 1].timein, "ordertime": timeorder,
+                    "orderdate": customer[clickPos - 1].datein
+                }),
                 success: function (data) {
                     // products = JSON.parse(data.replace(/&#34;/g, "\""));
                     // // alert(JSON.stringify(products[0]))
@@ -449,23 +461,45 @@
             // }
             showInfo(null, cpos);
         }
+        function viewcivilian(pos) {
+            var jsondata;
+            for (c of customer) {
+                if (c.pos == pos) {
+                    jsondata = { "civid": c.no };
+                    break;
+                }
+            }
+            $.ajax({
+                url: "http://0.0.0.0:8855/viewcivilian",
+                type: "POST",
+                contentType: "application/json",
+                data: JSON.stringify(jsondata),
+                success: function (data) {
 
+                }
+            });
+        }
         $("#btnaddcustomer").on("click", function () {
+            
             // console.log("clck");
             document.getElementById("addcusform").setAttribute("idCus", clickCusID);
             document.getElementById("addcusform").setAttribute("posCus", clickPos);
+            viewcivilian(clickPos);
             $("#myModalInfo").removeClass("fade").modal("hide");
             $("#myModalAddNew").addClass("fade").modal("show");
 
         });
 
         $("#btnpurchase").on("click", function () {
+            
             listpurchase = [];
             $("#bodycartproduct").empty();
+            viewcivilian(clickPos);
             sum = 0;
             productno = 0;
             $("#myModalInfo").removeClass("fade").modal("hide");
             $("#myModalPurchase").addClass("fade").modal("show");
         });
     </script>
+
 </body>

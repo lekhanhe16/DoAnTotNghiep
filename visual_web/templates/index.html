@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-<!--        <link rel="stylesheet" type="text/css" href="/home/kl/Downloads/bootstrap-4.5.2-dist/css/bootstrap.min.css">-->
-<!--        <script type="text/javascript" src="file:/home/kl/Downloads/bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>-->
+    <!--        <link rel="stylesheet" type="text/css" href="/home/kl/Downloads/bootstrap-4.5.2-dist/css/bootstrap.min.css">-->
+    <!--        <script type="text/javascript" src="file:/home/kl/Downloads/bootstrap-4.5.2-dist/js/bootstrap.min.js"></script>-->
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/mdb.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
     <!-- <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -16,8 +17,9 @@
 <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css" /> -->
 
     <title>DoAnPTIT</title>
-  
+
 </head>
+
 <body>
     <div class="wrapper">
         <nav id="sidebar">
@@ -25,14 +27,15 @@
                 <h3>Age Gender Expression</h3>
             </div>
             <ul class="lisst-unstyled components">
-                <li id = "datavisual">
+                <li id="datavisual">
                     <p>Data Visualization</p>
                 </li>
                 <li>
                     <a href="#today" id="today" onclick="showChart('today')">Today</a>
                 </li>
                 <li>
-                    <a href="#ageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Age-Gender</a>
+                    <a href="#ageSubmenu" data-toggle="collapse" aria-expanded="false"
+                        class="dropdown-toggle">Age-Gender</a>
                     <ul class="collapse lisst-unstyled" id="ageSubmenu">
                         <li>
                             <a href="#ageweek" onclick="showChart('ageweek')">This week</a>
@@ -46,7 +49,13 @@
                     <a href="#expression" onclick="showChart('expression')">Expression</a>
                 </li>
                 <li>
-                    <a href="/logout">Log out</a>
+                    <a href="#customer" onclick="showChart('customer')">Customer</a>
+                </li>
+                <li>
+                    <a href="#employee" onclick="showChart('employee')">Employee</a>
+                </li>
+                <li>
+                    <a href="/logout" onclick="logout()">Log out</a>
                 </li>
             </ul>
         </nav>
@@ -54,46 +63,47 @@
         <div id="content">
             <div class="container-fluid" id="headbar">
                 <img src="{{ url_for('static', filename='images/16menu.png')}}" id="sidebarCollapse">
-                    <i class="fas fa-align-left"></i>
+                <i class="fas fa-align-left"></i>
                 </img>
 
-            </div> 
+            </div>
             <br id="cusbr">
             <br id="cusbr">
             <div id="includedContent"></div>
-            
+
         </div>
-        
+
     </div>
-    
-   
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+
+
+    <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
             integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-            crossorigin="anonymous"></script>
+            crossorigin="anonymous"></script> -->
     <script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-            integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-            crossorigin="anonymous"></script>
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
-            integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
-            crossorigin="anonymous"></script>
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/mdb.min.js') }}"></script>
     <script type="text/javascript" src="../static/js/plotly.min.js"></script>
-    
-    <script type="text/javascript" src="../static/js/monthfunction.js" ></script>
-    
+
+    <script type="text/javascript" src="../static/js/monthfunction.js"></script>
+
     <script type="text/javascript">
         // if ( window.history.replaceState ) {
         //     window.history.replaceState( null, null, window.location.href );
         // }
-        $(function() {
+        var admin;
+        $(function () {
 
-        var $sidebar   = $("#sidebar"), 
-            $window    = $(window),
-            offset     = $sidebar.offset(),
-            topPadding = 1;
+            var $sidebar = $("#sidebar"),
+                $window = $(window),
+                offset = $sidebar.offset(),
+                topPadding = 1;
 
-            $window.scroll(function() {
+            $window.scroll(function () {
                 if ($window.scrollTop() > offset.top) {
                     $sidebar.stop().animate({
                         marginTop: $window.scrollTop() - offset.top + topPadding
@@ -106,43 +116,86 @@
             });
         });
 
-        $(document).ready(function(){
-            
-            $("#sidebarCollapse").on('click', function(){
+        function logout() {
+            $.ajax({
+                url: "http://0.0.0.0:8855/setoutime",
+                type: "POST",
+                contentType: "application/json",
+                data: JSON.stringify({ "accountid": admin.accountid, "timein": admin.timein }),
+                success: function (data) {
+
+                }
+            });
+        }
+        $(document).ready(function () {
+            admin = JSON.parse('{{admin}}'.replace(/&#34;/g, "\""));
+            // alert(admin.accountid)
+            $("#sidebarCollapse").on('click', function () {
                 // alert("hello")
                 $("#sidebar").toggleClass('active');
             });
         });
-        $(function(){
-          $("#includedContent").load("http://0.0.0.0:8855/today"); 
+        $(function () {
+            $("#includedContent").load("http://0.0.0.0:8855/today");
         });
-        function showChart(chart){
-            if (chart === 'ageweek'){
-                $(function(){
-                $("#includedContent").load("http://0.0.0.0:8855/ageweek"); 
-                });
+        function showChart(chart) {
+            if (chart === 'ageweek') {
+                if (admin.role != 'manager') {
+                    alert("You must be manager to access!")
+                }
+                else {
+                    $(function () {
+                        $("#includedContent").load("http://0.0.0.0:8855/ageweek");
+                    });
+                }
             }
-            else if(chart == 'ageoverall'){
-                $(function(){
-                    $('#includedContent').load("http://0.0.0.0:8855/ageoverall");
-                });
+            else if (chart == 'ageoverall') {
+                if (admin.role != 'manager') {
+                    alert("You must be manager to access!")
+                }
+                else {
+                    $(function () {
+                        $('#includedContent').load("http://0.0.0.0:8855/ageoverall");
+                    });
+                }
             }
-            else if(chart == 'expression'){
-                $(function(){
-                    $('#includedContent').load("http://0.0.0.0:8855/expression");
-                })
+            else if (chart == 'expression') {
+                if (admin.role != 'manager') {
+                    alert("You must be manager to access!")
+                }
+                else {
+                    $(function () {
+                        $('#includedContent').load("http://0.0.0.0:8855/expression");
+                    });
+                }
             }
-            else if(chart == 'today'){
-                $(function(){
+            else if (chart == 'today') {
+                $(function () {
                     $('#includedContent').load("http://0.0.0.0:8855/today");
                 })
             }
+            else if (chart == 'customer') {
+                $(function () {
+                    $('#includedContent').load("http://0.0.0.0:8855/customer");
+                })
+            }
+            else if (chart == 'employee') {
+                if (admin.role != 'manager') {
+                    alert("You must be manager to access!")
+                }
+                else {
+                    $(function () {
+                        $('#includedContent').load("http://0.0.0.0:8855/employee");
+                    });
+                }
+            }
         }
-        
+
         // $("#today").one('click', function(){
         //     $('#includedContent').load("http://0.0.0.0:8855/today");
         // });
-       
+
     </script>
 </body>
+
 </html>

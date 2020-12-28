@@ -1,0 +1,89 @@
+<body>
+    <div id="container">
+        <div class="container-fluid">
+            <br>
+            <table class="table table-condensed" id="tableemployee" style="border-collapse:collapse;">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Role</th>
+                        <th>AccountID</th>
+                        <th>Username</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            // console.log(JSON.stringify('{{employeedata}}'));
+            var admins = JSON.parse('{{admin}}'.replace(/&#34;/g, '\"'));
+            var dayData = JSON.parse('{{day}}'.replace(/&#34;/g, '\"'));
+            var weekData = JSON.parse('{{week}}'.replace(/&#34;/g, '\"'));
+            var monthData = JSON.parse('{{month}}'.replace(/&#34;/g, '\"'));
+            var no = 1;
+            for (a of admins) {
+                var today = "Today: ";
+                var week = "This week: ";
+                var month = "This month: ";
+                
+                for (d of dayData) {
+                    
+                    if (a.aid == d.id) {
+                        
+                        today += d.expression + ": " + d.count + "    "
+                    }
+                }
+                for (w of weekData) {
+                   
+                    if (a.aid == w.id) {
+                        
+                        week += w.expression + ": " + w.count + "    "
+                    }
+                }
+                for (m of monthData) {
+                    
+                    if (a.aid == m.id) {
+                       
+                        month += m.expression + ": " + m.count + "    "
+                    }
+                }
+                // month += "g";
+                console.log(a.username+" "+today+" "+week+" "+month);
+                $("#tableemployee tbody").append(
+                    '<tr data-toggle="collapse" data-target="#' + a.username + '" class="accordion-toggle">' +
+                    '<td>' + no + '</td>' +
+                    '<td>' + a.pid + '</td>' +
+                    '<td>' + a.name + '</td>' +
+                    '<td class="text-success">' + a.role + '</td>' +
+                    '<td class="text-error">' + a.aid + '</td>' +
+                    '<td class="text-success">' + a.username + '</td>' +
+                    '</tr>' +
+                    '<tr>' +
+                    '<td colspan="6" class="hiddenRow">' +
+                    '<div id="' + a.username + '" class="accordian-body collapse">' +
+                    '<p>' + today + '</p>' +
+                    '<p>' + week + '</p>' +
+                    '<p>' + month + '</p>' +
+                    '</div>' +
+                    '</td>' +
+                    '</tr>'
+                )
+                no += 1;
+            }
+        })
+        $(document).on('show.bs.collapse','.accordian-body', function(){
+            $(this).closest("table")
+                .find(".collapse.in")
+                .not(this)
+                .collapse('toggle');
+            // alert("hello");
+        })
+    </script>
+</body>
