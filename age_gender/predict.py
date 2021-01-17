@@ -147,7 +147,7 @@ def predict_emotion(image):
         return [' ']
 
 
-def predict_ga(frame, lms):
+def predict_ga(frame):
     time.sleep(0.0001)
     # global sess
     # global graph
@@ -159,15 +159,15 @@ def predict_ga(frame, lms):
     # frame = np.array(image_input)
 
     try:
-        if lms is not None:
-            l = lms
-        else:
-            bboxes, l = det_model.detect(frame, threshold=0.8, scale=1.0)
-            l = l[0]
+        # if lms is not None:
+        #     l = lms
+        # else:
+        bboxes, landmarks = det_model.detect(frame, threshold=0.8, scale=1.0)
+            # l = l[0]
 
         # print("lm "+str(lm))
-        if len(l) > 0:
-            _img = face_align.norm_crop(frame, landmark=l)
+        if len(landmarks) > 0:
+            _img = face_align.norm_crop(frame, landmark=landmarks[0])
             # cv2.imshow('F', _img)
             if _img is None:
                 gender, age = None, None

@@ -8,7 +8,7 @@ import cv2
 # import dlib
 import mxnet as mx
 import numpy as np
-import sklearn
+from sklearn import preprocessing
 from age_gender.utils import face_align
 
 import age_gender.face_preprocess as face_preprocess
@@ -40,32 +40,32 @@ class FaceModel:
     def __init__(self, args):
         self.args = args
         # Determine and set context
-        if len(mx.test_utils.list_gpus()) == 0:
-            ctx = mx.cpu()
-        else:
-            ctx = mx.gpu(args['gpu'])
-        # ctx = mx.cgu(args.gpu)
-        _vec = args['image_size'].split(',')
+        # if len(mx.test_utils.list_gpus()) == 0:
+        #     ctx = mx.cpu()
+        # else:
+        #     ctx = mx.gpu(args['gpu'])
+        ctx = mx.cpu(args.gpu)
+        _vec = args.image_size.split(',')
         assert len(_vec) == 2
         image_size = (int(_vec[0]), int(_vec[1]))
         self.model = None
         self.ga_model = None
-        if len(args['model']) > 0:
-            self.model = get_model(ctx, image_size, args['model'], 'fc1')
-        if len(args['ga_model']) > 0:
-            self.ga_model = get_model(ctx, image_size, args['ga_model'], 'fc1')
+        if len(args.model) > 0:
+            self.model = get_model(ctx, image_size, args.model, 'fc1')
+        # if len(args['ga_model']) > 0:
+        #     self.ga_model = get_model(ctx, image_size, args['ga_model'], 'fc1')
 
-        self.threshold = args['threshold']
+        self.threshold = args.threshold
         self.det_minsize = 50
         self.det_threshold = [0.6, 0.7, 0.8]
         # self.det_factor = 0.9
         self.image_size = image_size
         mtcnn_path = os.path.join(os.path.dirname(__file__), 'mtcnn-model')
-        if args['det'] == 0:
+        if args.det == 0:
             detector = MtcnnDetector(model_folder=mtcnn_path, ctx=ctx, num_worker=1, accurate_landmark=True,
                                      threshold=self.det_threshold)
         else:
-            print(args['det'])
+            print(args.det)
             detector = MtcnnDetector(model_folder=mtcnn_path, ctx=ctx, num_worker=1, accurate_landmark=True,
                                      threshold=[0.0, 0.0, 0.2])
         self.detector = detector
@@ -130,7 +130,7 @@ class FaceModel:
         db = mx.io.DataBatch(data=(data,))
         self.model.forward(db, is_train=False)
         embedding = self.model.get_outputs()[0].asnumpy()
-        embedding = sklearn.preprocessing.normalize(embedding).flatten()
+        embedding = preprocessing.normalize(embedding).flatten()
         return embedding
 
     def get_ga(self, aligned):

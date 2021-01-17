@@ -21,11 +21,11 @@
           <thead>
             <tr>
               <th id="noc">#</td>
-              <th >In-time</td>
-              <th >Gender</th>
-              <th >IMG</td>
-              <th >Customer</td>
-              <th >Age</th>
+              <th>In-time</td>
+              <th>Gender</th>
+              <th>IMG</td>
+              <th>Customer</td>
+              <th>Age</th>
               <th>Expression</td>
             </tr>
           </thead>
@@ -38,8 +38,13 @@
     </div>
     <div class="container-fluid" id="rightfilter">
       <br>
-
       <div>
+        <div>Stats in</div>
+        <input type="date" id="after" placeholder="Enter start date"><br><br>
+        <input type="date" id="before" placeholder="Enter end date"><br><br>
+      </div>
+
+      <!-- <div>
         <div>Year</div>
         <select class="mdb-select md-form" id="selectyear" style="width: max-content">
           <option value="" disabled selected>Choose a year</option>
@@ -63,9 +68,9 @@
           <option value="10">October</option>
           <option value="11">November</option>
           <option value="12">December</option>
-        </select>
+        </select> -->
         <div class="row d-flex justify-content-center">
-          <button type="button" id="getdata" class="btn btn-primary" height="30" width="40">View</button>
+          <button type="button" id="btnsearch" class="btn btn-primary" height="30" width="40">View</button>
         </div>
 
       </div>
@@ -76,12 +81,15 @@
   <script>
     var customer = [];
     showAgeOverAll();
-    $('#getdata').on('click', function () {
-      var $year = $('#selectyear').val();
-      var $month = $('#selectmonth').val();
-      var querydata = { "month": $month, "year": $year }
+    $('#btnsearch').on('click', function () {
+      var $startdate = $('#after').val();
+      var $enddate = $('#before').val();
+      // var $year = $('#selectyear').val();
+      // var $month = $('#selectmonth').val();
+      // var querydata = { "month": $month, "year": $year }
+      var querydata = {"after": $startdate, "before":$enddate};
       $.ajax({
-        url: "http://0.0.0.0:8855/getcivilianbymonthyear",
+        url: "http://0.0.0.0:8855/getcivilianbystartend",
         type: "POST",
         contentType: "application/json",
         data: JSON.stringify(querydata),
@@ -94,7 +102,7 @@
             c.no = i + 1;
             customer.push(c);
             var customerName = ""
-            if (c.cusid != null){
+            if (c.cusid != null) {
               customerName = c.cusname;
             }
             var srce = "data:image/jpeg;base64," + c.faceimg;
@@ -104,13 +112,36 @@
             $('#customer tbody').append
               ('<tr><td class="nr" id="cno"><span>' + c.no + '</span></td><td>' + c.timein + " " + c.datein + '</td>' +
                 '<td>' + c.gender + '</td><td><img src=' + newImage.src + ' height="30" width="30" /></td>' +
-                '<td>' + customerName + '</td>'+
-                '<td>' + c.age + '</td>'+
+                '<td>' + customerName + '</td>' +
+                '<td>' + getAgeSpan(c.age) + '</td>' +
                 '<td>' + c.expression + '</td></tr>');
+            
           }
+          redrawChart();
           // console.log(customer);
         }
       });
+      
     });
+    function getAgeSpan(age) {
+            if (age >= 10 && age <= 15) {
+                return "10-15";
+            }
+            else if (age >= 16 && age <= 20) {
+                return "16-20";
+            }
+            else if (age >= 21 && age <= 25) {
+                return "21-25";
+            }
+            else if (age >= 26 && age <= 30) {
+                return "26-30";
+            }
+            else if (age >= 31 && age <= 35) {
+                return "31-35";
+            }
+            else if (age >= 36 && age <= 40) {
+                return "36-40";
+            }
+        }
   </script>
 </body>

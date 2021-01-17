@@ -18,7 +18,7 @@ from flask import Flask, g, redirect, flash, render_template, request, session, 
 from flask import Response
 from flask_mysqldb import MySQL
 import numpy as np
-from visual_web.controller import face_embedding as FE
+from visual_web.controller import faceextraction
 from age_gender.predict import predict_ga, predict_emotion, get_faces
 from visual_web.controller import appcontroller
 from visual_web.model.account import Account
@@ -49,8 +49,10 @@ frame_stream = None
 
 tracked_civ = []
 tracked_pos = {}
-track_lm = []
-track_bbox = []
+
+
+# track_lm = []
+# track_bbox = []
 
 
 # socket_io = SocketIO(app)
@@ -67,13 +69,13 @@ def x(f):
 
 @app.route('/ageweek')
 def show_age_week():
-    return render_template('ageweek.html', tabledata=appcontroller.show_age_week())
+    return render_template('thisweek.html', tabledata=appcontroller.show_age_week())
 
 
 @app.route('/ageoverall')
 def ageoverall():
     appcontroller.ageoverall()
-    return render_template('agemonth.html')
+    return render_template('overall.html')
 
 
 @app.route('/logi')
@@ -81,13 +83,13 @@ def logi():
     return render_template('login.html')
 
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def home(data=None):
     if not session.get('logged_in'):
         return render_template('login.html')
     else:
         if data is not None:
-            print(dt.now().strftime("%Y-%m-%d %H:%M:%S"))
+            # print(dt.now().strftime("%Y-%m-%d %H:%M:%S"))
             account = Account(data[1], data[4], data[5])
             admin = Admin(data[0], account, data[2], data[3])
             timein = appcontroller.admin_login(admin)
@@ -120,6 +122,8 @@ def do_login():
     try:
         if len(fetch_data) == 6:
             session['logged_in'] = True
+        else:
+            flash('Tài khoản hoặc mật khẩu sai')
     except:
         flash('Tài khoản hoặc mật khẩu sai')
     return home(data=fetch_data)
@@ -147,13 +151,13 @@ def all_products():
     return appcontroller.get_all_products()
 
 
-@app.route('/getcivilianbymonthyear', methods=['POST'])
-def get_civilian_by_month_year():
+@app.route('/getcivilianbystartend', methods=['POST'])
+def get_civilian_by_start_end():
     content = request.get_json()
-    month = content['month']
-    year = content['year']
-    print(str(month) + " " + str(year))
-    res = appcontroller.get_civilian_by_month_year(month, year)
+    start = content['after']
+    end = content['before']
+    # print(str(month) + " " + str(year))
+    res = appcontroller.get_civilian_by_start_end(start, end)
     # return res
     return res
 
@@ -289,11 +293,8 @@ def get_cus_emb(cid):
     global new_civilian
     # print("this cid" + str(cid))
     for c in new_civilian:
-        # print("hey" + str(c.id))
-        # print("ember: " + str(c.face_embed))
-        # if int(c.id) == int(cid):
-        print("found: " + str(c.id))
-        return c.face_embed
+        if int(c.id) == int(cid):
+            return c.face_embed
     return None
 
 
@@ -334,11 +335,11 @@ def assign_label(fid, emo, age, gender, intime, indate, ind, face_base64):
     if ind is not None:
         # tracked_civ[fid, 0].append(emo)
         tracked_civ[fid].expres.append(emo)
-    if age is not None and gender is not None:
-        if age > 20 and age < tracked_civ[fid].lower + 3 and tracked_civ[fid].lower + 3 >= 0:
-            tracked_civ[fid].lower = age - 3
-            tracked_civ[fid].higher = age + 3
-            tracked_civ[fid].gender.gender = gender
+    if age is not None:
+        tracked_civ[fid].lower = age - 3
+        tracked_civ[fid].higher = age + 3
+    if gender is not None:
+        tracked_civ[fid].gender.gender = gender
     if intime is not None and indate is not None:
         tracked_civ[fid].timein = intime
         tracked_civ[fid].datein = indate
@@ -374,32 +375,40 @@ def add_emb_and_civ(p):
     image_input = Image.open(file_like)
     image_input = np.array(image_input)
     image_input = cv2.cvtColor(image_input, cv2.COLOR_BGR2RGB)
-    image_input = cv2.resize(image_input, (224, 224))
+    # image_input = cv2.resize(image_input, (224, 224))
+    image_input2 = cv2.resize(image_input, (112, 112))
+    # nimg = cv2.cvtColor(image_input2, cv2.COLOR_BGR2RGB)
+    nimg = np.transpose(image_input2, (2, 0, 1))
+    emb = faceextraction.embedding_model.get_feature(nimg)
+    # appcontroller.update_embed(emb)
+    # print("emb length", emb.shape)
+    # femb = []
+    # femb.append(image_input)
+    # femb = np.asarray(femb, 'float32')
+    # start = time.time()
+    # civilian.face_embed = FE.get_embedding(femb)[0]
 
-    femb = []
-    femb.append(image_input)
-    femb = np.asarray(femb, 'float32')
-
-    civilian.face_embed = FE.get_embedding(femb)[0]
-
+    civilian.face_embed = emb
+    # print("shape: " + str(civilian.face_embed.shape))
     customer = appcontroller.match_a_customer(civilian)
 
     if customer is not None:
         # print("match")
-
-        tracked_civ[p].customer = customer
-        tracked_civ[p].id = customer.civilianid
-        appcontroller.add_new_civilian(civilian=tracked_civ[p], addperson=0)
-        time.sleep(4)
-        new_civilian.append(tracked_civ[p])
+        if civilian.lower > 0:
+            tracked_civ[p].customer = customer
+            tracked_civ[p].id = customer.civilianid
+            appcontroller.add_new_civilian(civilian=tracked_civ[p], addperson=0)
+            time.sleep(4)
+            new_civilian.append(tracked_civ[p])
     #     add cam xuc cho customer
     else:
-        customer1 = Customer(0, 0, 0, None, 0)
-        tracked_civ[p].customer = customer1
-        # customer1.civ = civilian
-        time.sleep(4)
-        new_civilian.append(tracked_civ[p])
-        tracked_civ[p].id = appcontroller.add_new_civilian(civilian=tracked_civ[p], addperson=1)
+        if civilian.lower > 0:
+            customer1 = Customer(0, 0, 0, None, 0)
+            tracked_civ[p].customer = customer1
+            # customer1.civ = civilian
+            time.sleep(4)
+            new_civilian.append(tracked_civ[p])
+            tracked_civ[p].id = appcontroller.add_new_civilian(civilian=tracked_civ[p], addperson=1)
 
 
 def open_cam():
@@ -417,8 +426,8 @@ def open_cam():
         face_id = 0
         frame_counter = 0
         tracked_civ.append(None)
-        track_bbox.append(None)
-        track_lm.append(None)
+        # track_bbox.append(None)
+        # track_lm.append(None)
         sx = sy = sw = sh = 0
         while True:
 
@@ -438,7 +447,12 @@ def open_cam():
                     if track_quality < 5.2 and tracked_civ[pos].lower + 3 > 0:
                         # print(tracked_civ[pos].id)
                         # threading.Thread(target=add_emb_and_civ, args=[pos]).start()
-                        track_bbox.pop(pos)
+                        out_time = dt.strftime(dt.now(), '%H:%M:%S')
+                        out_date = dt.strftime(dt.now(), '%Y-%m-%d')
+                        appcontroller.civilian_out(tracked_civ[pos], out_time, out_date)
+
+                        # track_bbox.pop(pos)
+                        # track_lm.pop(pos)
                         tracked_pos.pop(pos)
 
                 if frame_counter % 15 == 0:
@@ -471,8 +485,8 @@ def open_cam():
                                         (x <= t_x_bar <= (x + w)) and
                                         (y <= t_y_bar <= (y + h))):
                                     matched_fid = fid
-                                    track_bbox[matched_fid] = bbox[index]
-                                    track_lm[matched_fid] = landmarks[index]
+                                    # track_bbox[matched_fid] = bbox[index]
+                                    # track_lm[matched_fid] = landmarks[index]
                                     break
 
                             if matched_fid is None:
@@ -483,8 +497,8 @@ def open_cam():
                                 face_id += 1
 
                                 tracked_pos[face_id] = tracker
-                                track_lm.append(landmarks[index])
-                                track_bbox.append(bbox[index])
+                                # track_lm.append(landmarks[index])
+                                # track_bbox.append(bbox[index])
                                 in_time = dt.strftime(dt.now(), '%H:%M:%S')
                                 in_date = dt.strftime(dt.now(), '%Y-%m-%d')
 
@@ -493,8 +507,8 @@ def open_cam():
                                 # if emo is not None and imgd is not None:
                                 # time.sleep(1)
                                 # print(landmarks[index])
-                                gender, age = predict_ga(small_frame[y:h, x:w], landmarks[index])
-                                print(landmarks[index])
+                                gender, age = predict_ga(small_frame[y:h, x:w])
+                                # print(landmarks[index])
                                 faceimg = frame[int(y / 0.25 - 5): int(h / 0.25 + 5),
                                           int(x / 0.25 - 5): int(w / 0.25 + 5)]
 
@@ -507,7 +521,9 @@ def open_cam():
                                 tracked_civ.append(newciv)
 
                                 for ind, ci in reversed(list(enumerate(tracked_civ))):
+                                    # print("x")
                                     if ci.id == newciv.id:
+                                        # print("xx")
                                         threading.Thread(target=add_emb_and_civ, args=[ind]).start()
                                     break
 
@@ -527,9 +543,10 @@ def open_cam():
                             if emo1 == 'neutral' and frame_counter % 15 == 14 and imgd1 is not None:
                                 #  0 emo; 1 age, 2 gender, 3 intime, 4 indate, 5 faceimg
                                 #
-                                gender, age = predict_ga(small_frame[int(track_bbox[z][1]):int(track_bbox[z][3]),
-                                                         int(track_bbox[z][0]):int(track_bbox[z][2])],
-                                                         track_lm[z] * 0.25)
+                                # gender, age = predict_ga(small_frame[int(track_bbox[z][1]):int(track_bbox[z][3]),
+                                #                          int(track_bbox[z][0]):int(track_bbox[z][2])],
+                                #                          track_lm[z] * 0.25)
+                                gender, age = predict_ga(imgd1)
                                 threading.Thread(target=assign_label,
                                                  args=(
                                                      z, emo1, age, gender, None, None, None,
@@ -540,6 +557,7 @@ def open_cam():
                                                  args=(
                                                      z, emo1, None, None, None, None, 1, None)).start()
                             if tracked_civ[z].expreg is True:
+                                # print("exprs true")
                                 if emo1 == 'neutral' and tracked_civ[z].isneutral is False:
                                     appcontroller.add_emotion(tracked_civ[z], emo1)
                                     tracked_civ[z].isneutral = True
@@ -577,7 +595,7 @@ def open_cam():
 
 
 def start_flask():
-    app.secret_key = 'kHaNhLeDePtRaI'
+    app.secret_key = 'kHaNhlEdEpTrAi'
     app.run(debug=False, host='0.0.0.0', port=8855)
 
 

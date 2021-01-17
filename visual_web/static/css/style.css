@@ -83,6 +83,22 @@ tbody {
 .table tr {
     cursor: pointer;
 }
+
+.admininfo{
+    width:100%; 
+    height: max-content;
+}
+
+#avatar{
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    margin-left: 10px;
+    border-radius: 50%;
+}
+.admin{
+    display: inline-block;
+}
 .hiddenRow {
     padding: 0 4px !important;
     background-color: #eeeeee;

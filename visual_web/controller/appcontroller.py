@@ -2,6 +2,7 @@ import base64
 import csv
 import io
 import json
+import os
 from datetime import datetime as dt
 import pickle as pkl
 import numpy as np
@@ -11,6 +12,7 @@ from flask import Flask, jsonify
 from flask_mysqldb import MySQL
 from visual_web.model import *
 from visual_web.controller import face_embedding as FE
+
 from visual_web.model.customer import Customer
 
 app = Flask(__name__)
@@ -144,7 +146,7 @@ def get_admin_by_account(account):
 def add_new_customer(customer):
     with app.app_context():
         # mysql.connection.begin()
-        print("new cus emb" + str(customer.embbed))
+        # print("new cus emb" + str(customer.embbed))
         cur = mysql.connection.cursor()
         cur.execute("INSERT INTO Customer VALUES(%s, %s, %s, %s, %s)",
                     (customer.civilianid, customer.name, customer.phone,
@@ -179,10 +181,10 @@ def add_new_civilian(civilian, addperson):
 
             # print("last person "+str(cur.lastrowid))
             last_insert_id = cur.lastrowid
-            # mysql.connection.commit()
+
         else:
             last_insert_id = civilian.id
-        # mysql.connection.commit()
+
         # last_civil = last_insert_id
         if civilian.gender.gender == 1:
             cil_gender = 1
@@ -193,13 +195,14 @@ def add_new_civilian(civilian, addperson):
         cur.execute("INSERT INTO Civilian VALUES(default,%s, %s, %s, %s, %s, %s, %s,%s,%s)",
                     (int(last_insert_id), int(cil_gender), str(civilian.timein), str(civilian.datein),
                      str(out_time), str(out_date), str(civilian.faceimg), int(civilian.lower), int(civilian.higher)))
-        # mysql.connection.commit()
+        mysql.connection.commit()
         cur.close()
         # mysql.connection.rollback()
         return last_insert_id
 
 
 def add_emotion(civilian, e):
+    # print("new expression add")
     with app.app_context():
         cur = mysql.connection.cursor()
         # emo_check = np.zeros(3, dtype=int)
@@ -217,22 +220,23 @@ def add_emotion(civilian, e):
         # print("emo cvi: " + str(last_civil))
         cur.execute("INSERT INTO Expression VALUES (default, %s, %s, %s, %s)",
                     (int(civilian.id), str(e), str(civilian.timein), str(civilian.datein)))
-        # mysql.connection.commit()
+        mysql.connection.commit()
         cur.close()
         # emo_check[iemo] = 1
 
 
-def get_civilian_by_month_year(month, year):
+def get_civilian_by_start_end(start, end):
     cur = mysql.connection.cursor()
+
     cur.execute("SELECT PersonId, GenderId, expression, lower, "
                 "timein, datein, faceimg, Customer.CivilianPersonId, Customer.name from "
                 "(SELECT PersonId, GenderId, expression, lower, "
                 "timein, datein, faceimg "
                 "FROM Civilian, Expression  "
                 "WHERE PersonId = Expression.CivilianPersonId AND timein = moment AND datemoment = datein AND "
-                "MONTH(datein) = %s AND YEAR(datein) = %s) as l left join Customer on "
+                "datein >= %s AND datein <= %s) as l left join Customer on "
                 "Customer.CivilianPersonId = PersonId ORDER BY PersonId, datein, timein ",
-                (int(month), int(year)))
+                (str(start), str(end)))
     fetch_data = cur.fetchall()
 
     res = {}
@@ -259,6 +263,7 @@ def get_civilian_by_month_year(month, year):
                        'faceimg': str(res[data][6]), 'isadd': int(0), 'cusid': str(res[data][7]),
                        'cusname': str(res[data][8])} for data in res])
     cur.close()
+
     return ret
 
 
@@ -281,10 +286,11 @@ def show_age_week():
 
 
 def ageoverall():
+
     cur = mysql.connection.cursor()
     cur.execute("SELECT lower, Gender.gender, Month(dateout) "
                 "FROM Civilian, Gender "
-                "WHERE "
+                "WHERE YEAR(dateout) = YEAR(CURDATE()) AND "
                 "Civilian.GenderId = Gender.Id "
                 "ORDER BY Month(Civilian.dateout)")
     fetch_data = cur.fetchall()
@@ -329,11 +335,15 @@ def ageoverall():
                 male[d[2]][5] += 1
             else:
                 female[d[2]][5] += 1
+    # os.remove('/home/kl/PycharmProjects/Do an Tot nghiep PTIT/'
+    #           'face_age_gender_emotion/visual_web/static/csv/agemonth.csv')
 
     with open(
-            '/home/kl/PycharmProjects/Do an Tot nghiep PTIT/face_age_gender_emotion/visual_web/static/csv/agemonth.csv',
+            '/home/kl/PycharmProjects/Do an Tot nghiep PTIT/'
+            'face_age_gender_emotion/visual_web/static/csv/agemonth.csv',
             'w',
             newline='') as file:
+
         writer = csv.writer(file)
         writer.writerow(["x1", "y1", "z1", "x2", "y2", "z2"])
         for i in range(1, 13):
@@ -345,6 +355,11 @@ def ageoverall():
                 elif male[i][j] == 0 and female[i][j] != 0:
                     writer.writerow(['', '', '', i, j, female[i][j]])
 
+def update_embed(emb):
+    with app.app_context():
+        cur = mysql.connection.cursor()
+        cur.execute("UPDATE Customer set faceembed = %s WHERE CivilianPersonId = 2", (pkl.dumps(emb),))
+        mysql.connection.commit()
 
 def expression_with_employee():
     cur = mysql.connection.cursor()
@@ -382,8 +397,8 @@ def expression_with_employee():
     cur.execute("SELECT Account.id,Admin.Name, role,  Account.username, Expression.expression "
                 ",COUNT(Expression.expression) FROM `Activitylog`, Admin,Account, Civilian, Expression "
                 "WHERE Civilian.PersonId = Expression.CivilianPersonId AND Activitylog.AccountId = Account.id "
-                "AND Admin.AccountId = Account.id and role ='"
-                "employee' AND CAST( CAST(datein as DATETIME)+timein as DATETIME) >= intime"
+                "AND Admin.AccountId = Account.id and role ='employee' "
+                "AND CAST( CAST(datein as DATETIME)+timein as DATETIME) >= intime"
                 " AND outime >= CAST( CAST(datein as DATETIME)+timein as DATETIME) "
                 "AND timein = moment AND MONTH(datein) = MONTH(NOW()) and datein = datemoment "
                 "GROUP BY Admin.AccountId, expression")
@@ -410,6 +425,16 @@ def get_product_expression():
                        "expression": data[2], "count": data[3]} for data in fetch_data])
 
     return res
+
+
+def civilian_out(civ, outtime, outdate):
+    with app.app_context():
+        cur = mysql.connection.cursor()
+        cur.execute("UPDATE Civilian SET timeout = %s, dateout = %s WHERE PersonId = %s "
+                    "AND timein = %s and datein = %s",
+                    (str(outtime), str(outdate), int(civ.id), str(civ.timein), str(civ.datein)))
+        mysql.connection.commit()
+        cur.close()
 
 
 def expression():
@@ -474,7 +499,6 @@ def add_new_order(order):
     for cp in cart_products:
         cur.execute("INSERT INTO Cart_Product VALUES (default, %s, %s, %s)", (int(last_cart), int(cp.product),
                                                                               int(cp.quantity)))
-        # mysql.connection.commit()
 
     cur.execute("INSERT INTO CustomerOrder VALUES (default, %s, %s, %s, %s, %s, %s)",
                 (int(order.customer), int(last_cart), int(order.totalprice), str(order.custimein), str(order.ordertime)
@@ -485,18 +509,32 @@ def add_new_order(order):
 
 def get_civilian_byday(day):
     cur = mysql.connection.cursor()
-    cur.execute(
-        "Select PersonId, GenderId, expression, lower, timein, datein, "
+    # cur.execute(
+    #     "Select PersonId, GenderId, expression, lower, timein, datein, "
+    #     "faceimg, Customer.CivilianPersonId, name, phone, address "
+    #     "from (SELECT Distinct PersonId, GenderId, expression, lower, " +
+    #     "timein, datein, faceimg " +
+    #     "FROM Civilian, Expression, Gender "
+    #     "WHERE (Civilian.GenderId = Gender.Id AND PersonId = Expression.CivilianPersonId and timein = moment) " +
+    #     "AND datein = %s and datemoment = datein) as L " +
+    #     "LEFT JOIN Customer "
+    #     "on Customer.CivilianPersonId = PersonId "
+    #     "ORDER BY PersonId",
+    #     (str(day),))
+    cur.execute("Select PersonId, GenderId, expression, lower, timein, datein, "
         "faceimg, Customer.CivilianPersonId, name, phone, address "
-        "from (SELECT Distinct PersonId, GenderId, expression, lower, " +
-        "timein, datein, faceimg " +
-        "FROM Civilian, Expression, Gender "
-        "WHERE (Civilian.GenderId = Gender.Id AND PersonId = Expression.CivilianPersonId and timein = moment) " +
-        "AND datein = %s and datemoment = datein) as L " +
+        "from "
+        "(SELECT * FROM (SELECT PersonId, GenderId, lower, "
+        "timein, datein, faceimg "
+        "FROM Civilian, Gender "
+        "WHERE (Civilian.GenderId = Gender.Id)) AS x "
+        "LEFT JOIN Expression "
+        "on PersonId = Expression.CivilianPersonId "
+        "WHERE datein = %s) as L "
         "LEFT JOIN Customer "
-        "on Customer.CivilianPersonId = PersonId "
-        "ORDER BY PersonId",
-        (str(day),))
+        "on Customer.CivilianPersonId = L.PersonId "
+        
+        "ORDER BY PersonId", (str(day),))
 
     fetch_data = cur.fetchall()
 

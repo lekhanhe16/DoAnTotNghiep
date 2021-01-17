@@ -183,7 +183,7 @@
         <div class="container-fluid" id="righttoday">
             <br>
             <div class="row d-flex justify-content-center">
-                <p>x</p>
+                <p id="rightp">x</p>
             </div>
             <br>
         </div>
@@ -215,7 +215,7 @@
     </div>
 
     <!-- <script src="../static/js/jquery.js"></script> -->
-   
+
     <script>
         var customer = [];
         var products;
@@ -227,11 +227,12 @@
         // var deleteproduct = 0;
         var listpurchase = [];
         $(document).ready(function () {
+
             var currentdate = new Date().getFullYear() + '-' +
                 ("0" + (new Date().getMonth() + 1)).slice(-2) + '-' +
                 ("0" + new Date().getDate()).slice(-2);
-            // .toJSON().slice(0, 10);
-            // alert(currentdate)
+            
+            document.getElementById("rightp").innerHTML= "Today is " + currentdate;
             var querydate = { "date": currentdate }
 
             $.ajax({
@@ -246,13 +247,16 @@
                     for ([i, c] of fetch_data.entries()) {
                         if (i > 0) {
                             if ((c.no == customer[customer.length - 1].no) && c.timein == customer[customer.length - 1].timein) {
-                                customer[customer.length - 1].expression += ", " + c.expression;
+                                if(c.expression != null){
+                                    customer[customer.length - 1].expression += ", " + c.expression;
+                                }
+                                    
                                 continue;
                             }
                         }
                         // console.log(customer[i-1].no)
 
-                        if(c.gender == 1) totalmale += 1;
+                        if (c.gender == 1) totalmale += 1;
                         else totalfemale += 1;
                         c.pos = customer.length + 1;
                         customer.push(c);
@@ -269,7 +273,7 @@
                             ('<tr><td class="nr" id="cno"><span>' + c.pos + '</span></td><td>' + c.timein + " " + c.datein + '</td>' +
                                 '<td id="namecustomer">' + cname + '</td>' +
                                 '<td><img src=' + newImage.src + ' height="30" width="30" /></td>' +
-                                '<td><button type="button" class="btn btn-primary bshow" '+
+                                '<td><button type="button" class="btn btn-primary bshow" ' +
                                 'onclick="showInfo(this, 0)" height="30" width="40">View</button></tr>');
                     }
 
@@ -305,14 +309,14 @@
                     // var g = $("#numofmale").value;
                     // alert(g)
 
-                    document.getElementById("numofmale").innerHTML = 
-                    new Number(document.getElementById("numofmale").textContent) + 1;
+                    document.getElementById("numofmale").innerHTML =
+                        new Number(document.getElementById("numofmale").textContent) + 1;
                 }
                 else {
                     // var g = $("#numoffemale").value;
                     // alert(g)
-                    document.getElementById("numoffemale").innerHTML = 
-                    new Number(document.getElementById("numoffemale").textContent) + 1;
+                    document.getElementById("numoffemale").innerHTML =
+                        new Number(document.getElementById("numoffemale").textContent) + 1;
                 }
                 cname = ""
                 if (jd.cid != 0) cname = jd.name;
@@ -320,11 +324,31 @@
                     ('<tr><td class="nr" id="cno"><span>' + cusno + '</span></td><td>' + jd.timein + " " + jd.datein + '</td>' +
                         '<td id="namecustomer">' + cname + '</td>' +
                         '<td><img src=' + newImage.src + ' height="30" width="30" /></td>' +
-                        '<td><button type="button" class="btn btn-primary bshow" '+
-                            'onclick="showInfo(this, 0)" height="30" width="40">View</button></td></tr>');
+                        '<td><button type="button" class="btn btn-primary bshow" ' +
+                        'onclick="showInfo(this, 0)" height="30" width="40">View</button></td></tr>');
             }
 
         });
+        function getAgeSpan(age) {
+            if (age >= 10 && age <= 15) {
+                return "10-15";
+            }
+            else if (age >= 16 && age <= 20) {
+                return "16-20";
+            }
+            else if (age >= 21 && age <= 25) {
+                return "21-25";
+            }
+            else if (age >= 26 && age <= 30) {
+                return "26-30";
+            }
+            else if (age >= 31 && age <= 35) {
+                return "31-35";
+            }
+            else if (age >= 36 && age <= 40) {
+                return "36-40";
+            }
+        }
 
         function showInfo(obj, p) {
             // alert("btn show clicj");
@@ -333,11 +357,10 @@
             if (p == 0 && obj != null) {
                 $row = $(obj).closest('tr');    // tim dong chua civialian
                 $pos = $row.find('.nr').text(); // thu tu dong 
-
             }
             else $pos = p;
             var cimage, cage;
-            var cgender = cname = cid = cPhone = cexpresion = caddress = "";
+            var cgender = cname = cid = cPhone = cexpresion = caddress = " ";
             for (c of customer) {
                 if (c.pos == $pos) {
                     cimage = c.faceimg;
@@ -347,7 +370,10 @@
                     cage = c.age;
                     cgender = (c.gender == 1) ? "male" : "female";
                     // alert(typeof(c.expression))
-                    cexpresion += c.expression;
+                    if (c.expression != null){
+                        cexpresion += c.expression;
+                    }
+                   
                     cid = c.cid;
                     cname = c.name;
                     cPhone = c.phone;
@@ -376,7 +402,7 @@
                 $('#cusphone').hide();
                 $('#cusaddress').hide();
             }
-            $('#cusage').text("Age: " + cage);
+            $('#cusage').text("Age: " + getAgeSpan(cage));
             $('#cusgender').text("Gender: " + cgender);
             $('#cusemo').text("Expression: " + cexpresion);
             $('#myModalAddNew').modal('hide');
@@ -393,7 +419,7 @@
                 data: JSON.stringify({
                     "order": listpurchase, "customerid": clickCusID, "totalprice": sum,
                     "custimein": customer[clickPos - 1].timein, "ordertime": timeorder,
-                    "orderdate": customer[clickPos - 1].datein
+                    "orderdate": customer[clickPos - 1].datein, "employee": admin.accountid
                 }),
                 success: function (data) {
                     // products = JSON.parse(data.replace(/&#34;/g, "\""));
@@ -480,25 +506,34 @@
             });
         }
         $("#btnaddcustomer").on("click", function () {
-            
+
             // console.log("clck");
-            document.getElementById("addcusform").setAttribute("idCus", clickCusID);
-            document.getElementById("addcusform").setAttribute("posCus", clickPos);
-            viewcivilian(clickPos);
-            $("#myModalInfo").removeClass("fade").modal("hide");
-            $("#myModalAddNew").addClass("fade").modal("show");
+            if (admin.role == "employee") {
+                document.getElementById("addcusform").setAttribute("idCus", clickCusID);
+                document.getElementById("addcusform").setAttribute("posCus", clickPos);
+                viewcivilian(clickPos);
+                $("#myModalInfo").removeClass("fade").modal("hide");
+                $("#myModalAddNew").addClass("fade").modal("show");
+            }
+            else {
+                alert("You must be employee to access this function!");
+            }
 
         });
 
         $("#btnpurchase").on("click", function () {
-            
-            listpurchase = [];
-            $("#bodycartproduct").empty();
-            viewcivilian(clickPos);
-            sum = 0;
-            productno = 0;
-            $("#myModalInfo").removeClass("fade").modal("hide");
-            $("#myModalPurchase").addClass("fade").modal("show");
+            if (admin.role == "employee") {
+                listpurchase = [];
+                $("#bodycartproduct").empty();
+                viewcivilian(clickPos);
+                sum = 0;
+                productno = 0;
+                $("#myModalInfo").removeClass("fade").modal("hide");
+                $("#myModalPurchase").addClass("fade").modal("show");
+            }
+            else {
+                alert("You must be employee to access this function!");
+            }
         });
     </script>
 

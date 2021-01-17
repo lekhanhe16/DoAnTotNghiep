@@ -28,7 +28,13 @@
             </div>
             <ul class="lisst-unstyled components">
                 <li id="datavisual">
-                    <p>Data Visualization</p>
+                    
+                    <div class="admininfo">
+                        <img id="avatar" src="../static/images/femenine.png">
+                        <p class="admin" id="admin">HELLO</p>
+                        <br>
+                    </div>
+
                 </li>
                 <li>
                     <a href="#today" id="today" onclick="showChart('today')">Today</a>
@@ -129,7 +135,15 @@
         }
         $(document).ready(function () {
             admin = JSON.parse('{{admin}}'.replace(/&#34;/g, "\""));
+            console.log(JSON.stringify(admin));
+            if (admin.role == "employee"){
+                document.getElementById("avatar").src="../static/images/employee.svg"
+            }
+            else if (admin.role == "manager"){
+                document.getElementById("avatar").src="../static/images/manage.svg"
+            }
             // alert(admin.accountid)
+            document.getElementById("admin").innerHTML = "Hello, " + admin.name;
             $("#sidebarCollapse").on('click', function () {
                 // alert("hello")
                 $("#sidebar").toggleClass('active');

@@ -2,7 +2,7 @@
 import base64
 import io
 import time
-
+from datetime import datetime as dt
 import cv2
 from PIL import Image
 import numpy as np
@@ -53,6 +53,8 @@ frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
 # img1 = cv2.resize(img1, (224, 224))
 img2 = cv2.resize(img2, (224, 224))
 frame = cv2.resize(frame, (224, 224))
+cv2.imshow("x", frame)
+cv2.waitKey(0)
 #
 #
 # # print(type(img2))
@@ -65,6 +67,7 @@ embeddings = get_embedding(files)
 start_time = time.time()
 is_match(embeddings[0], embeddings[1])
 print(time.time() - start_time)
+print(dt.now().year)
 # # define sharon stone
 # sharon_id = embeddings[0]
 # # verify known photos of sharon
