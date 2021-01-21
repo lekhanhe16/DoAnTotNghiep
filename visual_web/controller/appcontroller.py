@@ -1,18 +1,13 @@
-import base64
 import csv
-import io
 import json
-import os
-from datetime import datetime as dt
 import pickle as pkl
-import numpy as np
-from PIL import Image
-from cv2 import cv2
-from flask import Flask, jsonify
-from flask_mysqldb import MySQL
-from visual_web.model import *
-from visual_web.controller import face_embedding as FE
+from datetime import datetime as dt
 
+import numpy as np
+from flask import Flask
+from flask_mysqldb import MySQL
+
+from visual_web.controller import face_embedding as FE
 from visual_web.model.customer import Customer
 
 app = Flask(__name__)
@@ -51,7 +46,7 @@ def match_a_customer(civilian):
 
 def customer_to_json():
     cur = mysql.connection.cursor()
-    cur.execute("SELECT max(CivilianPersonId), name, phone, address, faceimg, lower "
+    cur.execute("SELECT CivilianPersonId, name, phone, address, faceimg, lower "
                 "from Civilian, Customer, Person WHERE Person.id = Civilian.PersonId "
                 "AND Civilian.PersonId = CivilianPersonId group by CivilianPersonId")
     fetch_data = cur.fetchall()
@@ -76,7 +71,7 @@ def edit_customer(cusname, cusaddress, cusphone, cusid):
 
 def search_customer_by_name(cusname):
     cur = mysql.connection.cursor()
-    cur.execute("SELECT max(CivilianPersonId), name, phone, address, faceimg, lower "
+    cur.execute("SELECT CivilianPersonId, name, phone, address, faceimg, lower "
                 "from Civilian, Customer, Person WHERE Person.id = Civilian.PersonId "
                 "AND Civilian.PersonId = CivilianPersonId AND Customer.name LIKE %s group by CivilianPersonId",
                 (str(cusname),))
@@ -152,6 +147,7 @@ def add_new_customer(customer):
                     (customer.civilianid, customer.name, customer.phone,
                      pkl.dumps(customer.embbed), customer.address))
         mysql.connection.commit()
+        cur.close()
         # mysql.connection.rollback()
         # print(cur.lastrowid)
     # return "called"
@@ -164,6 +160,49 @@ def add_new_customer(customer):
 #             cur.execute("INSERT INTO Expression VALUES (default, %s, %s, %s)",
 #                         (int(civilian.id), str(e), str()))
 #         mysql.connection.commit()
+
+def get_age_span(ages):
+    span_count = [0, 0, 0, 0, 0, 0]
+    maxa = 0
+    l = h = 0
+    for a in ages:
+        if 10 <= a <= 15:
+            span_count[0] += 1
+            if span_count[0] > maxa:
+                maxa = span_count[0]
+                l = 10
+                h = 15
+        elif 16 <= a <= 20:
+            span_count[1] += 1
+            if span_count[1] > maxa:
+                maxa = span_count[1]
+                l = 16
+                h = 20
+        elif 21 <= a <= 25:
+            span_count[2] += 1
+            if span_count[2] > maxa:
+                maxa = span_count[2]
+                l = 21
+                h = 25
+        elif 26 <= a <= 30:
+            span_count[3] += 1
+            if span_count[3] > maxa:
+                maxa = span_count[3]
+                l = 26
+                h = 30
+        elif 31 <= a <= 35:
+            span_count[4] += 1
+            if span_count[4] > maxa:
+                maxa = span_count[4]
+                l = 31
+                h = 35
+        elif 36 <= a <= 40:
+            span_count[5] += 1
+            if span_count[5] > maxa:
+                maxa = span_count[5]
+                l = 36
+                h = 40
+    return l, h
 
 
 def add_new_civilian(civilian, addperson):
@@ -191,7 +230,10 @@ def add_new_civilian(civilian, addperson):
 
         else:
             cil_gender = 2
-
+        l, h = get_age_span(civilian.predicteda)
+        for a in civilian.predicteda:
+            if l<=a<=h:
+                civilian.lower = a
         cur.execute("INSERT INTO Civilian VALUES(default,%s, %s, %s, %s, %s, %s, %s,%s,%s)",
                     (int(last_insert_id), int(cil_gender), str(civilian.timein), str(civilian.datein),
                      str(out_time), str(out_date), str(civilian.faceimg), int(civilian.lower), int(civilian.higher)))
@@ -205,24 +247,10 @@ def add_emotion(civilian, e):
     # print("new expression add")
     with app.app_context():
         cur = mysql.connection.cursor()
-        # emo_check = np.zeros(3, dtype=int)
-        # for i, e in enumerate(civilian.expres):
-        #
-        #     if str(e) == 'neutral':
-        #         iemo = 0
-        #     elif str(e) == 'happy':
-        #         iemo = 1
-        #     elif str(e) == 'sad':
-        #         iemo = 2
-        #     if str(e) == 'sad' and i == len(civilian.expres) - 1:
-        #         continue
-        #     if emo_check[iemo] == 0:
-        # print("emo cvi: " + str(last_civil))
         cur.execute("INSERT INTO Expression VALUES (default, %s, %s, %s, %s)",
                     (int(civilian.id), str(e), str(civilian.timein), str(civilian.datein)))
         mysql.connection.commit()
         cur.close()
-        # emo_check[iemo] = 1
 
 
 def get_civilian_by_start_end(start, end):
@@ -286,7 +314,6 @@ def show_age_week():
 
 
 def ageoverall():
-
     cur = mysql.connection.cursor()
     cur.execute("SELECT lower, Gender.gender, Month(dateout) "
                 "FROM Civilian, Gender "
@@ -304,7 +331,7 @@ def ageoverall():
     male = np.zeros([13, 6], dtype=int)
 
     for d in fetch_data:
-        age = d[0] + 3
+        age = d[0]
         if 10 <= age <= 15:
             if d[1] == 1:
                 male[d[2]][0] += 1
@@ -355,11 +382,13 @@ def ageoverall():
                 elif male[i][j] == 0 and female[i][j] != 0:
                     writer.writerow(['', '', '', i, j, female[i][j]])
 
+
 def update_embed(emb):
     with app.app_context():
         cur = mysql.connection.cursor()
         cur.execute("UPDATE Customer set faceembed = %s WHERE CivilianPersonId = 2", (pkl.dumps(emb),))
         mysql.connection.commit()
+
 
 def expression_with_employee():
     cur = mysql.connection.cursor()
@@ -434,6 +463,30 @@ def civilian_out(civ, outtime, outdate):
                     "AND timein = %s and datein = %s",
                     (str(outtime), str(outdate), int(civ.id), str(civ.timein), str(civ.datein)))
         mysql.connection.commit()
+        sad_count = 0
+        happy_count = 0
+        neutral_count = 0
+        maxe = 0
+        for e in civ.expres:
+            if e == 'happy':
+                happy_count += 1
+                if happy_count > maxe:
+                    maxe = happy_count
+            if e == 'sad':
+                sad_count += 1
+                if sad_count > maxe:
+                    maxe = sad_count
+            if e == 'neutral':
+                neutral_count += 1
+                if neutral_count > maxe:
+                    maxe = neutral_count
+
+        if sad_count == maxe:
+            add_emotion(civ, 'sad')
+        if happy_count == maxe:
+            add_emotion(civ, 'happy')
+        if neutral_count == maxe:
+            add_emotion(civ, 'neutral')
         cur.close()
 
 
@@ -468,13 +521,13 @@ def expression():
     return emo
 
 
-def check_data(data, i):
-    if data is not None and i == 7:
-        return int(data)
-    elif data is not None and i > 7:
-        return str(data)
-    else:
-        return 0
+# def check_data(data, i):
+#     if data is not None and i == 7:
+#         return int(data)
+#     elif data is not None and i > 7:
+#         return str(data)
+#     else:
+#         return 0
 
 
 def get_all_products():
@@ -522,19 +575,18 @@ def get_civilian_byday(day):
     #     "ORDER BY PersonId",
     #     (str(day),))
     cur.execute("Select PersonId, GenderId, expression, lower, timein, datein, "
-        "faceimg, Customer.CivilianPersonId, name, phone, address "
-        "from "
-        "(SELECT * FROM (SELECT PersonId, GenderId, lower, "
-        "timein, datein, faceimg "
-        "FROM Civilian, Gender "
-        "WHERE (Civilian.GenderId = Gender.Id)) AS x "
-        "LEFT JOIN Expression "
-        "on PersonId = Expression.CivilianPersonId "
-        "WHERE datein = %s) as L "
-        "LEFT JOIN Customer "
-        "on Customer.CivilianPersonId = L.PersonId "
-        
-        "ORDER BY PersonId", (str(day),))
+                "faceimg, Customer.CivilianPersonId, name, phone, address "
+                "from "
+                "(SELECT * FROM (SELECT PersonId, GenderId, lower, "
+                "timein, datein, faceimg "
+                "FROM Civilian, Gender "
+                "WHERE (Civilian.GenderId = Gender.Id)) AS x "
+                "LEFT JOIN Expression "
+                "on PersonId = Expression.CivilianPersonId and datemoment = datein and timein = moment "
+                "WHERE datein = %s) as L "
+                "LEFT JOIN Customer "
+                "on Customer.CivilianPersonId = L.PersonId "
+                "ORDER BY PersonId", (str(day),))
 
     fetch_data = cur.fetchall()
 

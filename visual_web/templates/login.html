@@ -56,29 +56,10 @@
 							GO
 						</button>
 					</div>
-
-					<!-- <div class="text-center p-t-12">
-						<span class="txt1">
-							Forgot
-						</span>
-						<a class="txt2" href="#forgotpassword">
-							Username / Password?
-						</a>
-					</div> -->
-
-					<!-- <div class="text-center p-t-136">
-						<a class="txt2" href="#">
-							Create your Account
-							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
-						</a>
-					</div> -->
 				</form>
 			</div>
 		</div>
 	</div>
-
-
-
 
 <!--===============================================================================================-->
 	<script src="{{ url_for('static', filename='vendor/jquery/jquery-3.2.1.min.js') }}"></script>
@@ -89,13 +70,22 @@
 	<script src="{{ url_for('static', filename='vendor/select2/select2.min.js') }}"></script>
 <!--===============================================================================================-->
 	<script src="{{ url_for('static', filename='vendor/tilt/tilt.jquery.min.js') }}"></script>
+	
 	<script >
 		$('.js-tilt').tilt({
 			scale: 1.1
 		})
+		$(document).ready(function(){
+			var success = '{{loginsuccess}}';
+			
+			if (success == "no"){
+				alert("Invalid username or password. Try again!")
+			}
+		})
 	</script>
-<!--===============================================================================================-->
 	<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+<!--===============================================================================================-->
+	
 
 </body>
 </html>

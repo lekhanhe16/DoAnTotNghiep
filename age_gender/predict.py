@@ -53,7 +53,9 @@ else:
 
 # ga_model.prepare(ctx_id)
 
-emotion_model_path = '/home/kl/PycharmProjects/Do an Tot nghiep PTIT/face_age_gender_emotion/age_gender/emotion_models/fer2013_mini_XCEPTION.100-0.65.hdf5'
+emotion_model_path = '/home/kl/PycharmProjects/Do an Tot nghiep PTIT/face_age_gender_emotion/' \
+                     'age_gender/emotion_models/fer2013_mini_XCEPTION.100-0.65.hdf5'
+
 emotion_labels = get_labels('fer2013')
 emotion_classifier = load_model(emotion_model_path, compile=False)
 # emotion_classifier._make_predict_function()

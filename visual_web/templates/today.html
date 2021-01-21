@@ -89,7 +89,7 @@
 
                             <div class="row d-flex justify-content-center">
 
-                                <table class="table table-striped" id="cartproduct" width="100%" cellpadding="10">
+                                <table class="table table-condensed" id="cartproduct" width="100%" cellpadding="10">
                                     <thead>
                                         <tr>
                                             <th id="noc">#</td>
@@ -487,31 +487,31 @@
             // }
             showInfo(null, cpos);
         }
-        function viewcivilian(pos) {
-            var jsondata;
-            for (c of customer) {
-                if (c.pos == pos) {
-                    jsondata = { "civid": c.no };
-                    break;
-                }
-            }
-            $.ajax({
-                url: "http://0.0.0.0:8855/viewcivilian",
-                type: "POST",
-                contentType: "application/json",
-                data: JSON.stringify(jsondata),
-                success: function (data) {
+        // function viewcivilian(pos) {
+        //     var jsondata;
+        //     for (c of customer) {
+        //         if (c.pos == pos) {
+        //             jsondata = { "civid": c.no };
+        //             break;
+        //         }
+        //     }
+        //     $.ajax({
+        //         url: "http://0.0.0.0:8855/viewcivilian",
+        //         type: "POST",
+        //         contentType: "application/json",
+        //         data: JSON.stringify(jsondata),
+        //         success: function (data) {
 
-                }
-            });
-        }
+        //         }
+        //     });
+        // }
         $("#btnaddcustomer").on("click", function () {
 
             // console.log("clck");
             if (admin.role == "employee") {
                 document.getElementById("addcusform").setAttribute("idCus", clickCusID);
                 document.getElementById("addcusform").setAttribute("posCus", clickPos);
-                viewcivilian(clickPos);
+                // viewcivilian(clickPos);
                 $("#myModalInfo").removeClass("fade").modal("hide");
                 $("#myModalAddNew").addClass("fade").modal("show");
             }
@@ -525,7 +525,7 @@
             if (admin.role == "employee") {
                 listpurchase = [];
                 $("#bodycartproduct").empty();
-                viewcivilian(clickPos);
+                // viewcivilian(clickPos);
                 sum = 0;
                 productno = 0;
                 $("#myModalInfo").removeClass("fade").modal("hide");

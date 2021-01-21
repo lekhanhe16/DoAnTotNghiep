@@ -6,7 +6,7 @@ import io
 import json
 import os
 import time
-from datetime import datetime as dt
+from datetime import datetime as dt, date, timedelta
 import threading
 # import numpy as np
 from functools import wraps
@@ -14,7 +14,7 @@ from functools import wraps
 import cv2
 import dlib
 from PIL import Image
-from flask import Flask, g, redirect, flash, render_template, request, session, url_for
+from flask import Flask, flash, render_template, request, session, url_for
 from flask import Response
 from flask_mysqldb import MySQL
 import numpy as np
@@ -29,6 +29,7 @@ from visual_web.model.civilian import Civilian
 from visual_web.model.customer import Customer
 from visual_web.model.customerorder import CustomerOrder
 from visual_web.model.gender import Gender
+from visual_web.controller import face_embedding as FE
 
 app = Flask(__name__)
 app.static_folder = 'static'
@@ -37,6 +38,7 @@ app.config['MYSQL_HOST'] = '0.0.0.0'
 app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = ''
 app.config['MYSQL_DB'] = 'agegenderexpression'
+app.secret_key = 'kHaNhlEdEpTrAi'
 
 mysql = MySQL(app)
 
@@ -49,6 +51,7 @@ frame_stream = None
 
 tracked_civ = []
 tracked_pos = {}
+face_embedding = []
 
 
 # track_lm = []
@@ -57,15 +60,14 @@ tracked_pos = {}
 
 # socket_io = SocketIO(app)
 
-def x(f):
-    @wraps(f)
-    def decorate_function(*args, **kwargs):
-        if g.user is None:
-            return redirect(url_for('login', next=request.url))
-        return f(*args, **kwargs)
-
-    return decorate_function
-
+# def x(f):
+#     @wraps(f)
+#     def decorate_function(*args, **kwargs):
+#         if g.user is None:
+#             return redirect(url_for('login', next=request.url))
+#         return f(*args, **kwargs)
+#
+#     return decorate_function
 
 @app.route('/ageweek')
 def show_age_week():
@@ -78,24 +80,27 @@ def ageoverall():
     return render_template('overall.html')
 
 
-@app.route('/logi')
-def logi():
+@app.route('/login')
+def login():
     return render_template('login.html')
 
 
 @app.route('/', methods=['GET', 'POST'])
 def home(data=None):
-    if not session.get('logged_in'):
-        return render_template('login.html')
-    else:
-        if data is not None:
-            # print(dt.now().strftime("%Y-%m-%d %H:%M:%S"))
+    global camready
+    if data is not None:
+        if not session.get(data[4]):
+            return render_template('login.html')
+        else:
             account = Account(data[1], data[4], data[5])
             admin = Admin(data[0], account, data[2], data[3])
             timein = appcontroller.admin_login(admin)
             ad = json.dumps({"personid": data[0], "accountid": data[1],
-                             "name": data[2], "role": data[3], "timein": str(timein)})
-        return render_template('index.html', admin=ad)
+                             "name": data[2], "role": data[3], "timein": str(timein), "username": data[4]})
+
+            return render_template('index.html', admin=ad)
+    else:
+        return render_template('login.html')
 
 
 @app.route('/setoutime', methods=['POST'])
@@ -103,6 +108,8 @@ def setoutime():
     content = request.get_json()
     accountid = content['accountid']
     timein = content['timein']
+    username = content['username']
+    session[username] = False
     return appcontroller.setoutime(accountid, timein)
 
 
@@ -121,11 +128,13 @@ def do_login():
     fetch_data = appcontroller.get_admin_by_account(acc)
     try:
         if len(fetch_data) == 6:
-            session['logged_in'] = True
-        else:
-            flash('Tài khoản hoặc mật khẩu sai')
-    except:
-        flash('Tài khoản hoặc mật khẩu sai')
+            session[user] = True
+
+    except Exception as e:
+
+        flash('Invalid username or password')
+        print(e)
+        return render_template("login.html", loginsuccess="no")
     return home(data=fetch_data)
 
 
@@ -136,8 +145,8 @@ def expression():
 
 @app.route('/logout')
 def do_logout():
-    session['logged_in'] = False
-    return home(None)
+    # session['logged_in'] = False
+    return render_template('login.html')
 
 
 # url = "http://ipcampython:1234567@152.168.42.129:8080/video"
@@ -192,33 +201,33 @@ def get_civilian_byday():
     return res
 
 
-@app.route('/viewcivilian', methods=['POST'])
-def view_civilian():
-    global tracked_civ
-    content = request.get_json()
-    civid = content['civid']
-    # print(civid)
-    for i, civ in enumerate(tracked_civ):
-        if i > 0:
-            if civid == civ.id:
-                tracked_civ[i].expreg = True
-                break
-    return "OK"
+# @app.route('/viewcivilian', methods=['POST'])
+# def view_civilian():
+#     global tracked_civt
+#     content = request.get_json()
+#     civid = content['civid']
+#     # print(civid)
+#     for i, civ in enumerate(tracked_civ):
+#         if i > 0:
+#             if civid == civ.id:
+#                 tracked_civ[i].expreg = True
+#                 break
+#     return "OK"
 
 
 @app.route('/getnewcivilian')
 def update_new_civilian():
     def event_stream():
         while True:
-            time.sleep(2)
+            time.sleep(1)
             if len(new_civilian) > 0:
                 for i, c in enumerate(new_civilian):
-                    # print(c)
-                    if c.lower + 3 > 0 and i not in is_add:
+
+                    if c.lower > 0 and i not in is_add:
                         # print(c)
                         cdata = json.loads(json.dumps({
                             "no": c.id,
-                            "expression": c.expres,
+                            "expression": [],
                             "age": int(c.lower),
                             "gender": int(c.gender.gender),
                             "timein": c.timein,
@@ -331,13 +340,14 @@ def get_emotion(fr, x1, y1, w1, h1):
 
 def assign_label(fid, emo, age, gender, intime, indate, ind, face_base64):
     global tracked_civ
-    time.sleep(1)
+    time.sleep(0.5)
     if ind is not None:
         # tracked_civ[fid, 0].append(emo)
         tracked_civ[fid].expres.append(emo)
     if age is not None:
-        tracked_civ[fid].lower = age - 3
+        tracked_civ[fid].lower = age
         tracked_civ[fid].higher = age + 3
+        tracked_civ[fid].predicteda.append(age)
     if gender is not None:
         tracked_civ[fid].gender.gender = gender
     if intime is not None and indate is not None:
@@ -357,7 +367,7 @@ def gen():
 
 
 def create_new_civilian(fid, emo, gender, intime, indate, face_base64, low, hig):
-    # cage = Age(aid=1, alow=age - 3, ahigh=age + 3)
+    # cage = Age(aid=1, alow=age - 3, ahigh=age )
     gid = 1 if (gender == 1) else 2
     cgender = Gender(gid=gid, ggender=gender)
     return Civilian(fid, genderobj=cgender, ti=intime, di=indate, baseimg=face_base64, embed=None, emo=emo,
@@ -368,7 +378,7 @@ def add_emb_and_civ(p):
     global new_civilian
     global tracked_civ
     civilian = tracked_civ[p]
-    if civilian.lower + 3 <= 0:
+    if civilian.lower <= 0:
         return
     file_like = io.BytesIO(base64.b64decode(civilian.faceimg))
 
@@ -390,23 +400,37 @@ def add_emb_and_civ(p):
 
     civilian.face_embed = emb
     # print("shape: " + str(civilian.face_embed.shape))
+    now = dt.strftime(dt.now(), '%H:%M:%S').split(':')
+    for e in face_embedding:
+
+        before = civilian.timein.split(':')
+        duration = timedelta(hours=int(now[0]), minutes=int(now[1]), seconds=int(now[2])) - timedelta(
+            hours=int(before[0]),
+            minutes=int(before[1]),
+            seconds=int(before[2]))
+        score, ismatch = FE.is_match(emb, e)
+        if ismatch is True and duration.total_seconds() < 40:
+            print("match hea")
+            return
     customer = appcontroller.match_a_customer(civilian)
 
     if customer is not None:
         # print("match")
         if civilian.lower > 0:
+            face_embedding.append(emb)
             tracked_civ[p].customer = customer
             tracked_civ[p].id = customer.civilianid
             appcontroller.add_new_civilian(civilian=tracked_civ[p], addperson=0)
-            time.sleep(4)
+            time.sleep(5)
             new_civilian.append(tracked_civ[p])
-    #     add cam xuc cho customer
+
     else:
         if civilian.lower > 0:
+            face_embedding.append(emb)
             customer1 = Customer(0, 0, 0, None, 0)
             tracked_civ[p].customer = customer1
             # customer1.civ = civilian
-            time.sleep(4)
+            time.sleep(5)
             new_civilian.append(tracked_civ[p])
             tracked_civ[p].id = appcontroller.add_new_civilian(civilian=tracked_civ[p], addperson=1)
 
@@ -421,7 +445,7 @@ def open_cam():
     video_capture = cv2.VideoCapture(0)
     camready = True
     try:
-        os.chdir('/home/kl/detected')
+        # os.chdir('/home/kl/detected')
         # count = 1
         face_id = 0
         frame_counter = 0
@@ -444,7 +468,7 @@ def open_cam():
                     # print("hey" +str(x))
                     track_quality = tracked_pos[pos].update(small_frame)
 
-                    if track_quality < 5.2 and tracked_civ[pos].lower + 3 > 0:
+                    if track_quality < 5.2 and tracked_civ[pos].lower > 0:
                         # print(tracked_civ[pos].id)
                         # threading.Thread(target=add_emb_and_civ, args=[pos]).start()
                         out_time = dt.strftime(dt.now(), '%H:%M:%S')
@@ -460,72 +484,74 @@ def open_cam():
                     if len(bbox) > 0 and len(landmarks) > 0:
 
                         for index, b in enumerate(bbox):
-                            x = sx = int(b[0])
-                            h = sh = int(b[3])
-                            y = sy = int(b[1])
-                            w = sw = int(b[2])
+                            if b is not None:
+                                x = int(b[0])
+                                h = int(b[3])
+                                y = int(b[1])
+                                w = int(b[2])
 
-                            x_bar = (w + x) * 0.5
-                            y_bar = (h + y) * 0.5
+                                x_bar = (w + x) * 0.5
+                                y_bar = (h + y) * 0.5
 
-                            matched_fid = None
-                            for fid in tracked_pos.copy():
-                                tracked_position = tracked_pos[fid].get_position()
+                                matched_fid = None
+                                for fid in tracked_pos.copy():
+                                    tracked_position = tracked_pos[fid].get_position()
 
-                                t_x = int(tracked_position.left())
-                                t_y = int(tracked_position.top())
-                                t_w = int(tracked_position.width())
-                                t_h = int(tracked_position.height())
+                                    t_x = int(tracked_position.left())
+                                    t_y = int(tracked_position.top())
+                                    t_w = int(tracked_position.width())
+                                    t_h = int(tracked_position.height())
 
-                                t_x_bar = t_x + 0.5 * t_w
-                                t_y_bar = t_y + 0.5 * t_h
+                                    t_x_bar = t_x + 0.5 * t_w
+                                    t_y_bar = t_y + 0.5 * t_h
 
-                                if ((t_x <= x_bar <= (t_x + t_w)) and
-                                        (t_y <= y_bar <= (t_y + t_h)) and
-                                        (x <= t_x_bar <= (x + w)) and
-                                        (y <= t_y_bar <= (y + h))):
-                                    matched_fid = fid
-                                    # track_bbox[matched_fid] = bbox[index]
-                                    # track_lm[matched_fid] = landmarks[index]
-                                    break
+                                    if ((t_x <= x_bar <= (t_x + t_w)) and
+                                            (t_y <= y_bar <= (t_y + t_h)) and
+                                            (x <= t_x_bar <= (x + w)) and
+                                            (y <= t_y_bar <= (y + h))):
+                                        matched_fid = fid
+                                        # track_bbox[matched_fid] = bbox[index]
+                                        # track_lm[matched_fid] = landmarks[index]
+                                        break
 
-                            if matched_fid is None:
-                                tracker = dlib.correlation_tracker()
+                                if matched_fid is None:
+                                    tracker = dlib.correlation_tracker()
 
-                                tracker.start_track(small_frame,
-                                                    dlib.rectangle(x, y, w, h))
-                                face_id += 1
+                                    tracker.start_track(small_frame,
+                                                        dlib.rectangle(x, y, w, h))
+                                    face_id += 1
 
-                                tracked_pos[face_id] = tracker
-                                # track_lm.append(landmarks[index])
-                                # track_bbox.append(bbox[index])
-                                in_time = dt.strftime(dt.now(), '%H:%M:%S')
-                                in_date = dt.strftime(dt.now(), '%Y-%m-%d')
+                                    tracked_pos[face_id] = tracker
+                                    # track_lm.append(landmarks[index])
+                                    # track_bbox.append(bbox[index])
+                                    in_time = dt.strftime(dt.now(), '%H:%M:%S')
+                                    in_date = dt.strftime(dt.now(), '%Y-%m-%d')
 
-                                # emo, imgd = get_emotion(small_frame, x, y, w, h)
+                                    # emo, imgd = get_emotion(small_frame, x, y, w, h)
 
-                                # if emo is not None and imgd is not None:
-                                # time.sleep(1)
-                                # print(landmarks[index])
-                                gender, age = predict_ga(small_frame[y:h, x:w])
-                                # print(landmarks[index])
-                                faceimg = frame[int(y / 0.25 - 5): int(h / 0.25 + 5),
-                                          int(x / 0.25 - 5): int(w / 0.25 + 5)]
+                                    # if emo is not None and imgd is not None:
+                                    # time.sleep(1)
+                                    # print(landmarks[index])
+                                    gender, age = predict_ga(small_frame[y:h, x:w])
+                                    # print(landmarks[index])
 
-                                ret, ext = cv2.imencode('.jpeg', faceimg)
-                                im = ext.tobytes()
+                                    faceimg = frame[int(y / 0.25 - 5): int(h / 0.25 + 5),
+                                              int(x / 0.25 - 5): int(w / 0.25 + 5)]
 
-                                newciv = create_new_civilian(face_id, 'neutral', gender, in_time, in_date,
-                                                             str(base64.b64encode(im).decode('utf-8')), age - 3,
-                                                             age + 3)
-                                tracked_civ.append(newciv)
+                                    ret, ext = cv2.imencode('.jpeg', faceimg)
+                                    im = ext.tobytes()
 
-                                for ind, ci in reversed(list(enumerate(tracked_civ))):
-                                    # print("x")
-                                    if ci.id == newciv.id:
-                                        # print("xx")
-                                        threading.Thread(target=add_emb_and_civ, args=[ind]).start()
-                                    break
+                                    newciv = create_new_civilian(face_id, 'neutral', gender, in_time, in_date,
+                                                                 str(base64.b64encode(im).decode('utf-8')), age,
+                                                                 age + 3)
+                                    tracked_civ.append(newciv)
+
+                                    for ind, ci in reversed(list(enumerate(tracked_civ))):
+                                        # print("x")
+                                        if ci.id == newciv.id:
+                                            # print("xx")
+                                            threading.Thread(target=add_emb_and_civ, args=[ind]).start()
+                                        break
 
                 for z in tracked_pos.copy():
                     tracked_position = tracked_pos[z].get_position()
@@ -539,7 +565,7 @@ def open_cam():
                         if tracked_civ[z] is not None:
                             # print(tracked_civ[z].expres)
                             emo1, imgd1 = get_emotion(small_frame, t_x, t_y, t_w, t_h)
-
+                            tracked_civ[z].expres.append(emo1)
                             if emo1 == 'neutral' and frame_counter % 15 == 14 and imgd1 is not None:
                                 #  0 emo; 1 age, 2 gender, 3 intime, 4 indate, 5 faceimg
                                 #
@@ -547,6 +573,7 @@ def open_cam():
                                 #                          int(track_bbox[z][0]):int(track_bbox[z][2])],
                                 #                          track_lm[z] * 0.25)
                                 gender, age = predict_ga(imgd1)
+
                                 threading.Thread(target=assign_label,
                                                  args=(
                                                      z, emo1, age, gender, None, None, None,
@@ -556,23 +583,28 @@ def open_cam():
                                 threading.Thread(target=assign_label,
                                                  args=(
                                                      z, emo1, None, None, None, None, 1, None)).start()
-                            if tracked_civ[z].expreg is True:
-                                # print("exprs true")
-                                if emo1 == 'neutral' and tracked_civ[z].isneutral is False:
-                                    appcontroller.add_emotion(tracked_civ[z], emo1)
-                                    tracked_civ[z].isneutral = True
-                                elif emo1 == 'happy' and tracked_civ[z].ishappy is False:
-                                    appcontroller.add_emotion(tracked_civ[z], emo1)
-                                    tracked_civ[z].ishappy = True
-                                elif emo1 == 'sad' and tracked_civ[z].issad is False:
-                                    appcontroller.add_emotion(tracked_civ[z], emo1)
-                                    tracked_civ[z].issad = True
-                            if emo1 is not None and tracked_civ[z].lower + 3 is not None and tracked_civ[z]. \
+
+                            # if tracked_civ[z].expreg is True:
+                            #     # print("exprs true")
+                            #     if emo1 == 'neutral' and tracked_civ[z].isneutral is False:
+                            #         appcontroller.add_emotion(tracked_civ[z], emo1)
+                            #         tracked_civ[z].isneutral = True
+                            #     elif emo1 == 'happy' and tracked_civ[z].ishappy is False:
+                            #         appcontroller.add_emotion(tracked_civ[z], emo1)
+                            #         tracked_civ[z].ishappy = True
+                            #     elif emo1 == 'sad' and tracked_civ[z].issad is False:
+                            #         appcontroller.add_emotion(tracked_civ[z], emo1)
+                            #         tracked_civ[z].issad = True
+                            if emo1 is not None and tracked_civ[z].lower is not None and tracked_civ[z]. \
                                     gender.gender is not None:
                                 cv2.putText(frame, emo1 + '_' +
                                             str(tracked_civ[z].lower) + '_' + str(tracked_civ[z].gender.gender),
                                             (int(t_x / 0.25), int(t_y / 0.25)), cv2.FONT_HERSHEY_DUPLEX, 0.5,
                                             (0, 0, 255), 1)
+                                cv2.rectangle(frame, pt1=(int(t_x / 0.25), int(t_y / 0.25)),
+                                              pt2=(int((t_x + t_w) / 0.25), int((t_y + t_h) / 0.25)), color=(0, 0, 255),
+                                              thickness=1)
+
                     except Exception as ex:
                         print("ex " + ex.__class__.__name__ + " " + str(ex.with_traceback(None)))
 
@@ -585,8 +617,7 @@ def open_cam():
                 # if frame_counter % 150 == 0:
                 #     tracked_civ.clear()
                 #     tracked_pos.clear()
-                # cv2.imshow("Video", small_frame[int(track_bbox[z][1]):int(track_bbox[z][3]),
-                #                          int(track_bbox[z][0]):int(track_bbox[z][2])])
+                # cv2.imshow("Video", frame)
                 # if cv2.waitKey(1) & 0xFF == ord('q'):
                 #     break
 
@@ -595,16 +626,16 @@ def open_cam():
 
 
 def start_flask():
-    app.secret_key = 'kHaNhlEdEpTrAi'
+
+    # app.secret_key = os.urandom(50)
     app.run(debug=False, host='0.0.0.0', port=8855)
 
 
 if __name__ == '__main__':
     y = threading.Thread(target=start_flask)
-
     y.start()
+
     # if camready is False:
     #     camready = True
     #     x = threading.Thread(target=open_cam)
-    #
     #     x.start()

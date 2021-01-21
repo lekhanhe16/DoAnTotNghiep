@@ -40,108 +40,153 @@
       <br>
       <div>
         <div>Stats in</div>
-        <input type="date" id="after" placeholder="Enter start date"><br><br>
-        <input type="date" id="before" placeholder="Enter end date"><br><br>
+        <input type="date" id="after" placeholder="Choose start date"><br><br>
+        <input type="date" id="before" placeholder="Choose end date"><br><br>
+      </div>
+      <div class="row d-flex justify-content-center">
+        <button type="button" id="btnsearch" class="btn btn-primary" height="30" width="40">View</button>
       </div>
 
-      <!-- <div>
-        <div>Year</div>
-        <select class="mdb-select md-form" id="selectyear" style="width: max-content">
-          <option value="" disabled selected>Choose a year</option>
-          <option value="2020">2020</option>
-          <option value="2021">2021</option>
-
-        </select>
-
-        <div>Month</div>
-        <select class="mdb-select md-form" id="selectmonth" style="width: max-content">
-          <option value="" disabled selected>Choose a month</option>
-          <option value="1">January</option>
-          <option value="2">February</option>
-          <option value="3">March</option>
-          <option value="4">April</option>
-          <option value="5">May</option>
-          <option value="6">June</option>
-          <option value="7">July</option>
-          <option value="8">August</option>
-          <option value="9">September</option>
-          <option value="10">October</option>
-          <option value="11">November</option>
-          <option value="12">December</option>
-        </select> -->
-        <div class="row d-flex justify-content-center">
-          <button type="button" id="btnsearch" class="btn btn-primary" height="30" width="40">View</button>
-        </div>
-
-      </div>
     </div>
   </div>
+  <br id="cusbr">
+  <!-- <div id="container">
+    <div class="container-fluid">
+      <br>
+      <h4>Customer interest</h4>
+      <div class="row d-flex justify-content-center">
 
+        <!-- <table class="table table-striped" id="prodexp" width="100%" cellpadding="10">
+          <thead>
+            <tr>
+              <th id="noc">Product ID</th>
+              <th>Product's Name</th>
+              <th><img src="../static/images/happy.png" /></th>
+              <th><img src="../static/images/sad.png" /></th>
+              <th><img src="../static/images/neutral.png" /></th>
+            </tr>
 
-  <script>
-    var customer = [];
-    showAgeOverAll();
-    $('#btnsearch').on('click', function () {
-      var $startdate = $('#after').val();
-      var $enddate = $('#before').val();
-      // var $year = $('#selectyear').val();
-      // var $month = $('#selectmonth').val();
-      // var querydata = { "month": $month, "year": $year }
-      var querydata = {"after": $startdate, "before":$enddate};
-      $.ajax({
-        url: "http://0.0.0.0:8855/getcivilianbystartend",
-        type: "POST",
-        contentType: "application/json",
-        data: JSON.stringify(querydata),
-        success: function (data) {
-          var fetch_data = JSON.parse(data.replace(/&#34;/g, "\""))
-          // alert(fetch_data[1].age)
-          $('#tablebody').empty();
-          for ([i, c] of fetch_data.entries()) {
+          </thead>
+          <tbody>
 
-            c.no = i + 1;
-            customer.push(c);
-            var customerName = ""
-            if (c.cusid != null) {
-              customerName = c.cusname;
+          </tbody>
+        </table> 
+
+        <div id="container">
+          <div class="container-fluid" id="lefttoday">
+            <br>
+            <div class="row d-flex justify-content-center">
+              <div>Product</div>
+              <select class="mdb-select md-form" onchange="onSelectedItem(this)" onfocus="this.selectedIndex = -1;"
+                id="selectproduct">
+                <option value="" disabled selected>Choose a product</option>
+
+              </select>
+            </div>
+          </div>
+
+          <div class="container-fluid" id="midtoday">
+            <br>
+            <div class="row d-flex">
+              <div class="col-md-6">
+                <div>From</div>
+                <input type="date" id="afterproduct" placeholder="Choose start date"><br><br>
+                <div>To</div>
+                <input type="date" id="beforeproduct" placeholder="Choose end date">
+              </div>
+            </div>
+            <br>
+          </div>
+
+          <div class="container-fluid" id="righttoday">
+            <br>
+            <button type="button" id="btnsearchproduct" class="btn btn-primary" height="30" width="40">Search</button>
+            <br>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid">
+        <br>
+        <br>
+        <div class="row d-flex justify-content-center">
+          <div class="col-md-6">
+            <canvas id="barChart" height="400" width="600"></canvas>
+
+          </div>
+        </div>
+        <br>
+        <br>
+      </div>
+    </div> -->
+
+    <script>
+      var customer = [];
+      showAgeOverAll();
+      var products;
+      var selectProduct;
+      
+      $('#btnsearch').on('click', function () {
+        var $startdate = $('#after').val();
+        var $enddate = $('#before').val();
+        // var $year = $('#selectyear').val();
+        // var $month = $('#selectmonth').val();
+        // var querydata = { "month": $month, "year": $year }
+        var querydata = { "after": $startdate, "before": $enddate };
+        $.ajax({
+          url: "http://0.0.0.0:8855/getcivilianbystartend",
+          type: "POST",
+          contentType: "application/json",
+          data: JSON.stringify(querydata),
+          success: function (data) {
+            var fetch_data = JSON.parse(data.replace(/&#34;/g, "\""))
+            // alert(fetch_data[1].age)
+            $('#tablebody').empty();
+            for ([i, c] of fetch_data.entries()) {
+
+              c.no = i + 1;
+              customer.push(c);
+              var customerName = ""
+              if (c.cusid != null) {
+                customerName = c.cusname;
+              }
+              var srce = "data:image/jpeg;base64," + c.faceimg;
+              var newImage = document.createElement('img');
+              newImage.src = srce;
+              newImage.width = newImage.height = "40";
+              $('#customer tbody').append
+                ('<tr><td class="nr" id="cno"><span>' + c.no + '</span></td><td>' + c.timein + " " + c.datein + '</td>' +
+                  '<td>' + c.gender + '</td><td><img src=' + newImage.src + ' height="30" width="30" /></td>' +
+                  '<td>' + customerName + '</td>' +
+                  '<td>' + getAgeSpan(c.age) + '</td>' +
+                  '<td>' + c.expression + '</td></tr>');
+
             }
-            var srce = "data:image/jpeg;base64," + c.faceimg;
-            var newImage = document.createElement('img');
-            newImage.src = srce;
-            newImage.width = newImage.height = "40";
-            $('#customer tbody').append
-              ('<tr><td class="nr" id="cno"><span>' + c.no + '</span></td><td>' + c.timein + " " + c.datein + '</td>' +
-                '<td>' + c.gender + '</td><td><img src=' + newImage.src + ' height="30" width="30" /></td>' +
-                '<td>' + customerName + '</td>' +
-                '<td>' + getAgeSpan(c.age) + '</td>' +
-                '<td>' + c.expression + '</td></tr>');
-            
+            // redrawChart();
+            // console.log(customer);
           }
-          redrawChart();
-          // console.log(customer);
-        }
+        });
+
       });
       
-    });
-    function getAgeSpan(age) {
-            if (age >= 10 && age <= 15) {
-                return "10-15";
-            }
-            else if (age >= 16 && age <= 20) {
-                return "16-20";
-            }
-            else if (age >= 21 && age <= 25) {
-                return "21-25";
-            }
-            else if (age >= 26 && age <= 30) {
-                return "26-30";
-            }
-            else if (age >= 31 && age <= 35) {
-                return "31-35";
-            }
-            else if (age >= 36 && age <= 40) {
-                return "36-40";
-            }
+      function getAgeSpan(age) {
+        if (age >= 10 && age <= 15) {
+          return "10-15";
         }
-  </script>
+        else if (age >= 16 && age <= 20) {
+          return "16-20";
+        }
+        else if (age >= 21 && age <= 25) {
+          return "21-25";
+        }
+        else if (age >= 26 && age <= 30) {
+          return "26-30";
+        }
+        else if (age >= 31 && age <= 35) {
+          return "31-35";
+        }
+        else if (age >= 36 && age <= 40) {
+          return "36-40";
+        }
+      }
+    </script>
 </body>
